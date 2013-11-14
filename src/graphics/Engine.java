@@ -8,6 +8,7 @@ import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.ContextAttribs;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
+import org.lwjgl.opengl.GL15;
 import org.lwjgl.opengl.PixelFormat;
 
 public class Engine {
@@ -43,7 +44,7 @@ public class Engine {
 		}
 	}
 	
-	public void testDraw(){
+	public void testQuad(){
 		float[] verticies = {
 				-0.5f, 0.5f, 0f,
 				-0.5f, -0.5f, 0f,
@@ -57,9 +58,17 @@ public class Engine {
 		
 		byte[] indices = {
 				0, 1, 2,
-				2, 3, 0;
+				2, 3, 0
 		};
 		
 		ByteBuffer indicesBuffer = BufferUtils.createByteBuffer(indices.length);
+		indicesBuffer.put(indices);
+		indicesBuffer.flip();
+		
+		int vboID = GL15.glGenBuffers();
+		GL15.glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, vboID);
+		GL15.glBufferData(GL15.GL_ELEMENT_ARRAY_BUFFER, indicesBuffer, GL15.GL_STATIC_DRAW);
+		GL15.glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, 0);
+		
 	}
 }
