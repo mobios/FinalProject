@@ -1,8 +1,15 @@
-package CoachingTools;
+package coachingTools;
 
-import javax.swing.JFrame;
-
-public class GameDisplay extends JFrame {
+public class GameDisplay {
+	
+	private Game game;
+	private ControlGUI controlGUI;
+	
+	public GameDisplay(Game game, ControlGUI controlGUI) {
+		super();
+		this.game = game;
+		this.controlGUI = controlGUI;
+	}
 	
 	
 	
