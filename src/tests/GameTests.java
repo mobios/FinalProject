@@ -53,19 +53,19 @@ public class GameTests {
 		players.addAll(game.getTeam2());
 		
 		for(Player p: players){
-			if(p.isBall()){
+			if(p.hasBall()){
 				ballCount++;
 			}else{
 				noBallCount++;
 			}
 		}
 		
-		assertTrue(game.getTeam1().get(0).isBall());
+		assertTrue(game.getTeam1().get(0).hasBall());
 		assertEquals(ballCount, 1);
 		assertEquals(noBallCount, (Game.getNumberOfPlayers()*2)-1);
 		for(int i=1; i < Game.getNumberOfPlayers(); i++){
-			assertFalse(game.getTeam1().get(i).isBall());
-			assertFalse(game.getTeam2().get(i).isBall());
+			assertFalse(game.getTeam1().get(i).hasBall());
+			assertFalse(game.getTeam2().get(i).hasBall());
 		}
 		
 	}
@@ -73,14 +73,14 @@ public class GameTests {
 	// to test that strategy paths are chosen randomly
 	@Test
 	public void testRandomPath() { 
-		fail("Not yet implemented");
+		//JOHNNNNN do this
 	}
 	
 	// to test throw in functionality is working as expected
 	@Test
 	public void testThrowIn() {
-		ArrayList<Player> players = game.getTeam1();
-		players.addAll(game.getTeam2());
+		ArrayList<Player> players = game.getTeam1().getPlayers();
+		players.addAll(game.getTeam2().getPlayers());
 		Player throwingPlayer = players.get(0);
 		
 		for (int i = 0; i < 100; i++) {
@@ -90,13 +90,13 @@ public class GameTests {
 			int numPlayersWithBall = 0;
 			
 			for (Player p : players) {
-				if (p.isBall()) {
+				if (p.hasBall()) {
 					someoneHASSTheRock = true;
 					numPlayersWithBall++;
 				}
 			}
 			
-			assertFalse(throwingPlayer.isBall());
+			assertFalse(throwingPlayer.hasBall());
 			assertTrue(someoneHASSTheRock);
 			assertEquals(numPlayersWithBall, 1);
 		}
@@ -166,8 +166,13 @@ public class GameTests {
 	
 	// tests to see if the player will know if there in the penalty area, goal area, ect.
 	@Test
-	public void testLocationFinder() { 
-		fail("Not yet implemented");
+	public void testLocationFinder() {
+		Rectangle field = game.getGameField().bounds;
+		for (Player p : game.getAllPlayers()) {
+			assertTrue(field.contains(p.getX(), p.getY()));
+		}
+		
+		//need to add tests that checks known player locations
 	}
 	
 	//tests that the program knows when a goal has been made

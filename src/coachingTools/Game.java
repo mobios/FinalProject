@@ -4,15 +4,17 @@ import java.util.ArrayList;
 
 public class Game {
 	private int period, speed = 100;
+	private int[] score;
 	private Team team1, team2;
 	private Field gameField;
 	
 	public Game() {
 		super();
 		gameField = new SoccerField();
+		score = new int[]{0, 0};
 		
-		team1 = new Team("BestTeamEver");
-		team2 = new Team("BesterTeamEver");		
+		team1 = new SoccerTeam("BestTeamEver");
+		team2 = new SoccerTeam("BesterTeamEver");		
 	}
 	
 	public void Formation(ArrayList<Player> players){
@@ -57,6 +59,17 @@ public class Game {
 
 	public Field getGameField() {
 		return gameField;
+	}
+	
+	public ArrayList<Player> getAllPlayers() {
+		ArrayList<Player> allPlayers = new ArrayList<Player>();
+		allPlayers.addAll(team1.getPlayers());
+		allPlayers.addAll(team2.getPlayers());
+		return allPlayers;		
+	}
+	
+	public int[] getScore() {
+		return score;
 	}
 	
 }

@@ -1,7 +1,7 @@
 package coachingTools;
 
 public abstract class Player extends Image {
-	
+	private float x, y;
 	private int number, stamina, skill;
 	private boolean hasBall;
 	
@@ -66,6 +66,19 @@ public abstract class Player extends Image {
 		
 	}
 	
+	public float getX() {
+		return x;
+	}
 	
+	public float getY() {
+		return y;
+	}
 	
+	public void setX(float x) {
+		this.x = x;
+	}
+	
+	public void setY(float y) {
+		this.y = y;
+	}
 }
