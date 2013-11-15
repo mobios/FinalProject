@@ -33,6 +33,4 @@ public abstract class Team {
 		return teamScore;
 		*/
 	}
-	
-	public abstract void makeFormation();
 }

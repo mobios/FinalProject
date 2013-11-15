@@ -13,6 +13,8 @@ import coachingTools.Player;
 import coachingTools.Field;
 import coachingTools.SoccerGame;
 import coachingTools.SoccerPlayer;
+import coachingTools.SoccerTeam;
+import coachingTools.SoccerTeam.FormationType;
 import coachingTools.Team;
 
 public class GameTests {
@@ -164,8 +166,22 @@ public class GameTests {
 	
 	// tests the Game can make a formation of players 
 	@Test
-	public void testMakeFormation() { 
-		fail("Not yet implemented");
+	public void testGetInFormation() {
+		
+		((SoccerTeam) game.getTeam1()).getInFormation(FormationType.RUSH);
+		assertTrue(((SoccerTeam) game.getTeam1()).isInFormation(FormationType.RUSH));
+		
+		((SoccerTeam) game.getTeam2()).getInFormation(FormationType.DEFEND);
+		assertTrue(((SoccerTeam) game.getTeam2()).isInFormation(FormationType.DEFEND));
+		
+		((SoccerTeam) game.getTeam2()).getInFormation(FormationType.RUSH);
+		assertTrue(((SoccerTeam) game.getTeam2()).isInFormation(FormationType.RUSH));
+		
+		((SoccerTeam) game.getTeam1()).getInFormation(FormationType.DEFEND);
+		assertTrue(((SoccerTeam) game.getTeam1()).isInFormation(FormationType.DEFEND));
+		
+		assertFalse(((SoccerTeam) game.getTeam1()).isInFormation(FormationType.RUSH));
+		assertFalse(((SoccerTeam) game.getTeam2()).isInFormation(FormationType.DEFEND));
 	}
 	
 	// tests to see if the player will know if there in the penalty area, goal area, ect.
