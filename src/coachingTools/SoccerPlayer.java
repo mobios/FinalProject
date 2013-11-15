@@ -10,6 +10,8 @@ public class SoccerPlayer extends Player {
 		
 	}
 	
+	// ------ getters and setters ------ \\
+	
 	public SoccerArea getRegion() {
 		return region;
 	}
@@ -17,5 +19,5 @@ public class SoccerPlayer extends Player {
 	public void setRegion(SoccerArea region) {
 		this.region = region;
 	}
-		
+	
 }
