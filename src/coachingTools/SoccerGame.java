@@ -9,9 +9,11 @@ public class SoccerGame extends Game {
 		
 	}
 	
-	public void throwIn(ArrayList<Player> palyers){
+	public void throwIn(ArrayList<Player> players){
 		
 		
 	}
+	
+	
 	
 }

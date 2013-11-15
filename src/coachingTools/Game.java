@@ -4,15 +4,12 @@ import java.util.ArrayList;
 
 public class Game {
 	private int period, speed = 100;
-	private int team1Score, team2Score;
 	private Team team1, team2;
 	private Field gameField;
 	
 	public Game() {
 		super();
 		gameField = new SoccerField();
-		team1Score = 0;
-		team2Score = 0;
 		
 		team1 = new SoccerTeam("BestTeamEver");
 		team2 = new SoccerTeam("BesterTeamEver");		
@@ -76,11 +73,11 @@ public class Game {
 	}
 	
 	public int getTeam1Score() {
-		return team1Score;
+		return team1.getScore();
 	}
 	
 	public int getTeam2Score() {
-		return team2Score;
+		return team2.getScore();
 	}
 	
 }

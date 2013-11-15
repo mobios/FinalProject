@@ -12,6 +12,10 @@ public class SoccerPlayer extends Player {
 		
 	}
 	
+	public void scoreGoal() {
+		scoredPoints++;
+	}
+	
 	// ------ getters and setters ------ \\
 	
 	

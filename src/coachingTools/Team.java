@@ -21,5 +21,18 @@ public abstract class Team {
 		return NUMBER_OF_PLAYERS;
 	}
 	
+	public int getScore() {
+		return 0;
+		/*
+		 * uncomment this once failing tests are working
+		int teamScore = 0;
+		for (Player p : players) {
+			teamScore += p.scoredPoints;
+		}
+		
+		return teamScore;
+		*/
+	}
+	
 	public abstract void makeFormation();
 }

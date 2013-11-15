@@ -182,7 +182,8 @@ public class GameTests {
 	//tests that the program knows when a goal has been made
 	@Test
 	public void testGoal() {
-		fail("Not yet implemented");
+		int initialTeam1Score = game.getTeam1Score();
+		int initialTeam2Score = game.getTeam2Score();
 	}
 	
 	

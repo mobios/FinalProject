@@ -9,7 +9,6 @@ public class SoccerTeam extends Team {
 		}
 	}
 	
-	@Override
 	public void makeFormation() {
 		//not yet implemented
 	}
