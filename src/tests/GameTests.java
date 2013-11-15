@@ -76,7 +76,8 @@ public class GameTests {
 		game.setDebugSeed();
 		int gaCount=0, paCount=0, ccCount=0, lhCount=0, rhCount=0;
 		for(int i=0; i < 200; i++){
-				
+			
+			
 		}
 	}
 	
