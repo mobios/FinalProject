@@ -153,8 +153,8 @@ public class GameTests {
 	
 	// tests to make sure that the field has loaded properly
 	@Test
-	public void testLoadField() { 
-		fail("Not yet implemented");
+	public void testLoadField() {
+		assertNotNull(game.getGameField());
 	}
 	
 	// tests that the players have been loaded

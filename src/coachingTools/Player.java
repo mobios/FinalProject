@@ -1,9 +1,9 @@
 package coachingTools;
 
-public class Player extends Image {
+public abstract class Player extends Image {
 	
 	private int number, stamina, skill;
-	private boolean ball;
+	private boolean hasBall;
 	
 	public Player(int number) {
 		super();
@@ -54,12 +54,12 @@ public class Player extends Image {
 		this.skill = skill;
 	}
 
-	public boolean isBall() {
-		return ball;
+	public boolean hasBall() {
+		return hasBall;
 	}
 
-	public void setBall(boolean ball) {
-		this.ball = ball;
+	public void setBall(boolean hasBall) {
+		this.hasBall = hasBall;
 	}
 	
 	public void throwInBall() {
