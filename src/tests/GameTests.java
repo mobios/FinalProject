@@ -2,12 +2,15 @@ package tests;
 
 import static org.junit.Assert.*;
 
+
 import java.awt.Rectangle;
+import java.util.ArrayList;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import coachingTools.Game;
+import coachingTools.Player;
 
 public class GameTests {
 	Game game;
@@ -29,7 +32,12 @@ public class GameTests {
 	// to test passing the ball to other players
 	@Test
 	public void testPass() {
-		fail("Not yet implemented");
+		
+		
+		game.getTeam1().get(1).pass(game.getTeam1().get(2));
+		ArrayList<Player> players = new ArrayList<Player>();
+		
+		
 	}
 	
 	// to test that strategy paths are chosen randomly

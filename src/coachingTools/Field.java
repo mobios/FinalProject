@@ -14,7 +14,7 @@ public abstract class Field extends Image {
 
 	public void loadField(String img){
 		
-		
+
 		
 	}
 	
