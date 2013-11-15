@@ -34,10 +34,32 @@ public class GameTests {
 	@Test
 	public void testPass() {
 		
+		int ballCount = 0;
+		int noBallCount = 0;
 		
-		game.getTeam1().get(1).pass(game.getTeam1().get(2));
+		game.getTeam1().get(5).setBall(true);
+		game.getTeam1().get(5).pass(game.getTeam1().get(0));
+		
 		ArrayList<Player> players = new ArrayList<Player>();
 		
+		players.addAll(game.getTeam1());
+		players.addAll(game.getTeam2());
+		
+		for(Player p: players){
+			if(p.isBall()){
+				ballCount++;
+			}else{
+				noBallCount++;
+			}
+		}
+		
+		assertTrue(game.getTeam1().get(0).isBall());
+		assertEquals(ballCount, 1);
+		assertEquals(noBallCount, (Game.getNumberOfPlayers()*2)-1);
+		for(int i=1; i < Game.getNumberOfPlayers(); i++){
+			assertFalse(game.getTeam1().get(i).isBall());
+			assertFalse(game.getTeam2().get(i).isBall());
+		}
 		
 	}
 	

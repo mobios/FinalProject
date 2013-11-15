@@ -64,5 +64,11 @@ public class Game {
 	public Field getGameField() {
 		return gameField;
 	}
+
+	public static int getNumberOfPlayers() {
+		return NUMBER_OF_PLAYERS;
+	}
+	
+	
 	
 }
