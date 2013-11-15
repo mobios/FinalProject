@@ -85,7 +85,7 @@ public class GameTests {
 		Rectangle field = game.getGameField().bounds;
 		float width = field.width;
 		float height = field.height;
-		float[] vertices = field.get2dVertices();
+		float[][] vertices = field.get2dVertices();
 		
 		
 		//check that areas that should be in bounds are
