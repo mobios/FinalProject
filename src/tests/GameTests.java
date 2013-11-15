@@ -16,7 +16,6 @@ import coachingTools.Field;
 public class GameTests {
 	Game game;
 	
-	
 	@Before
 	public void setUp(){
 		game = new Game();
@@ -73,7 +72,13 @@ public class GameTests {
 	// to test that strategy paths are chosen randomly
 	@Test
 	public void testRandomPath() { 
-		fail("Not yet implemented");
+		game.setDebugSeed();
+		
+		for(int i=0; i < 200; i++){
+			
+			
+			
+		}
 	}
 	
 	// to test throw in functionality is working as expected
