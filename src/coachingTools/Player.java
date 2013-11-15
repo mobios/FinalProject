@@ -62,7 +62,9 @@ public class Player extends Image {
 		this.ball = ball;
 	}
 	
-	
+	public void throwInBall() {
+		
+	}
 	
 	
 	
