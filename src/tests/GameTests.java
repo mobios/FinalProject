@@ -5,10 +5,15 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import coachingTools.Game;
+
 public class GameTests {
+	Game game;
+	
 	
 	@Before
 	public void setUp(){
+		game = new Game();
 		
 		
 	}
