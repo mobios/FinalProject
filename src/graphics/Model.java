@@ -38,5 +38,5 @@ public abstract class Model {
 	
 	public abstract void render();
 	public abstract void close();
-	public abstract void load(float[] verticies, byte[] indices);
+	public abstract void load();
 }

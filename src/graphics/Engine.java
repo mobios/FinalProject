@@ -10,6 +10,9 @@ import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.PixelFormat;
 
+import util.Origin;
+import util.Rectangle;
+
 public class Engine {
 	public final int WIDTH = 800;
 	public final int HEIGHT = 600;
@@ -69,6 +72,6 @@ public class Engine {
 		
 		byte[] indices={0,1,2,2,3,0};
 		
-		mesh.add(new Quad(vertices, indices));
+		mesh.add(new Quad(new Rectangle(0,0,1.f,1.f, Origin.CENTER)));
 	}
 }

@@ -70,10 +70,14 @@ public class GameTests {
 		//check middle of field
 		assertTrue(field.contains(width/2, height/2));
 		//check corners
-		assertTrue(field.contains(0, 0));
-		assertTrue(field.contains(width, 0));
-		assertTrue(field.contains(0, height));
-		assertTrue(field.contains(width, height));
+		//top left corner
+		assertTrue(field.contains(vertices[0][0], vertices[0][1]));
+		//bottom left corner
+		assertTrue(field.contains(vertices[1][0], vertices[1][1]));
+		//bottom right corner
+		assertTrue(field.contains(vertices[2][0], vertices[2][1]));
+		//top right corner
+		assertTrue(field.contains(vertices[3][0], vertices[3][1]));
 		//check a few miscellaneous points
 		assertTrue(field.contains(width/4, height/2));
 		assertTrue(field.contains(width/2, height/4));
