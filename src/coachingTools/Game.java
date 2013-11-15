@@ -3,7 +3,6 @@ package coachingTools;
 import java.util.ArrayList;
 
 public class Game {
-	private final static int NUMBER_OF_PLAYERS = 11;
 	private int period, speed = 100;
 	private Team team1, team2;
 	private Field gameField;
@@ -13,12 +12,7 @@ public class Game {
 		gameField = new SoccerField();
 		
 		team1 = new Team("BestTeamEver");
-		team2 = new Team("BesterTeamEver");
-		for (int i = 0; i < NUMBER_OF_PLAYERS; i++){
-			team1.getPlayers().add(new SoccerPlayer(i+1));
-			team2.getPlayers().add(new SoccerPlayer(i+1));
-		}
-		
+		team2 = new Team("BesterTeamEver");		
 	}
 	
 	public void Formation(ArrayList<Player> players){
@@ -64,11 +58,5 @@ public class Game {
 	public Field getGameField() {
 		return gameField;
 	}
-
-	public static int getNumberOfPlayers() {
-		return NUMBER_OF_PLAYERS;
-	}
-	
-	
 	
 }

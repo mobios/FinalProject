@@ -2,8 +2,9 @@ package coachingTools;
 
 import java.util.ArrayList;
 
-public class Team {
-	private ArrayList<Player> players;
+public abstract class Team {
+	protected final static int NUMBER_OF_PLAYERS = 11;
+	protected ArrayList<Player> players;
 	public String name;
 	
 	public Team(String name) {
@@ -16,7 +17,9 @@ public class Team {
 		return players;
 	}
 	
-	public void makeFormation() {
-		//not yet implemented
+	public static int getNumberOfPlayers() {
+		return NUMBER_OF_PLAYERS;
 	}
+	
+	public abstract void makeFormation();
 }

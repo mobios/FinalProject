@@ -1,6 +1,6 @@
 package coachingTools;
 
-public class Player extends Image {
+public abstract class Player extends Image {
 	
 	private int number, stamina, skill;
 	private boolean hasBall;
