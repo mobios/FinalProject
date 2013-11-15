@@ -16,7 +16,15 @@ public class SoccerGame extends Game {
 		
 		
 	}
+
+	@Override
+	public Team getTeam1() {
+		return (SoccerTeam) team1;
+	}
 	
-	
+	@Override
+	public Team getTeam2() {
+		return (SoccerTeam) team2;
+	}
 	
 }

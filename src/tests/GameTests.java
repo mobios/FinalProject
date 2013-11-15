@@ -19,6 +19,9 @@ import coachingTools.Team;
 
 public class GameTests {
 	Game game;
+	//not exactly sure what these dimension values are going to be yet
+	public static final float FIELD_LENGTH = 1;
+	public static final float FIELD_HEIGHT = 1;
 	
 	@Before
 	public void setUp(){
@@ -153,10 +156,11 @@ public class GameTests {
 		assertFalse(field.contains(0, vertices[1][1] - 0.1f));
 	}
 	
-	// tests to make sure that the field has loaded properly
+	// tests to make sure that the field has the correct dimensions
 	@Test
-	public void testLoadField() { 
-		fail("Not yet implemented");
+	public void testFieldDimensions() {
+		assertEquals(FIELD_LENGTH, game.getGameField().getWidth(), 0.001);
+		assertEquals(FIELD_HEIGHT, game.getGameField().getHeight(), 0.001);
 	}
 	
 	// tests that the players have been loaded

@@ -2,7 +2,7 @@ package coachingTools;
 
 import java.util.ArrayList;
 
-public class Game {
+public abstract class Game {
 	private int period, speed = 100;
 	protected Team team1, team2;
 	protected Field gameField;
@@ -41,7 +41,7 @@ public class Game {
 		this.speed = speed;
 	}
 
-	public Team getTeam1() {
+	public Team getTeam1(){
 		return team1;
 	}
 
@@ -49,7 +49,7 @@ public class Game {
 		this.team1 = team1;
 	}
 
-	public Team getTeam2() {
+	public Team getTeam2(){
 		return team2;
 	}
 
