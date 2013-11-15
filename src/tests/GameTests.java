@@ -26,8 +26,15 @@ public class GameTests {
 	
 	// to test moving to various locations on the field
 	@Test
-	public void testMove() { 
-		fail("Not yet implemented");
+	public void testMove() {
+		
+		Player testPlayer = new Player(10);
+		testPlayer.setX((float) 1.34234);
+		testPlayer.setY((float) 2.23223);
+		game.getTeam1().get(0).move(0, 0, 10);// move the the origin
+		assertTrue((float)-0.0001 <= testPlayer.getX() && testPlayer.getX() <= (float)0.0001);
+		assertTrue((float)-0.0001 <= testPlayer.getY() && testPlayer.getY() <= (float)0.0001);
+		
 	}
 	
 	// to test passing the ball to other players
@@ -71,26 +78,43 @@ public class GameTests {
 	
 	// to test throw in functionality is working as expected
 	@Test
-	public void testThrowIn() { 
-		fail("Not yet implemented");
+	public void testThrowIn() {
+		ArrayList<Player> players = game.getTeam1();
+		players.addAll(game.getTeam2());
+		Player throwingPlayer = players.get(0);
+		
+		for (int i = 0; i < 100; i++) {
+			throwingPlayer.setBall(true);
+			throwingPlayer.throwInBall();
+			boolean someoneHASSTheRock = false;
+			int numPlayersWithBall = 0;
+			
+			for (Player p : players) {
+				if (p.isBall()) {
+					someoneHASSTheRock = true;
+					numPlayersWithBall++;
+				}
+			}
+			
+			assertFalse(throwingPlayer.isBall());
+			assertTrue(someoneHASSTheRock);
+			assertEquals(numPlayersWithBall, 1);
+		}
+		
 	}
 	
 	// to test that the game recognizes when the ball/players are out of bound
 	@Test
 	public void testBounds() {
-		//int rowOutOfBoundsLeft = game.getField().getLeftBound() - 1;
-		//int columnOutOfBoundsAbove = game.getField().getLowerBound() -1;
-		//int rowOutOfBoundsRight = game.getField().getRightBound() + 1;
-		//int columnOutOfBoundsBelow = game.getField().getUpperBound() + 1;
 		Rectangle field = game.getGameField().bounds;
 		float width = field.width;
 		float height = field.height;
-		float[] vertices = field.get2dVertices();
+		float[][] vertices = field.get2dVertices();
 		
 		
 		//check that areas that should be in bounds are
 		//check middle of field
-		assertTrue(field.contains(width/2, height/2));
+		assertTrue(field.contains(0, 0));
 		//check corners
 		//top left corner
 		assertTrue(field.contains(vertices[0][0], vertices[0][1]));
@@ -100,29 +124,32 @@ public class GameTests {
 		assertTrue(field.contains(vertices[2][0], vertices[2][1]));
 		//top right corner
 		assertTrue(field.contains(vertices[3][0], vertices[3][1]));
-		//check a few miscellaneous points
-		assertTrue(field.contains(width/4, height/2));
-		assertTrue(field.contains(width/2, height/4));
-		assertTrue(field.contains(5, 5));
-		assertTrue(field.contains(width - 5, height - 5));
+		
+		//check each quadrant
+		//quadrant 1
 		assertTrue(field.contains(width/4, height/4));
-		assertTrue(field.contains(3*width/4, 3*height/4));
+		//quadrant 2
+		assertTrue(field.contains(-width/4, height/4));
+		//quadrant 3
+		assertTrue(field.contains(-width/4, -height/4));
+		//quadrant 4
+		assertTrue(field.contains(width/4, -height/4));
 		
 		//check that areas that shouldn't be in bounds aren't
 		//check to the left of the field
-		assertFalse(field.contains(-10, height/2));
+		assertFalse(field.contains(vertices[0][0] - 0.1f, 0));
 		//check to the right of the field
-		assertFalse(field.contains(width + 10, height/2));
+		assertFalse(field.contains(vertices[2][0] + 0.1f, 0));
 		//check above the field
-		assertFalse(field.contains(width/2, -10));
+		assertFalse(field.contains(0, vertices[0][1] + 0.1f));
 		//check below the field
-		assertFalse(field.contains(width/2, height + 10));
+		assertFalse(field.contains(0, vertices[1][1] - 0.1f));
 	}
 	
 	// tests to make sure that the field has loaded properly
 	@Test
-	public void testLoadField() { 
-		fail("Not yet implemented");
+	public void testLoadField() {
+		assertNotNull(game.getGameField());
 	}
 	
 	// tests that the players have been loaded
