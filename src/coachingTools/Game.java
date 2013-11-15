@@ -11,8 +11,8 @@ public class Game {
 		super();
 		gameField = new SoccerField();
 		
-		team1 = new Team("BestTeamEver");
-		team2 = new Team("BesterTeamEver");		
+		team1 = new SoccerTeam("BestTeamEver");
+		team2 = new SoccerTeam("BesterTeamEver");		
 	}
 	
 	public void Formation(ArrayList<Player> players){

@@ -1,9 +1,8 @@
 package tests;
 
 import static org.junit.Assert.*;
-
-
 import util.Rectangle;
+
 import java.util.ArrayList;
 
 import org.junit.Before;
@@ -12,13 +11,16 @@ import org.junit.Test;
 import coachingTools.Game;
 import coachingTools.Player;
 import coachingTools.Field;
+import coachingTools.SoccerGame;
+import coachingTools.SoccerPlayer;
+import coachingTools.Team;
 
 public class GameTests {
 	Game game;
 	
 	@Before
 	public void setUp(){
-		game = new Game();
+		game = new SoccerGame();
 		
 		
 	}
@@ -27,10 +29,10 @@ public class GameTests {
 	@Test
 	public void testMove() {
 		
-		Player testPlayer = new Player(10);
+		Player testPlayer = new SoccerPlayer(10);
 		testPlayer.setX((float) 1.34234);
 		testPlayer.setY((float) 2.23223);
-		game.getTeam1().get(0).move(0, 0, 10);// move the the origin
+		game.getTeam1().getPlayers().get(0).move(0, 0, 10);// move the the origin
 		assertTrue((float)-0.0001 <= testPlayer.getX() && testPlayer.getX() <= (float)0.0001);
 		assertTrue((float)-0.0001 <= testPlayer.getY() && testPlayer.getY() <= (float)0.0001);
 		
@@ -43,28 +45,28 @@ public class GameTests {
 		int ballCount = 0;
 		int noBallCount = 0;
 		
-		game.getTeam1().get(5).setBall(true);
-		game.getTeam1().get(5).pass(game.getTeam1().get(0));
+		game.getTeam1().getPlayers().get(5).setBall(true);
+		game.getTeam1().getPlayers().get(5).pass(game.getTeam1().getPlayers().get(0));
 		
 		ArrayList<Player> players = new ArrayList<Player>();
 		
-		players.addAll(game.getTeam1());
-		players.addAll(game.getTeam2());
+		players.addAll(game.getTeam1().getPlayers());
+		players.addAll(game.getTeam2().getPlayers());
 		
 		for(Player p: players){
-			if(p.isBall()){
+			if(p.hasBall()){
 				ballCount++;
 			}else{
 				noBallCount++;
 			}
 		}
 		
-		assertTrue(game.getTeam1().get(0).isBall());
+		assertTrue(game.getTeam1().getPlayers().get(0).hasBall());
 		assertEquals(ballCount, 1);
-		assertEquals(noBallCount, (Game.getNumberOfPlayers()*2)-1);
-		for(int i=1; i < Game.getNumberOfPlayers(); i++){
-			assertFalse(game.getTeam1().get(i).isBall());
-			assertFalse(game.getTeam2().get(i).isBall());
+		assertEquals(noBallCount, (Team.getNumberOfPlayers()*2)-1);
+		for(int i=1; i < Team.getNumberOfPlayers(); i++){
+			assertFalse(game.getTeam1().getPlayers().get(i).hasBall());
+			assertFalse(game.getTeam2().getPlayers().get(i).hasBall());
 		}
 		
 	}
@@ -73,19 +75,17 @@ public class GameTests {
 	@Test
 	public void testRandomPath() { 
 		game.setDebugSeed();
-		
+		int gaCount=0, paCount=0, ccCount=0, lhCount=0, rhCount=0;
 		for(int i=0; i < 200; i++){
-			
-			
-			
+				
 		}
 	}
 	
 	// to test throw in functionality is working as expected
 	@Test
 	public void testThrowIn() {
-		ArrayList<Player> players = game.getTeam1();
-		players.addAll(game.getTeam2());
+		ArrayList<Player> players = game.getTeam1().getPlayers();
+		players.addAll(game.getTeam2().getPlayers());
 		Player throwingPlayer = players.get(0);
 		
 		for (int i = 0; i < 100; i++) {
@@ -95,13 +95,13 @@ public class GameTests {
 			int numPlayersWithBall = 0;
 			
 			for (Player p : players) {
-				if (p.isBall()) {
+				if (p.hasBall()) {
 					someoneHASSTheRock = true;
 					numPlayersWithBall++;
 				}
 			}
 			
-			assertFalse(throwingPlayer.isBall());
+			assertFalse(throwingPlayer.hasBall());
 			assertTrue(someoneHASSTheRock);
 			assertEquals(numPlayersWithBall, 1);
 		}
@@ -153,8 +153,8 @@ public class GameTests {
 	
 	// tests to make sure that the field has loaded properly
 	@Test
-	public void testLoadField() {
-		assertNotNull(game.getGameField());
+	public void testLoadField() { 
+		fail("Not yet implemented");
 	}
 	
 	// tests that the players have been loaded
