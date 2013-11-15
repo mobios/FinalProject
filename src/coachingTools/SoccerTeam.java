@@ -1,6 +1,9 @@
 package coachingTools;
 
 public class SoccerTeam extends Team {
+	public enum FormationType {
+		RUSH, DEFEND;
+	}
 
 	public SoccerTeam(String name) {
 		super(name);
@@ -9,8 +12,11 @@ public class SoccerTeam extends Team {
 		}
 	}
 	
-	public void makeFormation() {
-		//not yet implemented
+	public void getInFormation(FormationType f){
+		
 	}
 
+	public boolean isInFormation(FormationType f){
+		return false;
+	}
 }
