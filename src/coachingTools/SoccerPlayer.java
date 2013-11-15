@@ -9,7 +9,10 @@ public class SoccerPlayer extends Player {
 	
 	public SoccerPlayer(int number) {
 		super(number);
-		
+	}
+	
+	public void scoreGoal() {
+		scoredPoints++;
 	}
 	
 	// ------ getters and setters ------ \\

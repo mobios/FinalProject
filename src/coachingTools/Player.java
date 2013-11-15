@@ -3,11 +3,13 @@ package coachingTools;
 public abstract class Player extends Image {
 	private float x, y;
 	private int number, stamina, skill;
+	protected int scoredPoints;
 	private boolean hasBall;
 	
 	public Player(int number) {
 		super();
 		this.number = number;
+		scoredPoints = 0;
 	}
 
 	public void move(float x, float y, int stamina){
