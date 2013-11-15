@@ -23,6 +23,12 @@ public class Game {
 		
 	}
 	
+	public void setDebugSeed(){
+		
+		
+		
+	}
+	
 	// ------ getters and setters ------ \\
 	
 	public int getPeriod() {
