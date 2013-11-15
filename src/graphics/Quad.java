@@ -9,23 +9,28 @@ import org.lwjgl.opengl.GL15;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
 
+import util.Rectangle;
+
 public class Quad extends Model {
 	private int indexBufferObject;
 	private int indexCount;
-	private float x, y;
-	private float height, width;
+	private Rectangle area;
 	
-	public Quad(float[] verticies, byte[] indices){
+	public Quad(Rectangle rect){
 		super();
+		area = rect;
 		indexBufferObject = GL15.glGenBuffers();
-		load(verticies,indices);
+		load();
 	}
 	
 	@Override
-	public void load(float[] verticies, byte[] indices) {		
-		FloatBuffer verticiesBuffer = BufferUtils.createFloatBuffer(verticies.length);
-		verticiesBuffer.put(verticies);
-		verticiesBuffer.flip();
+	public void load() {
+		float[] vertices = area.get3dVertices();
+		byte[] indices = area.getOrder();
+		
+		FloatBuffer verticesBuffer = BufferUtils.createFloatBuffer(vertices.length);
+		verticesBuffer.put(vertices);
+		verticesBuffer.flip();
 		
 		ByteBuffer indicesBuffer = BufferUtils.createByteBuffer(indices.length);
 		indicesBuffer.put(indices);
@@ -35,7 +40,7 @@ public class Quad extends Model {
 		GL30.glBindVertexArray(vAO);
 		
 		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, vBO);
-		GL15.glBufferData(GL15.GL_ARRAY_BUFFER, verticiesBuffer, GL15.GL_STATIC_DRAW);
+		GL15.glBufferData(GL15.GL_ARRAY_BUFFER, verticesBuffer, GL15.GL_STATIC_DRAW);
 		GL20.glVertexAttribPointer(0,3, GL11.GL_FLOAT, false, 0, 0);
 		
 		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, 0);
