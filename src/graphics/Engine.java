@@ -72,6 +72,6 @@ public class Engine {
 		
 		byte[] indices={0,1,2,2,3,0};
 		
-		mesh.add(new Quad(new Rectangle(0,0,1.f,1.f, Origin.CENTER)));
+		mesh.add(new dynamicQuad(new Rectangle(0,0,1.f,1.f, Origin.CENTER)));
 	}
 }
