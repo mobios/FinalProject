@@ -4,15 +4,11 @@ import java.util.ArrayList;
 
 public class Game {
 	private int period, speed = 100;
-	private Team team1, team2;
-	private Field gameField;
+	protected Team team1, team2;
+	protected Field gameField;
 	
 	public Game() {
-		super();
-		gameField = new SoccerField();
-		
-		team1 = new SoccerTeam("BestTeamEver");
-		team2 = new SoccerTeam("BesterTeamEver");		
+		super();		
 	}
 	
 	public void Formation(ArrayList<Player> players){

@@ -181,9 +181,18 @@ public class GameTests {
 	
 	//tests that the program knows when a goal has been made
 	@Test
-	public void testGoal() {
-		int initialTeam1Score = game.getTeam1Score();
-		int initialTeam2Score = game.getTeam2Score();
+	public void testGoal() {		
+		((SoccerPlayer)game.getTeam1().getPlayers().get(7)).scoreGoal();
+		((SoccerPlayer)game.getTeam1().getPlayers().get(0)).scoreGoal();
+		((SoccerPlayer)game.getTeam1().getPlayers().get(9)).scoreGoal();
+		((SoccerPlayer)game.getTeam1().getPlayers().get(3)).scoreGoal();
+		
+		((SoccerPlayer)game.getTeam2().getPlayers().get(1)).scoreGoal();
+		((SoccerPlayer)game.getTeam2().getPlayers().get(1)).scoreGoal();
+		((SoccerPlayer)game.getTeam2().getPlayers().get(5)).scoreGoal();
+		
+		assertEquals(game.getTeam1Score(), 4);
+		assertEquals(game.getTeam2Score(), 3);
 	}
 	
 	
