@@ -26,8 +26,6 @@ public class GameTests {
 	@Before
 	public void setUp(){
 		game = new SoccerGame();
-		
-		
 	}
 	
 	// to test moving to various locations on the field
@@ -35,8 +33,8 @@ public class GameTests {
 	public void testMove() {
 		
 		Player testPlayer = new SoccerPlayer(10);
-		testPlayer.setX((float) 1.34234);
-		testPlayer.setY((float) 2.23223);
+		testPlayer.setX((float) 0.5);
+		testPlayer.setY((float) 0.5);
 		game.getTeam1().getPlayers().get(0).move(0, 0, 10);// move the the origin
 		assertTrue((float)-0.0001 <= testPlayer.getX() && testPlayer.getX() <= (float)0.0001);
 		assertTrue((float)-0.0001 <= testPlayer.getY() && testPlayer.getY() <= (float)0.0001);
@@ -144,7 +142,7 @@ public class GameTests {
 		assertTrue(field.contains(-width/4, -height/4));
 		//quadrant 4
 		assertTrue(field.contains(width/4, -height/4));
-		
+		by
 		//check that areas that shouldn't be in bounds aren't
 		//check to the left of the field
 		assertFalse(field.contains(vertices[0][0] - 0.1f, 0));
@@ -161,12 +159,6 @@ public class GameTests {
 	public void testFieldDimensions() {
 		assertEquals(FIELD_LENGTH, game.getGameField().getWidth(), 0.001);
 		assertEquals(FIELD_HEIGHT, game.getGameField().getHeight(), 0.001);
-	}
-	
-	// tests that the players have been loaded
-	@Test
-	public void testLoadPlayerImage() {
-		fail("Not yet implemented");
 	}
 	
 	// tests the Game can make a formation of players 
@@ -197,7 +189,7 @@ public class GameTests {
 			assertTrue(field.contains(p.getX(), p.getY()));
 		}
 		
-		//need to add tests that checks known player locations
+		//need to add tests that checks player's located in know areas 
 	}
 	
 	//tests that the program knows when a goal has been made
