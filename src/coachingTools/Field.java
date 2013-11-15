@@ -1,6 +1,6 @@
 package coachingTools;
 
-import java.awt.Rectangle;
+import util.Rectangle;
 
 public abstract class Field extends Image {
 	

@@ -2,10 +2,10 @@ package util;
 
 public class Rectangle implements Region{
 	float x, y;
-	float width, height;
-	Origin origin;
+	public float width, height;
+	private Origin origin;
 	
-	public float[] d3Vertices(){
+	public float[] get2dVertices(){
 		@SuppressWarnings("unchecked")
 		float[] ret = new float[4*2];
 		if(origin == Origin.CENTER){
