@@ -26,8 +26,15 @@ public class GameTests {
 	
 	// to test moving to various locations on the field
 	@Test
-	public void testMove() { 
-		fail("Not yet implemented");
+	public void testMove() {
+		
+		Player testPlayer = new Player(10);
+		testPlayer.setX((float) 1.34234);
+		testPlayer.setY((float) 2.23223);
+		game.getTeam1().get(0).move(0, 0, 10);// move the the origin
+		assertTrue((float)-0.0001 <= testPlayer.getX() && testPlayer.getX() <= (float)0.0001);
+		assertTrue((float)-0.0001 <= testPlayer.getY() && testPlayer.getY() <= (float)0.0001);
+		
 	}
 	
 	// to test passing the ball to other players
