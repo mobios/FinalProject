@@ -10,12 +10,15 @@ public class Game {
 	
 	public Game() {
 		super();
+		gameField = new SoccerField();
+		
 		team1 = new ArrayList<Player>();
 		team2 = new ArrayList<Player>();
 		for (int i = 0; i < NUMBER_OF_PLAYERS; i++){
-			team1.add(new SoccerPlayer());
-			team2.add(new SoccerPlayer());
+			team1.add(new SoccerPlayer(i+1));
+			team2.add(new SoccerPlayer(i+1));
 		}
+		
 	}
 	
 	public void Formation(ArrayList<Player> players){
