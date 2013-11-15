@@ -2,6 +2,8 @@ package tests;
 
 import static org.junit.Assert.*;
 
+
+import java.awt.Rectangle;
 import java.util.ArrayList;
 
 import org.junit.Before;
@@ -52,8 +54,40 @@ public class GameTests {
 	
 	// to test that the game recognizes when the ball/players are out of bound
 	@Test
-	public void testAreaOutOfBounds() { 
-		fail("Not yet implemented");
+	public void testBounds() {
+		//int rowOutOfBoundsLeft = game.getField().getLeftBound() - 1;
+		//int columnOutOfBoundsAbove = game.getField().getLowerBound() -1;
+		//int rowOutOfBoundsRight = game.getField().getRightBound() + 1;
+		//int columnOutOfBoundsBelow = game.getField().getUpperBound() + 1;
+		Rectangle field = new Rectangle(game.getField());
+		float width = field.getWidth();
+		float length = field.getLength();
+		
+		//check that areas that should be in bounds are
+		//check middle of field
+		assertTrue(field.contains(width/2, length/2));
+		//check corners
+		assertTrue(field.contains(0, 0));
+		assertTrue(field.contains(width, 0));
+		assertTrue(field.contains(0, length));
+		assertTrue(field.contains(width, length));
+		//check a few miscellaneous points
+		assertTrue(field.contains(width/4, length/2));
+		assertTrue(field.contains(width/2, length/4));
+		assertTrue(field.contains(5, 5));
+		assertTrue(field.contains(width - 5, length - 5));
+		assertTrue(field.contains(width/4, length/4));
+		assertTrue(field.contains(3*width/4, 3*length/4));
+		
+		//check that areas that shouldn't be in bounds aren't
+		//check to the left of the field
+		assertFalse(field.contains(-10, length/2));
+		//check to the right of the field
+		assertFalse(field.contains(width + 10, length/2));
+		//check above the field
+		assertFalse(field.contains(width/2, -10));
+		//check below the field
+		assertFalse(field.contains(width/2, length + 10));
 	}
 	
 	// tests to make sure that the field has loaded properly
