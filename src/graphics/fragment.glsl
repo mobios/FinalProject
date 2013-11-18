@@ -1,11 +1,12 @@
 #version 330 core
 
-in vec2 uv;
+uniform sampler2D texelSample;
+
+in vec2 pass_uv;
+in vec4 tint;
 
 out vec4 color;
 
-uniform sampler2D texelSample;
-
 void main(){
-	color = texture(texelSample, uv);
+	color = texture(texelSample, uv) + tint;
 }

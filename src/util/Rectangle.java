@@ -67,6 +67,10 @@ public class Rectangle implements Region{
 		return new byte[]{0,1,2,2,3,0};
 	}
 	
+	public static int elementCount(){
+		return (new Rectangle(0,0,0,0,null)).getOrder().length;
+	}
+	
 	@Override
 	public boolean contains(float x, float y) {
 		// TODO NEED TO IMPLEMENT CENTER BEHAVIOUR

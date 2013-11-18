@@ -17,14 +17,12 @@ public class Engine {
 	public final int WIDTH = 800;
 	public final int HEIGHT = 600;
 	
-	Collection<Model> mesh;
 	public static void main(String[] args) {
 		new Engine();
 
 	}
 	
 	public Engine(){
-		mesh = new ArrayList<Model>();
 		OpenGL3();
 		testQuad();
 		
@@ -58,8 +56,6 @@ public class Engine {
 	
 	public void render(){
 		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
-		for(Model object : mesh)
-			object.render();
 	}
 	
 	public void testQuad(){
@@ -72,6 +68,5 @@ public class Engine {
 		
 		byte[] indices={0,1,2,2,3,0};
 		
-		mesh.add(new dynamicQuad(new Rectangle(0,0,1.f,1.f, Origin.CENTER)));
 	}
 }
