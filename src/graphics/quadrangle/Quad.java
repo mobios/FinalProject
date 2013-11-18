@@ -43,6 +43,7 @@ public abstract class Quad {
 	}
 	
 	public static void render() {
+		
 	}
 	
 	public abstract void move(float deltx, float delty);

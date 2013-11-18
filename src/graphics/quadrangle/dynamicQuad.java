@@ -16,7 +16,7 @@ public class dynamicQuad extends Quad {
 	
 	private static int vbo;
 	private static int vao;
-	private static int vto;
+	private static int vbmo;
 	
 	private static int count;
 	private static int max;
@@ -29,23 +29,29 @@ public class dynamicQuad extends Quad {
 	}
 	
 	public static void setup(){
-		int positionVectorSize = new Rectangle(0,0,1,1,null).get3dVertices().length;
-		int texelMappingSize = 2;
-		int tintSize = 3;
-		
-		FloatBuffer vertexBuffer = BufferUtils.createFloatBuffer((positionVectorSize + texelMappingSize + tintSize) * 50);
+		FloatBuffer vertexBuffer = BufferUtils.createFloatBuffer((core.Size.pvs) * 50);
+		FloatBuffer mappingBuffer = BufferUtils.createFloatBuffer((core.Size.mvs + core.Size.tvs) * 50);
 		
 		vao = GL30.glGenVertexArrays();
 		GL30.glBindVertexArray(vao);
 		
 		vbo = GL15.glGenBuffers();
 		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, vbo);
-		GL15.glBufferData(GL15.GL_ARRAY_BUFFER, data_size, GL15.GL_DYNAMIC_DRAW);
+		GL15.glBufferData(GL15.GL_ARRAY_BUFFER, vertexBuffer, GL15.GL_DYNAMIC_DRAW);		
+		GL20.glVertexAttribPointer(0, core.Size.pvs, GL11.GL_FLOAT, false, 0, 0);
+		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, 0);
 		
+		vbmo = GL15.glGenBuffers();
+		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, vbmo);
+		GL15.glBufferData(GL15.GL_ARRAY_BUFFER, mappingBuffer, GL15.GL_STATIC_DRAW);
+		GL20.glVertexAttribPointer(1, core.Size.mvs, GL11.GL_FLOAT, false, core.Size.mvs + core.Size.pvs, 0);
+		GL20.glVertexAttribPointer(2, core.Size.pvs, GL11.GL_FLOAT, false, core.Size.mvs + core.Size.pvs, core.Size.mvs);
+		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, 0);
+		GL30.glBindVertexArray(0);
 	}
 	
 	public void load() {
-		float[] vertices = area.get3dVertices();
+		float[][] vertices = area.get3dVertices();
 		byte[] indices = area.getOrder();
 		
 		FloatBuffer verticesBuffer = BufferUtils.createFloatBuffer(vertices.length);

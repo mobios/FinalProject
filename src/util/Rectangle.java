@@ -23,46 +23,66 @@ public class Rectangle implements Region{
 		return ret;
 	}
 	
-	public float[] get3dVertices(){
-		float[] ret = new float[4*3];
+	public float[][] get3dVertices(){
+		float[][] ret = new float[core.Size.quadVertices][core.Size.pvs];
 		if(origin == Origin.CENTER){
-			ret[0] = x-width/2;
-			ret[1] = y+height/2;
-			ret[2] = 0;
+			ret[0][0] = x-width/2;
+			ret[0][1] = y+height/2;
+			ret[0][2] = 0;
 			
-			ret[3] = x-width/2;
-			ret[4] = y-height/2;
-			ret[5] = 0;
+			ret[1][0] = x-width/2;
+			ret[1][1] = y-height/2;
+			ret[1][2] = 0;
 			
-			ret[6] = x+width/2;
-			ret[7] = y-height/2;
-			ret[8] = 0;
+			ret[2][0] = x+width/2;
+			ret[2][1] = y-height/2;
+			ret[2][2] = 0;
 			
-			ret[9] = x+width/2;
-			ret[10] = y+height/2;
-			ret[11] = 0;
+			ret[3][0] = x+width/2;
+			ret[3][1] = y+height/2;
+			ret[3][2] = 0;
 			return ret;
 		}
 		
-		ret[0] = x;
-		ret[1] = y;
-		ret[2] = 0;
+		ret[0][0] = x;
+		ret[0][1] = y;
+		ret[0][2] = 0;
 		
-		ret[3] = x;
-		ret[4] = y-height;
-		ret[5] = 0;
+		ret[1][0] = x;
+		ret[1][1] = y-height;
+		ret[1][2] = 0;
 		
-		ret[6] = x+width;
-		ret[7] = y-height;
-		ret[8] = 0;
+		ret[2][0] = x+width;
+		ret[2][1] = y-height;
+		ret[2][2] = 0;
 		
-		ret[9] = x+width;
-		ret[10] = y;
-		ret[11] = 0;
+		ret[3][0] = x+width;
+		ret[3][1] = y;
+		ret[3][2] = 0;
 		return ret;
 		
 	}
 
+	public float[][] get3dWithUV(){
+		float[][] ret = new float[elementCount()][core.Size.mvs+core.Size.pvs];
+		ret = this.get3dVertices();
+		
+		ret[0][3] = 0;
+		ret[0][4] = 0;
+
+		ret[1][3] = 0;
+		ret[1][4] = 1;
+
+		ret[2][3] = 1;
+		ret[2][4] = 1;
+
+		ret[3][3] = 1;
+		ret[3][4] = 0;
+	
+		
+		return ret;
+	}
+	
 	public static byte[] getOrder(){
 		return new byte[]{0,1,2,2,3,0};
 	}
