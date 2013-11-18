@@ -63,12 +63,12 @@ public class Rectangle implements Region{
 		
 	}
 
-	public byte[] getOrder(){
+	public static byte[] getOrder(){
 		return new byte[]{0,1,2,2,3,0};
 	}
 	
 	public static int elementCount(){
-		return (new Rectangle(0,0,0,0,null)).getOrder().length;
+		return getOrder().length;
 	}
 	
 	@Override
@@ -91,13 +91,13 @@ public class Rectangle implements Region{
 		return true;
 	}
 
-	public Rectangle(float x, float y, float width, float height, Origin origin) {
+	public Rectangle(float x, float y, float width, float height, Origin origin){
 		super();
 		this.x = x;
 		this.y = y;
 		this.width = width;
 		this.height = height;
-		this.origin = origin;
+		this.origin = (origin == null ? Origin.CENTER : origin);
 	}
 
 }

@@ -14,10 +14,34 @@ import util.Rectangle;
 public class dynamicQuad extends Quad {	
 	private Rectangle area;
 	
+	private static int vbo;
+	private static int vao;
+	private static int vto;
+	
+	private static int count;
+	private static int max;
+	
+	
 	public dynamicQuad(Rectangle rect){
 		super();
 		area = rect;
 		load();
+	}
+	
+	public static void setup(){
+		int positionVectorSize = new Rectangle(0,0,1,1,null).get3dVertices().length;
+		int texelMappingSize = 2;
+		int tintSize = 3;
+		
+		FloatBuffer vertexBuffer = BufferUtils.createFloatBuffer((positionVectorSize + texelMappingSize + tintSize) * 50);
+		
+		vao = GL30.glGenVertexArrays();
+		GL30.glBindVertexArray(vao);
+		
+		vbo = GL15.glGenBuffers();
+		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, vbo);
+		GL15.glBufferData(GL15.GL_ARRAY_BUFFER, data_size, GL15.GL_DYNAMIC_DRAW);
+		
 	}
 	
 	public void load() {
@@ -82,6 +106,10 @@ public class dynamicQuad extends Quad {
 	@Override
 	public void remove() {
 		// TODO Auto-generated method stub
+		
+	}
+	
+	public static void render(){
 		
 	}
 }
