@@ -46,6 +46,7 @@ public class dynamicQuad extends Quad {
 		GL15.glBufferData(GL15.GL_ARRAY_BUFFER, mappingBuffer, GL15.GL_STATIC_DRAW);
 		GL20.glVertexAttribPointer(1, core.Size.mvs, GL11.GL_FLOAT, false, core.Size.mvs + core.Size.pvs, 0);
 		GL20.glVertexAttribPointer(2, core.Size.pvs, GL11.GL_FLOAT, false, core.Size.mvs + core.Size.pvs, core.Size.mvs);
+	
 		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, 0);
 		GL30.glBindVertexArray(0);
 	}
