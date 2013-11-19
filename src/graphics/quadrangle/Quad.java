@@ -29,6 +29,7 @@ public abstract class Quad {
 		bindVAO();
 		bindVBO();
 		
+		
 	}
 	
 	public abstract void move(float deltx, float delty);
