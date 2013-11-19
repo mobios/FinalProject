@@ -1,4 +1,4 @@
-package graphics;
+package core;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -14,30 +14,15 @@ import util.Origin;
 import util.Rectangle;
 
 public class Engine {
-	public final int WIDTH = 800;
-	public final int HEIGHT = 600;
+	public static final int WIDTH = 800;
+	public static final int HEIGHT = 600;
 	
-	Collection<Model> mesh;
 	public static void main(String[] args) {
-		new Engine();
-
+		setup();
+		run();
 	}
-	
-	public Engine(){
-		mesh = new ArrayList<Model>();
-		OpenGL3();
-		testQuad();
 		
-		while(!Display.isCloseRequested()){
-			render();
-			Display.sync(120);
-			Display.update();
-		}
-		
-		Display.destroy();
-	}
-	
-	public void OpenGL3(){
+	public static void OpenGL3(){
 		PixelFormat pixelFormat = new PixelFormat();
 		ContextAttribs contextAtrributes = new ContextAttribs(3,2)
 		.withProfileCore(true).withForwardCompatible(true);
@@ -56,22 +41,23 @@ public class Engine {
 		GL11.glClearColor(0.4f, 0.6f, 0.9f, 0);
 	}
 	
-	public void render(){
+	public static void render(){
 		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
-		for(Model object : mesh)
-			object.render();
 	}
 	
-	public void testQuad(){
-		float[] vertices = {
-			-0.25f, 0.25f, 0.f,
-			-0.25f, -0.25f, 0.f,
-			0.25f, -0.25f, 0.f,
-			0.25f, 0.25f, 0.f
-		};
+	public static void setup(){
+		OpenGL3();
+		GL11.glHint(GL11.GL_PERSPECTIVE_CORRECTION_HINT, GL11.GL_FASTEST);
+	}
+	
+	public static void run(){
+		while(!Display.isCloseRequested()){
+			render();
+			Display.sync(120);
+			Display.update();
+		}
 		
-		byte[] indices={0,1,2,2,3,0};
+		Display.destroy();
 		
-		mesh.add(new Quad(new Rectangle(0,0,1.f,1.f, Origin.CENTER)));
 	}
 }
