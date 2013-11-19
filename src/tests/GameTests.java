@@ -26,6 +26,8 @@ public class GameTests {
 	@Before
 	public void setUp(){
 		game = new SoccerGame();
+		//game.getGameField().setHeight(FIELD_HEIGHT);
+		//game.getGameField().setWidth(FIELD_LENGTH);
 	}
 	
 	// to test moving to various locations on the field
@@ -73,17 +75,6 @@ public class GameTests {
 		
 	}
 	
-	// to test that strategy paths are chosen randomly
-	@Test
-	public void testRandomPath() { 
-		game.setDebugSeed();
-		int gaCount=0, paCount=0, ccCount=0, lhCount=0, rhCount=0;
-		for(int i=0; i < 200; i++){
-			
-			
-		}
-	}
-	
 	// to test throw in functionality is working as expected
 	@Test
 	public void testThrowIn() {
@@ -115,8 +106,8 @@ public class GameTests {
 	@Test
 	public void testBounds() {
 		Rectangle field = game.getGameField().bounds;
-		float width = field.width;
-		float height = field.height;
+		float width = game.getGameField().getHeight();
+		float height = game.getGameField().getHeight();
 		float[][] vertices = field.get2dVertices();
 		
 		
@@ -142,7 +133,6 @@ public class GameTests {
 		assertTrue(field.contains(-width/4, -height/4));
 		//quadrant 4
 		assertTrue(field.contains(width/4, -height/4));
-		by
 		//check that areas that shouldn't be in bounds aren't
 		//check to the left of the field
 		assertFalse(field.contains(vertices[0][0] - 0.1f, 0));
@@ -185,11 +175,14 @@ public class GameTests {
 	@Test
 	public void testLocationFinder() {
 		Rectangle field = game.getGameField().bounds;
+		int gaCount=0, paCount=0, ccCount=0, lhCount=0, rhCount=0;
+		
 		for (Player p : game.getAllPlayers()) {
 			assertTrue(field.contains(p.getX(), p.getY()));
-		}
+			
+			//need to add tests that checks player's located in know areas 
+			}
 		
-		//need to add tests that checks player's located in know areas 
 	}
 	
 	//tests that the program knows when a goal has been made

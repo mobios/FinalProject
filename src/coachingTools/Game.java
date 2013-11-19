@@ -8,7 +8,7 @@ public abstract class Game {
 	protected Field gameField;
 	
 	public Game() {
-		super();		
+		super();
 	}
 	
 	public void Formation(ArrayList<Player> players){
@@ -75,5 +75,10 @@ public abstract class Game {
 	public int getTeam2Score() {
 		return team2.getScore();
 	}
+
+	public void setGameField(Field gameField) {
+		this.gameField = gameField;
+	}
+	
 	
 }
