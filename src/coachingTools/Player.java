@@ -6,20 +6,27 @@ public abstract class Player extends Image {
 	protected int scoredPoints;
 	private boolean hasBall;
 	
-	public Player(int number) {
+	public Player(int number, int stamina) {
 		super();
 		this.number = number;
+		this.stamina = stamina;
 		scoredPoints = 0;
 	}
 
 	public void move(float x, float y, int stamina){
+		this.x = x;
+		this.y = y;
 		
+		this.stamina -= stamina;
 		
 		
 	}
 	
-	public void pass(Player palyer){
-		
+	public void pass(Player player){
+		if(hasBall){
+			hasBall = false;
+			player.setBall(true);
+		}
 		
 		
 	}

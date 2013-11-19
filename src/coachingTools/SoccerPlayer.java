@@ -2,17 +2,22 @@ package coachingTools;
 
 public class SoccerPlayer extends Player {
 	
-	public static enum SoccerArea {GOAL, PENALTY_AREA, PENALTY_ARC, GOAL_AREA, CENTER_CIRCLE};
+	public static enum SoccerArea {GOAL, PENALTY_AREA, PENALTY_ARC, GOAL_AREA, CENTER_CIRCLE, GOAL_KICK};
 	public static enum FieldSide  {LEFT_HALF, RIGHT_HALF}
 	private FieldSide fieldHalf;
 	private SoccerArea region;
+	private boolean goalie = false;
 	
-	public SoccerPlayer(int number) {
-		super(number);
+	public SoccerPlayer(int number, int stamina) {
+		super(number, stamina);
 	}
 	
 	public void scoreGoal() {
 		scoredPoints++;
+	}
+	
+	public void setGoalie(){
+		goalie = true;
 	}
 	
 	// ------ getters and setters ------ \\
@@ -39,7 +44,7 @@ public class SoccerPlayer extends Player {
 	}
 	
 	public boolean isGoalie(){
-		return true;
+		return goalie;
 	}
 	
 	public void goalKick(){
