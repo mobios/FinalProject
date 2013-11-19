@@ -24,6 +24,7 @@ public abstract class Player extends Image {
 		
 	}
 	
+	
 	public void loadImage(String img){
 		
 		

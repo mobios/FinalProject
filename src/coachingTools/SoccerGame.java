@@ -27,4 +27,12 @@ public class SoccerGame extends Game {
 		return (SoccerTeam) team2;
 	}
 	
+	public void goalKick(){
+		
+	}
+	
+	public void kickOff(Player p){
+		
+	}
+	
 }

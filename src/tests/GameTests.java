@@ -22,42 +22,42 @@ public class GameTests {
 	//not exactly sure what these dimension values are going to be yet
 	public static final float FIELD_LENGTH = 1;
 	public static final float FIELD_HEIGHT = 1;
-	
+
 	@Before
 	public void setUp(){
 		game = new SoccerGame();
-		
-		
+
+
 	}
-	
+
 	// to test moving to various locations on the field
 	@Test
 	public void testMove() {
-		
+
 		Player testPlayer = new SoccerPlayer(10);
 		testPlayer.setX((float) 1.34234);
 		testPlayer.setY((float) 2.23223);
-		game.getTeam1().getPlayers().get(0).move(0, 0, 10);// move the the origin
+		game.getTeam1().getPlayers().get(0).move(0, 0, 10);// move to the origin
 		assertTrue((float)-0.0001 <= testPlayer.getX() && testPlayer.getX() <= (float)0.0001);
 		assertTrue((float)-0.0001 <= testPlayer.getY() && testPlayer.getY() <= (float)0.0001);
-		
+
 	}
-	
+
 	// to test passing the ball to other players
 	@Test
 	public void testPass() {
-		
+
 		int ballCount = 0;
 		int noBallCount = 0;
-		
+
 		game.getTeam1().getPlayers().get(5).setBall(true);
 		game.getTeam1().getPlayers().get(5).pass(game.getTeam1().getPlayers().get(0));
-		
+
 		ArrayList<Player> players = new ArrayList<Player>();
-		
+
 		players.addAll(game.getTeam1().getPlayers());
 		players.addAll(game.getTeam2().getPlayers());
-		
+
 		for(Player p: players){
 			if(p.hasBall()){
 				ballCount++;
@@ -72,47 +72,47 @@ public class GameTests {
 			assertFalse(game.getTeam1().getPlayers().get(i).hasBall());
 			assertFalse(game.getTeam2().getPlayers().get(i).hasBall());
 		}
-		
+
 	}
-	
+
 	// to test that strategy paths are chosen randomly
 	@Test
 	public void testRandomPath() { 
 		game.setDebugSeed();
 		int gaCount=0, paCount=0, ccCount=0, lhCount=0, rhCount=0;
 		for(int i=0; i < 200; i++){
-			
-			
+
+
 		}
 	}
-	
+
 	// to test throw in functionality is working as expected
 	@Test
 	public void testThrowIn() {
 		ArrayList<Player> players = game.getTeam1().getPlayers();
 		players.addAll(game.getTeam2().getPlayers());
 		Player throwingPlayer = players.get(0);
-		
+
 		for (int i = 0; i < 100; i++) {
 			throwingPlayer.setBall(true);
 			throwingPlayer.throwInBall();
 			boolean someoneHASSTheRock = false;
 			int numPlayersWithBall = 0;
-			
+
 			for (Player p : players) {
 				if (p.hasBall()) {
 					someoneHASSTheRock = true;
 					numPlayersWithBall++;
 				}
 			}
-			
+
 			assertFalse(throwingPlayer.hasBall());
 			assertTrue(someoneHASSTheRock);
 			assertEquals(numPlayersWithBall, 1);
 		}
-		
+
 	}
-	
+
 	// to test that the game recognizes when the ball/players are out of bound
 	@Test
 	public void testBounds() {
@@ -120,8 +120,8 @@ public class GameTests {
 		float width = field.width;
 		float height = field.height;
 		float[][] vertices = field.get2dVertices();
-		
-		
+
+
 		//check that areas that should be in bounds are
 		//check middle of field
 		assertTrue(field.contains(0, 0));
@@ -134,7 +134,7 @@ public class GameTests {
 		assertTrue(field.contains(vertices[2][0], vertices[2][1]));
 		//top right corner
 		assertTrue(field.contains(vertices[3][0], vertices[3][1]));
-		
+
 		//check each quadrant
 		//quadrant 1
 		assertTrue(field.contains(width/4, height/4));
@@ -144,7 +144,7 @@ public class GameTests {
 		assertTrue(field.contains(-width/4, -height/4));
 		//quadrant 4
 		assertTrue(field.contains(width/4, -height/4));
-		
+
 		//check that areas that shouldn't be in bounds aren't
 		//check to the left of the field
 		assertFalse(field.contains(vertices[0][0] - 0.1f, 0));
@@ -155,40 +155,40 @@ public class GameTests {
 		//check below the field
 		assertFalse(field.contains(0, vertices[1][1] - 0.1f));
 	}
-	
+
 	// tests to make sure that the field has the correct dimensions
 	@Test
 	public void testFieldDimensions() {
 		assertEquals(FIELD_LENGTH, game.getGameField().getWidth(), 0.001);
 		assertEquals(FIELD_HEIGHT, game.getGameField().getHeight(), 0.001);
 	}
-	
+
 	// tests that the players have been loaded
 	@Test
 	public void testLoadPlayerImage() {
 		fail("Not yet implemented");
 	}
-	
+
 	// tests the Game can make a formation of players 
 	@Test
 	public void testGetInFormation() {
-		
+
 		((SoccerTeam) game.getTeam1()).getInFormation(FormationType.RUSH);
 		assertTrue(((SoccerTeam) game.getTeam1()).isInFormation(FormationType.RUSH));
-		
+
 		((SoccerTeam) game.getTeam2()).getInFormation(FormationType.DEFEND);
 		assertTrue(((SoccerTeam) game.getTeam2()).isInFormation(FormationType.DEFEND));
-		
+
 		((SoccerTeam) game.getTeam2()).getInFormation(FormationType.RUSH);
 		assertTrue(((SoccerTeam) game.getTeam2()).isInFormation(FormationType.RUSH));
-		
+
 		((SoccerTeam) game.getTeam1()).getInFormation(FormationType.DEFEND);
 		assertTrue(((SoccerTeam) game.getTeam1()).isInFormation(FormationType.DEFEND));
-		
+
 		assertFalse(((SoccerTeam) game.getTeam1()).isInFormation(FormationType.RUSH));
 		assertFalse(((SoccerTeam) game.getTeam2()).isInFormation(FormationType.DEFEND));
 	}
-	
+
 	// tests to see if the player will know if there in the penalty area, goal area, ect.
 	@Test
 	public void testLocationFinder() {
@@ -196,10 +196,10 @@ public class GameTests {
 		for (Player p : game.getAllPlayers()) {
 			assertTrue(field.contains(p.getX(), p.getY()));
 		}
-		
+
 		//need to add tests that checks known player locations
 	}
-	
+
 	//tests that the program knows when a goal has been made
 	@Test
 	public void testGoal() {		
@@ -207,14 +207,86 @@ public class GameTests {
 		((SoccerPlayer)game.getTeam1().getPlayers().get(0)).scoreGoal();
 		((SoccerPlayer)game.getTeam1().getPlayers().get(9)).scoreGoal();
 		((SoccerPlayer)game.getTeam1().getPlayers().get(3)).scoreGoal();
-		
+
 		((SoccerPlayer)game.getTeam2().getPlayers().get(1)).scoreGoal();
 		((SoccerPlayer)game.getTeam2().getPlayers().get(1)).scoreGoal();
 		((SoccerPlayer)game.getTeam2().getPlayers().get(5)).scoreGoal();
-		
+
 		assertEquals(game.getTeam1Score(), 4);
 		assertEquals(game.getTeam2Score(), 3);
 	}
-	
-	
+
+	@Test
+	public void testOffside() {
+		ArrayList<Player> players1 = game.getTeam1().getPlayers();
+		ArrayList<Player> players2 = game.getTeam2().getPlayers();
+
+		int number = 0;
+
+		for(Player p1 : players1){
+			for (Player p2: players2){
+				if(p1.getX()<p2.getX()){
+					number++;
+				}
+			}
+
+			if(number > 1){
+				assertTrue(((SoccerPlayer)p1).isOffside());
+			}
+
+		}
+	}
+
+
+	@Test
+	public void testNumberOfPlayers(){
+		ArrayList<Player> players1 = game.getTeam1().getPlayers();
+		ArrayList<Player> players2 = game.getTeam2().getPlayers();
+
+		assertEquals(11, players1.size());
+		assertEquals(11, players2.size());
+	}
+
+	@Test
+	public void testGoalKick(){
+		ArrayList<Player> players = game.getTeam1().getPlayers();
+
+		for(Player p:players){
+			if(((SoccerPlayer)p).isGoalie()){
+				p.setBall(true);
+				((SoccerGame)game).goalKick();
+				assertFalse(p.hasBall());
+			}
+		}
+
+	}
+
+
+	@Test
+	public void testKickOff(){
+		ArrayList<Player> players = game.getTeam1().getPlayers();
+
+		players.get(6).setBall(true);
+
+
+
+		((SoccerGame)game).kickOff(players.get(6));
+
+		assertFalse(players.get(6).hasBall());
+
+		boolean other = false;
+		for(Player p:players){
+			if(p.hasBall() && p != players.get(6)){
+				other = true;
+			}
+		}
+
+		assertTrue(other);
+
+	}
+
+
+
 }
+
+

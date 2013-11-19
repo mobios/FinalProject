@@ -34,4 +34,16 @@ public class SoccerPlayer extends Player {
 		this.region = region;
 	}
 	
+	public boolean isOffside(){
+		return false;
+	}
+	
+	public boolean isGoalie(){
+		return true;
+	}
+	
+	public void goalKick(){
+		
+	}
+	
 }
