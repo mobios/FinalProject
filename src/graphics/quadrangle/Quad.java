@@ -14,7 +14,7 @@ public abstract class Quad {
 	protected final static int indexElementCount = Rectangle.elementCount();
 	protected int buffluc;
 	
-	public static void setup(){
+	public void setup(){
 		ByteBuffer indexBuffer = BufferUtils.createByteBuffer(indexElementCount);
 		indexBuffer.put(Rectangle.getOrder());
 		indexBuffer.flip();
@@ -23,29 +23,24 @@ public abstract class Quad {
 		GL15.glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, vibo);
 		GL15.glBufferData(GL15.GL_ELEMENT_ARRAY_BUFFER, indexBuffer, GL15.GL_STATIC_DRAW);
 		GL15.glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, 0);
-		
-		
-		dynamicQuad.setup();
-		StaticQuad.setup();
-		UniformQuad.setup();
 	}
 	
-	public static int getVbo() {
-		return 0;
-	}
-	
-	public static int getVao() {
-		return 0;
-	}
-	
-	public static int getVibo() {
-		return 0;
-	}
-	
-	public static void render() {
+	public void render(){
+		bindVAO();
+		bindVBO();
 		
 	}
 	
 	public abstract void move(float deltx, float delty);
 	public abstract void remove(); // DO NOT USE// FORWARD IMPLEMENTATION ONLY
+	
+	public abstract int getStride();
+	
+	public abstract void setupVAO();
+	public abstract void bindVAO();
+	public abstract void unbindVAO();
+	
+	public abstract void bindVBO();
+	public abstract void unbindVBO();
+	public abstract void reloadVBO();
 }

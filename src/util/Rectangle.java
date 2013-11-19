@@ -1,8 +1,8 @@
 package util;
 
 public class Rectangle implements Region{
-	public float x, y;
-	public float width, height;
+	private float x, y;
+	private float width, height;
 	private Origin origin;
 	
 	public float[][] get2dVertices(){
@@ -91,6 +91,12 @@ public class Rectangle implements Region{
 		return getOrder().length;
 	}
 	
+	public void move(float deltx, float delty){
+		x += deltx;
+		y += delty;
+	}
+	
+	
 	@Override
 	public boolean contains(float x, float y) {
 		// TODO NEED TO IMPLEMENT CENTER BEHAVIOUR
@@ -119,5 +125,24 @@ public class Rectangle implements Region{
 		this.height = height;
 		this.origin = (origin == null ? Origin.CENTER : origin);
 	}
+	
 
+	public float getX() {
+		return x;
+	}
+	
+
+	public float getY() {
+		return y;
+	}
+	
+
+	public float getWidth() {
+		return width;
+	}
+	
+
+	public float getHeight() {
+		return height;
+	}
 }
