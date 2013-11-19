@@ -26,14 +26,15 @@ public class GameTests {
 	@Before
 	public void setUp(){
 		game = new SoccerGame();
-
-
+		//game.getGameField().setHeight(FIELD_HEIGHT);
+		//game.getGameField().setWidth(FIELD_LENGTH);
 	}
 
 	// to test moving to various locations on the field
 	@Test
 	public void testMove() {
 
+<<<<<<< HEAD
 		Player testPlayer = new SoccerPlayer(10, 10);
 		testPlayer.setX((float) 1.34234);
 		testPlayer.setY((float) 2.23223);
@@ -45,6 +46,14 @@ public class GameTests {
 		assertEquals(0, testPlayer.getStamina());
 		
 
+=======
+		Player testPlayer = new SoccerPlayer(10);
+		testPlayer.setX((float) 0.5);
+		testPlayer.setY((float) 0.5);
+		game.getTeam1().getPlayers().get(0).move(0, 0, 10);// move the the origin
+		assertTrue((float)-0.0001 <= testPlayer.getX() && testPlayer.getX() <= (float)0.0001);
+		assertTrue((float)-0.0001 <= testPlayer.getY() && testPlayer.getY() <= (float)0.0001);
+>>>>>>> 85b337ec65cb9b4a93652cd7bdb2e10092abcf7e
 
 	}
 
@@ -122,8 +131,8 @@ public class GameTests {
 	@Test
 	public void testBounds() {
 		Rectangle field = game.getGameField().bounds;
-		float width = field.width;
-		float height = field.height;
+		float width = game.getGameField().getHeight();
+		float height = game.getGameField().getHeight();
 		float[][] vertices = field.get2dVertices();
 
 
@@ -149,7 +158,7 @@ public class GameTests {
 		assertTrue(field.contains(-width/4, -height/4));
 		//quadrant 4
 		assertTrue(field.contains(width/4, -height/4));
-
+		
 		//check that areas that shouldn't be in bounds aren't
 		//check to the left of the field
 		assertFalse(field.contains(vertices[0][0] - 0.1f, 0));
@@ -198,11 +207,13 @@ public class GameTests {
 	@Test
 	public void testLocationFinder() {
 		Rectangle field = game.getGameField().bounds;
+		int gaCount=0, paCount=0, ccCount=0, lhCount=0, rhCount=0;
+		
 		for (Player p : game.getAllPlayers()) {
 			assertTrue(field.contains(p.getX(), p.getY()));
-		}
-
-		//need to add tests that checks known player locations
+			
+			//need to add tests that checks player's located in know areas 
+			}
 	}
 
 	//tests that the program knows when a goal has been made
