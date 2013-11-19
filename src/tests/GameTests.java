@@ -34,26 +34,16 @@ public class GameTests {
 	@Test
 	public void testMove() {
 
-<<<<<<< HEAD
 		Player testPlayer = new SoccerPlayer(10, 10);
-		testPlayer.setX((float) 1.34234);
-		testPlayer.setY((float) 2.23223);
+
+		testPlayer.setX((float) 0.5);
+		testPlayer.setY((float) 0.5);
 		testPlayer.move(0, 0, 10);// move to the origin
-	
-		
+
 		assertEquals(0, (long)testPlayer.getX());
 		assertEquals(0, (long)testPlayer.getY());
 		assertEquals(0, testPlayer.getStamina());
-		
 
-=======
-		Player testPlayer = new SoccerPlayer(10);
-		testPlayer.setX((float) 0.5);
-		testPlayer.setY((float) 0.5);
-		game.getTeam1().getPlayers().get(0).move(0, 0, 10);// move the the origin
-		assertTrue((float)-0.0001 <= testPlayer.getX() && testPlayer.getX() <= (float)0.0001);
-		assertTrue((float)-0.0001 <= testPlayer.getY() && testPlayer.getY() <= (float)0.0001);
->>>>>>> 85b337ec65cb9b4a93652cd7bdb2e10092abcf7e
 
 	}
 
@@ -81,8 +71,8 @@ public class GameTests {
 		}
 		assertTrue(game.getTeam1().getPlayers().get(0).hasBall());
 		assertEquals(ballCount, 1);
-		assertEquals(noBallCount, (Team.getNumberOfPlayers()*2)-1);
-		for(int i=1; i < Team.getNumberOfPlayers(); i++){
+		assertEquals(noBallCount, (SoccerTeam.NUMBER_OF_PLAYERS*2)-1);
+		for(int i=1; i < SoccerTeam.NUMBER_OF_PLAYERS; i++){
 			assertFalse(game.getTeam1().getPlayers().get(i).hasBall());
 			assertFalse(game.getTeam2().getPlayers().get(i).hasBall());
 		}
@@ -104,26 +94,22 @@ public class GameTests {
 	@Test
 	public void testThrowIn() {
 		ArrayList<Player> players = game.getTeam1().getPlayers();
-		players.addAll(game.getTeam2().getPlayers());
 		Player throwingPlayer = players.get(0);
 
-		for (int i = 0; i < 100; i++) {
-			throwingPlayer.setBall(true);
-			throwingPlayer.throwInBall();
-			boolean someoneHASSTheRock = false;
-			int numPlayersWithBall = 0;
+		((SoccerGame) game).throwIn(players, throwingPlayer);
+		boolean someoneHASSTheRock = false;
+		int numPlayersWithBall = 0;
 
-			for (Player p : players) {
-				if (p.hasBall()) {
-					someoneHASSTheRock = true;
-					numPlayersWithBall++;
-				}
+		for (Player p : players) {
+			if (p.hasBall()) {
+				someoneHASSTheRock = true;
+				numPlayersWithBall++;
 			}
-
-			assertFalse(throwingPlayer.hasBall());
-			assertTrue(someoneHASSTheRock);
-			assertEquals(numPlayersWithBall, 1);
 		}
+
+		assertFalse(throwingPlayer.hasBall());
+		assertTrue(someoneHASSTheRock);
+		assertEquals(1, numPlayersWithBall);
 
 	}
 
@@ -158,7 +144,7 @@ public class GameTests {
 		assertTrue(field.contains(-width/4, -height/4));
 		//quadrant 4
 		assertTrue(field.contains(width/4, -height/4));
-		
+
 		//check that areas that shouldn't be in bounds aren't
 		//check to the left of the field
 		assertFalse(field.contains(vertices[0][0] - 0.1f, 0));
@@ -208,12 +194,12 @@ public class GameTests {
 	public void testLocationFinder() {
 		Rectangle field = game.getGameField().bounds;
 		int gaCount=0, paCount=0, ccCount=0, lhCount=0, rhCount=0;
-		
+
 		for (Player p : game.getAllPlayers()) {
 			assertTrue(field.contains(p.getX(), p.getY()));
-			
+
 			//need to add tests that checks player's located in know areas 
-			}
+		}
 	}
 
 	//tests that the program knows when a goal has been made
@@ -246,11 +232,13 @@ public class GameTests {
 				}
 			}
 
-			if(number > 1){
+			if(number > 10){
 				assertTrue(((SoccerPlayer)p1).isOffside());
 			} else {
 				assertFalse(((SoccerPlayer)p1).isOffside());
 			}
+
+
 
 		}
 	}
@@ -271,8 +259,7 @@ public class GameTests {
 
 		for(Player p:players){
 			if(((SoccerPlayer)p).isGoalie()){
-				p.setBall(true);
-				((SoccerGame)game).goalKick();
+				((SoccerGame)game).goalKick(p, players);
 				assertFalse(p.hasBall());
 			}
 		}

@@ -3,7 +3,6 @@ package coachingTools;
 import java.util.ArrayList;
 
 public abstract class Team {
-	protected final static int NUMBER_OF_PLAYERS = 11;
 	protected ArrayList<Player> players;
 	public String name;
 	
@@ -17,20 +16,18 @@ public abstract class Team {
 		return players;
 	}
 	
-	public static int getNumberOfPlayers() {
-		return NUMBER_OF_PLAYERS;
+	
+	public int getNumberOfPlayers() {
+		return players.size();
 	}
 	
 	public int getScore() {
-		return 0;
-		/*
-		 * uncomment this once failing tests are working
+
 		int teamScore = 0;
 		for (Player p : players) {
 			teamScore += p.scoredPoints;
 		}
 		
 		return teamScore;
-		*/
 	}
 }
