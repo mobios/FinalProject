@@ -1,4 +1,7 @@
 package util;
+import graphics.*;
+import graphics.quadrangle.*;
+
 
 public class Rectangle implements Region{
 	public float x, y;

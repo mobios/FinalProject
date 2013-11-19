@@ -34,12 +34,17 @@ public class GameTests {
 	@Test
 	public void testMove() {
 
-		Player testPlayer = new SoccerPlayer(10);
+		Player testPlayer = new SoccerPlayer(10, 10);
 		testPlayer.setX((float) 1.34234);
 		testPlayer.setY((float) 2.23223);
-		game.getTeam1().getPlayers().get(0).move(0, 0, 10);// move to the origin
-		assertTrue((float)-0.0001 <= testPlayer.getX() && testPlayer.getX() <= (float)0.0001);
-		assertTrue((float)-0.0001 <= testPlayer.getY() && testPlayer.getY() <= (float)0.0001);
+		testPlayer.move(0, 0, 10);// move to the origin
+	
+		
+		assertEquals(0, (long)testPlayer.getX());
+		assertEquals(0, (long)testPlayer.getY());
+		assertEquals(0, testPlayer.getStamina());
+		
+
 
 	}
 
@@ -232,6 +237,8 @@ public class GameTests {
 
 			if(number > 1){
 				assertTrue(((SoccerPlayer)p1).isOffside());
+			} else {
+				assertFalse(((SoccerPlayer)p1).isOffside());
 			}
 
 		}
@@ -266,11 +273,9 @@ public class GameTests {
 	public void testKickOff(){
 		ArrayList<Player> players = game.getTeam1().getPlayers();
 
-		players.get(6).setBall(true);
 
 
-
-		((SoccerGame)game).kickOff(players.get(6));
+		((SoccerGame)game).kickOff(players.get(6), players);
 
 		assertFalse(players.get(6).hasBall());
 

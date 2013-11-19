@@ -7,8 +7,8 @@ public class SoccerPlayer extends Player {
 	private FieldSide fieldHalf;
 	private SoccerArea region;
 	
-	public SoccerPlayer(int number) {
-		super(number);
+	public SoccerPlayer(int number, int stamina) {
+		super(number, stamina);
 	}
 	
 	public void scoreGoal() {
