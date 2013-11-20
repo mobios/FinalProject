@@ -49,6 +49,7 @@ public class dynamicQuad extends Quad {
 		GL15.glBufferData(GL15.GL_ARRAY_BUFFER, vertexBuffer, GL15.GL_DYNAMIC_DRAW);
 		GL20.glVertexAttribPointer(0, core.Size.pvs, GL11.GL_FLOAT, false, getStride(), 0);
 		GL20.glVertexAttribPointer(1, core.Size.mvs, GL11.GL_FLOAT, false, getStride(), core.Size.pvs);
+		GL20.glVertexAttribPointer(2, core.Size.tvs, GL11.GL_FLOAT, false, getStride(), core.Size.pvs + core.Size.mvs);
 	
 		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, 0);
 		GL30.glBindVertexArray(0);
@@ -58,7 +59,7 @@ public class dynamicQuad extends Quad {
 	public void reloadVBO(){
 		float[][] vertices = area.get3dWithUV();
 		
-		FloatBuffer verticesBuffer = BufferUtils.createFloatBuffer(vertices.length);
+		FloatBuffer verticesBuffer = BufferUtils.createFloatBuffer(vertices.length*(vertices[0].length));
 		for(float[] vec5 : vertices){
 			verticesBuffer.put(vec5);
 		}
@@ -94,7 +95,7 @@ public class dynamicQuad extends Quad {
 	
 	@Override
 	public int getStride() {
-		return core.Size.pvs + core.Size.mvs;
+		return core.Size.pvs + core.Size.mvs + core.Size.tvs;
 	}
 
 	@Override

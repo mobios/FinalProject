@@ -10,7 +10,6 @@ import java.io.IOException;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
 
-import util.Origin;
 import util.Rectangle;
 
 public class RenderEngine {
@@ -29,13 +28,15 @@ public class RenderEngine {
 	public static void setup(){
 		dquads = new dynamicQuad(null);
 		dquads.setup();
-		
+		initializeShaders();
+		initializeProgram();
 	}
 	
 	public static void test(){
-		new dynamicQuad(new Rectangle(0,0, 1, 1, Origin.CENTER));
+		new dynamicQuad(new Rectangle(0,0, 1, 1));
 	}
 	
+	@SuppressWarnings("deprecation")
 	public static int loadShader(String source, int type){
 		int shaderID;
 		StringBuilder shader = new StringBuilder();
@@ -57,18 +58,26 @@ public class RenderEngine {
 		GL20.glShaderSource(shaderID, shader);
 		GL20.glCompileShader(shaderID);
 		
+		if (GL20.glGetShader(shaderID, GL20.GL_COMPILE_STATUS) == GL11.GL_FALSE) {
+			System.err.println("Could not compile shader.");
+			System.exit(-1);
+			}
 		return shaderID;
 	}
 	
-	public static void initalizeShaders(){
+	public static void initializeShaders(){
 		vertexShaderID = loadShader("src/graphics/vertex.glsl", GL20.GL_VERTEX_SHADER);
-		vertexShaderID = loadShader("src/graphics/fragment.glsl", GL20.GL_FRAGMENT_SHADER);
+		fragmentShaderID = loadShader("src/graphics/fragment.glsl", GL20.GL_FRAGMENT_SHADER);
 	}
 	
-	public static void initalizeProgram(){
+	public static void initializeProgram(){
 		ProgramID = GL20.glCreateProgram();
 		GL20.glAttachShader(ProgramID, vertexShaderID);
 		GL20.glAttachShader(ProgramID, fragmentShaderID);
+		
+		GL20.glBindAttribLocation(ProgramID, 0, "position");
+		GL20.glBindAttribLocation(ProgramID, 1, "uv");
+		GL20.glBindAttribLocation(ProgramID, 2, "tint");
 		
 		GL20.glLinkProgram(ProgramID);
 		GL20.glValidateProgram(ProgramID);

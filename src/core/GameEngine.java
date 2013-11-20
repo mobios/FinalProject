@@ -5,6 +5,7 @@ import org.lwjgl.opengl.ContextAttribs;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.PixelFormat;
 
 public class GameEngine {
@@ -13,6 +14,7 @@ public class GameEngine {
 	
 	public static void main(String[] args) {
 		setup();
+		RenderEngine.test();
 		run();
 	}
 		
@@ -42,6 +44,10 @@ public class GameEngine {
 	}
 	
 	public static void run(){
+		int error = GL11.glGetError();
+		if(error > 0)
+			return;
+		GL20.glUseProgram(RenderEngine.ProgramID);
 		while(!Display.isCloseRequested()){
 			RenderEngine.render();
 			Display.sync(120);
