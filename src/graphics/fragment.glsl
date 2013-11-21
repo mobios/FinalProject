@@ -8,5 +8,6 @@ in vec4 tint;
 out vec4 color;
 
 void main(){
-	color = texture(texelSample, uv) + tint;
+	//color = texture(texelSample, pass_uv) + tint;
+	color = tint;
 }

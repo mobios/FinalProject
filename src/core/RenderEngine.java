@@ -6,7 +6,9 @@ import graphics.quadrangle.dynamicQuad;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.ByteBuffer;
 
+import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
 
@@ -57,6 +59,8 @@ public class RenderEngine {
 		shaderID = GL20.glCreateShader(type);
 		GL20.glShaderSource(shaderID, shader);
 		GL20.glCompileShader(shaderID);
+		
+		System.out.println("Shader ID:" +shaderID + "\nInfo: "+ GL20.glGetShaderInfoLog(shaderID, 1024));
 		
 		if (GL20.glGetShader(shaderID, GL20.GL_COMPILE_STATUS) == GL11.GL_FALSE) {
 			System.err.println("Could not compile shader.");
