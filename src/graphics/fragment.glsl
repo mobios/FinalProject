@@ -3,11 +3,11 @@
 uniform sampler2D texelSample;
 
 in vec2 pass_uv;
-in vec4 tint;
+in vec4 pass_tint;
 
 out vec4 color;
 
 void main(){
 	//color = texture(texelSample, pass_uv) + tint;
-	color = tint;
+	color = pass_tint;
 }

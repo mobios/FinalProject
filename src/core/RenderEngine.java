@@ -77,9 +77,9 @@ public class RenderEngine {
 		GL20.glAttachShader(ProgramID, vertexShaderID);
 		GL20.glAttachShader(ProgramID, fragmentShaderID);
 		
-		GL20.glBindAttribLocation(ProgramID, 0, "position");
-		GL20.glBindAttribLocation(ProgramID, 1, "uv");
-		GL20.glBindAttribLocation(ProgramID, 2, "tint");
+		//GL20.glBindAttribLocation(ProgramID, 0, "position");
+		//GL20.glBindAttribLocation(ProgramID, 1, "uv");
+		//GL20.glBindAttribLocation(ProgramID, 2, "tint");
 		
 		GL20.glLinkProgram(ProgramID);
 		GL20.glValidateProgram(ProgramID);

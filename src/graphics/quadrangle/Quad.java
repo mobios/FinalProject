@@ -18,21 +18,21 @@ public abstract class Quad {
 		
 	public void render(){
 		bindVAO();
-		bindVBO();
-		bindVIBO();
+		//bindVBO();
 
 		GL20.glEnableVertexAttribArray(0);
 		GL20.glEnableVertexAttribArray(1);
 		GL20.glEnableVertexAttribArray(2);
+		bindVIBO();
 		
 		GL11.glDrawElements(GL11.GL_TRIANGLES, indexElementCount, GL11.GL_UNSIGNED_BYTE, 0);
+		unbindVIBO();
 
 		GL20.glDisableVertexAttribArray(2);
 		GL20.glDisableVertexAttribArray(1);
 		GL20.glDisableVertexAttribArray(0);
 		
-		unbindVIBO();
-		unbindVBO();
+		//unbindVBO();
 		unbindVAO();
 		
 	}

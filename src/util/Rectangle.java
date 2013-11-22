@@ -20,18 +20,22 @@ public class Rectangle implements Region{
 		ret[0][0] = x-width/2;
 		ret[0][1] = y+height/2;
 		ret[0][2] = 0;
+		ret[0][3] = 1;
 		
 		ret[1][0] = x-width/2;
 		ret[1][1] = y-height/2;
 		ret[1][2] = 0;
+		ret[1][3] = 1;
 		
 		ret[2][0] = x+width/2;
 		ret[2][1] = y-height/2;
 		ret[2][2] = 0;
+		ret[2][3] = 1;
 		
 		ret[3][0] = x+width/2;
 		ret[3][1] = y+height/2;
 		ret[3][2] = 0;
+		ret[3][3] = 1;
 		return ret;
 	}
 
@@ -44,17 +48,17 @@ public class Rectangle implements Region{
 				ret[i][ii] = oldvert[i][ii];
 		}
 		
-		ret[0][3] = 0;
 		ret[0][4] = 0;
+		ret[0][5] = 0;
 
-		ret[1][3] = 0;
-		ret[1][4] = 1;
+		ret[1][4] = 0;
+		ret[1][5] = 1;
 
-		ret[2][3] = 1;
 		ret[2][4] = 1;
+		ret[2][5] = 1;
 
-		ret[3][3] = 1;
-		ret[3][4] = 0;
+		ret[3][4] = 1;
+		ret[3][5] = 0;
 	
 		
 		return ret;

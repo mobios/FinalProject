@@ -46,10 +46,10 @@ public class dynamicQuad extends Quad {
 		
 		vbo = GL15.glGenBuffers();
 		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, vbo);
-		GL15.glBufferData(GL15.GL_ARRAY_BUFFER, vertexBuffer, GL15.GL_DYNAMIC_DRAW);
-		GL20.glVertexAttribPointer(0, core.Size.pvs, GL11.GL_FLOAT, false, getStride(), 0);
-		GL20.glVertexAttribPointer(1, core.Size.mvs, GL11.GL_FLOAT, false, getStride(), core.Size.pvs);
-		GL20.glVertexAttribPointer(2, core.Size.tvs, GL11.GL_FLOAT, false, getStride(), core.Size.pvs + core.Size.mvs);
+		GL15.glBufferData(GL15.GL_ARRAY_BUFFER, vertexBuffer, GL15.GL_STATIC_DRAW);
+		GL20.glVertexAttribPointer(0, core.Size.pvs, GL11.GL_FLOAT, false, getStride()*4, 0);
+		GL20.glVertexAttribPointer(1, core.Size.mvs, GL11.GL_FLOAT, false, getStride()*4, core.Size.pvs*4);
+		GL20.glVertexAttribPointer(2, core.Size.tvs, GL11.GL_FLOAT, false, getStride()*4, (core.Size.pvs + core.Size.mvs)*4);
 	
 		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, 0);
 		setupVIBO();
