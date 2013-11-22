@@ -17,5 +17,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="opengl/lzma.jar"/>
+	<classpathentry kind="lib" path="opengl/PNGDecoder.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

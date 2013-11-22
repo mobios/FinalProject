@@ -10,7 +10,7 @@ import org.lwjgl.opengl.GL30;
 
 import util.Rectangle;
 
-public class dynamicQuad extends Quad{	
+public abstract class dynamicQuad extends Quad{	
 	private Rectangle area;
 	private float[] tint;
 	
@@ -67,7 +67,6 @@ public class dynamicQuad extends Quad{
 		
 		verticesBuffer.flip();
 		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, vbo);
-		int debugValueForVariableWatch = getStride();
 		GL15.glBufferSubData(GL15.GL_ARRAY_BUFFER, getStride()*buffluc, verticesBuffer);
 		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, 0);
 	}
@@ -144,7 +143,7 @@ public class dynamicQuad extends Quad{
 	}
 
 	@Override
-	public void renderloop() {
+	public void renderLoop() {
 		GL11.glDrawElements(GL11.GL_TRIANGLES, indexElementCount*count, GL11.GL_UNSIGNED_BYTE, 0);
 		
 	}

@@ -1,14 +1,11 @@
 package graphics.quadrangle;
 
-import graphics.glcall.renderCall;
+import graphics.backend.renderCall;
 
 import java.nio.ByteBuffer;
 
 import org.lwjgl.BufferUtils;
-import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL15;
-import org.lwjgl.opengl.GL20;
-
 import util.Rectangle;
 
 public abstract class Quad implements renderCall{
@@ -24,6 +21,15 @@ public abstract class Quad implements renderCall{
 	public abstract int getStride();
 	
 	public abstract void setupVAO();
+	
+	public void render(){
+		setupBatch();
+		bindTexture();
+		renderLoop();
+		teardownBatch();
+		
+	}
+	
 	public void setupVIBO(){
 		ByteBuffer indexBuffer = BufferUtils.createByteBuffer(indexElementCount);
 		indexBuffer.put(Rectangle.getOrder());

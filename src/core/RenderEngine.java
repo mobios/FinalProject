@@ -1,8 +1,7 @@
 package core;
 
+import graphics.frontend.PlayerModel;
 import graphics.quadrangle.Quad;
-import graphics.quadrangle.dynamicQuad;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -14,7 +13,7 @@ import util.Rectangle;
 
 public class RenderEngine {
 	public static Quad quads;
-	public static dynamicQuad dquads;
+	public static PlayerModel dquadStaticHandle;
 	
 	public static int ProgramID;
 	public static int fragmentShaderID;
@@ -22,18 +21,18 @@ public class RenderEngine {
 	
 	public static void render(){
 		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
-		dquads.render();
+		dquadStaticHandle.render();
 	}
 	
 	public static void setup(){
-		dquads = new dynamicQuad(null);
-		dquads.setup();
+		dquadStaticHandle = new PlayerModel(null, null);
+		dquadStaticHandle.staticSetup();
 		initializeShaders();
 		initializeProgram();
 	}
 	
 	public static void test(){
-		new dynamicQuad(new Rectangle(0,0, 1, 1));
+		new PlayerModel(new Rectangle(0,0, 1, 1),new float[]{0,0,0});
 	}
 	
 	@SuppressWarnings("deprecation")

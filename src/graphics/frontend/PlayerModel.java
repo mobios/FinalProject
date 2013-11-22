@@ -1,11 +1,13 @@
 package graphics.frontend;
 
-import util.Rectangle;
-import graphics.Image;
+import org.lwjgl.opengl.GL11;
+
+import graphics.Texture;
 import graphics.quadrangle.dynamicQuad;
+import util.Rectangle;
 
 public class PlayerModel extends dynamicQuad{
-	public static Image sprite;
+	public static Texture sprite;
 	public static String spriteURL;
 	
 	public PlayerModel(Rectangle rect, float[] tint) {
@@ -17,5 +19,10 @@ public class PlayerModel extends dynamicQuad{
 	public void staticSetup(){
 		super.staticSetup();
 		
+	}
+
+	@Override
+	public void bindTexture() {
+		GL11.glBindTexture(GL11.GL_TEXTURE_2D, sprite.textureID);
 	}
 }
