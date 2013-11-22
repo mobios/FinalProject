@@ -10,8 +10,9 @@ import org.lwjgl.opengl.GL30;
 
 import util.Rectangle;
 
-public class dynamicQuad extends Quad {	
+public class dynamicQuad extends Quad{	
 	private Rectangle area;
+	private float[] tint;
 	
 	private static int vbo;
 	private static int vao;
@@ -19,21 +20,17 @@ public class dynamicQuad extends Quad {
 	private static int count=0;
 	private static int max=0;
 	
-	public dynamicQuad(Rectangle rect){
+	public dynamicQuad(Rectangle rect, float[] tint){
 		super();
 		if(rect == null)
 			return;
 		area = rect;
+		this.tint = tint;
 		buffluc = count;
 		count++;
 		reloadVBO();
 	}
 	
-
-	public void setup(){
-		setupVAO();
-	}
-
 	@Override
 	public void setupVAO(){
 		if(max > 0)
@@ -56,6 +53,7 @@ public class dynamicQuad extends Quad {
 		GL30.glBindVertexArray(0);
 		max = 50;
 	}
+	
 
 	@Override
 	public void reloadVBO(){
@@ -64,7 +62,7 @@ public class dynamicQuad extends Quad {
 		FloatBuffer verticesBuffer = BufferUtils.createFloatBuffer(vertices.length*(core.Size.pvs + core.Size.mvs + core.Size.tvs));
 		for(float[] vec5 : vertices){
 			verticesBuffer.put(vec5);
-			verticesBuffer.put(new float[]{0.4f,0.4f,0.23f,0.58f});
+			verticesBuffer.put((tint == null) ? new float[]{0.4f,0.4f,0.23f,0.58f} : tint);
 		}
 		
 		verticesBuffer.flip();
@@ -116,8 +114,38 @@ public class dynamicQuad extends Quad {
 		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, vbo);
 		
 	}
+	
 	@Override
 	public void unbindVBO() {
 		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, 0);
+	}
+
+	@Override
+	public void staticSetup() {
+		setupVAO();
+	}
+
+	@Override
+	public void setupBatch() {
+		bindVAO();
+		GL20.glEnableVertexAttribArray(0);
+		GL20.glEnableVertexAttribArray(1);
+		GL20.glEnableVertexAttribArray(2);
+		bindVIBO();
+	}
+
+	@Override
+	public void teardownBatch(){
+		unbindVIBO();
+		GL20.glDisableVertexAttribArray(2);
+		GL20.glDisableVertexAttribArray(1);
+		GL20.glDisableVertexAttribArray(0);
+		unbindVAO();
+	}
+
+	@Override
+	public void renderloop() {
+		GL11.glDrawElements(GL11.GL_TRIANGLES, indexElementCount*count, GL11.GL_UNSIGNED_BYTE, 0);
+		
 	}
 }

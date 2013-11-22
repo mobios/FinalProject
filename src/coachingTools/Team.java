@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public abstract class Team {
 	protected ArrayList<Player> players;
 	public String name;
+	public float[] teamColor;
 	
 	public Team(String name) {
 		super();
