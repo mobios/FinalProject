@@ -1,11 +1,12 @@
 package core;
 
+import java.io.File;
+
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.ContextAttribs;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.PixelFormat;
 
 public class GameEngine {
@@ -13,6 +14,7 @@ public class GameEngine {
 	public static final int HEIGHT = 600;
 	
 	public static void main(String[] args) {
+		System.setProperty("org.lwjgl.librarypath", new File("native").getAbsolutePath());
 		setup();
 		RenderEngine.test();
 		run();
@@ -47,10 +49,9 @@ public class GameEngine {
 		int error = GL11.glGetError();
 		if(error > 0)
 			return;
-		GL20.glUseProgram(RenderEngine.ProgramID);
 		while(!Display.isCloseRequested()){
 			RenderEngine.render();
-			Display.sync(120);
+			Display.sync(60);
 			Display.update();
 		}
 		

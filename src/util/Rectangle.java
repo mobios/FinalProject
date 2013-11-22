@@ -36,7 +36,7 @@ public class Rectangle implements Region{
 	}
 
 	public float[][] get3dWithUV(){
-		float[][] ret = new float[elementCount()][core.Size.mvs+core.Size.pvs];
+		float[][] ret = new float[core.Size.quadVertices][core.Size.mvs+core.Size.pvs];
 		float[][] oldvert = this.get3dVertices();
 		
 		for(int i =0; i < oldvert.length; i++){

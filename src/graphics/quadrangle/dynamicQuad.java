@@ -29,17 +29,17 @@ public class dynamicQuad extends Quad {
 		reloadVBO();
 	}
 	
-	@Override
+
 	public void setup(){
-		super.setup();
 		setupVAO();
 	}
-	
+
+	@Override
 	public void setupVAO(){
 		if(max > 0)
 			return;
 		
-		FloatBuffer vertexBuffer = BufferUtils.createFloatBuffer(getStride() * core.Size.quadVertices * 50);
+		FloatBuffer vertexBuffer = BufferUtils.createFloatBuffer(getStride() * core.Size.quadVertices * 1);
 		
 		vao = GL30.glGenVertexArrays();
 		GL30.glBindVertexArray(vao);
@@ -52,21 +52,24 @@ public class dynamicQuad extends Quad {
 		GL20.glVertexAttribPointer(2, core.Size.tvs, GL11.GL_FLOAT, false, getStride(), core.Size.pvs + core.Size.mvs);
 	
 		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, 0);
+		setupVIBO();
 		GL30.glBindVertexArray(0);
 		max = 50;
 	}
-	
+
+	@Override
 	public void reloadVBO(){
 		float[][] vertices = area.get3dWithUV();
 		
-		FloatBuffer verticesBuffer = BufferUtils.createFloatBuffer(vertices.length*(vertices[0].length));
+		FloatBuffer verticesBuffer = BufferUtils.createFloatBuffer(vertices.length*(core.Size.pvs + core.Size.mvs + core.Size.tvs));
 		for(float[] vec5 : vertices){
 			verticesBuffer.put(vec5);
+			verticesBuffer.put(new float[]{0.4f,0.4f,0.23f,0.58f});
 		}
 		
 		verticesBuffer.flip();
 		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, vbo);
-		
+		int debugValueForVariableWatch = getStride();
 		GL15.glBufferSubData(GL15.GL_ARRAY_BUFFER, getStride()*buffluc, verticesBuffer);
 		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, 0);
 	}

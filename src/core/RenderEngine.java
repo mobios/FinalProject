@@ -6,9 +6,7 @@ import graphics.quadrangle.dynamicQuad;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.ByteBuffer;
 
-import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
 
@@ -85,5 +83,6 @@ public class RenderEngine {
 		
 		GL20.glLinkProgram(ProgramID);
 		GL20.glValidateProgram(ProgramID);
+		GL20.glUseProgram(ProgramID);
 	}
 }
