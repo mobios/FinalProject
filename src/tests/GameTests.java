@@ -189,19 +189,6 @@ public class GameTests {
 		assertFalse(((SoccerTeam) game.getTeam2()).isInFormation(FormationType.DEFEND));
 	}
 
-	// tests to see if the player will know if there in the penalty area, goal area, ect.
-	@Test
-	public void testLocationFinder() {
-		Rectangle field = game.getGameField().bounds;
-		int gaCount=0, paCount=0, ccCount=0, lhCount=0, rhCount=0;
-
-		for (Player p : game.getAllPlayers()) {
-			assertTrue(field.contains(p.getX(), p.getY()));
-
-			//need to add tests that checks player's located in know areas 
-		}
-	}
-
 	//tests that the program knows when a goal has been made
 	@Test
 	public void testGoal() {		
