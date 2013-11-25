@@ -7,8 +7,9 @@ public abstract class Game {
 	protected Team team1, team2;
 	protected Field gameField;
 	
-	public Game() {
+	public Game(Field gameField) {
 		super();
+		this.gameField = gameField;
 	}
 	
 	public void Formation(ArrayList<Player> players){

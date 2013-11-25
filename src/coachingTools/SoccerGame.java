@@ -6,7 +6,7 @@ import java.util.Random;
 public class SoccerGame extends Game {
 
 	public SoccerGame() {
-		super();
+		super(new SoccerField());
 
 		gameField = new SoccerField();
 		team1 = new SoccerTeam("BestTeamEver");

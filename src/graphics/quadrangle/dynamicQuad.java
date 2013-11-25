@@ -49,8 +49,8 @@ public abstract class dynamicQuad extends Quad{
 		GL20.glVertexAttribPointer(2, core.Size.tvs, GL11.GL_FLOAT, false, getStride()*4, (core.Size.pvs + core.Size.mvs)*4);
 	
 		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, 0);
-		setupVIBO();
 		GL30.glBindVertexArray(0);
+		setupVIBO();
 		max = 50;
 	}
 	
@@ -60,9 +60,9 @@ public abstract class dynamicQuad extends Quad{
 		float[][] vertices = area.get3dWithUV();
 		
 		FloatBuffer verticesBuffer = BufferUtils.createFloatBuffer(vertices.length*(core.Size.pvs + core.Size.mvs + core.Size.tvs));
-		for(float[] vec5 : vertices){
-			verticesBuffer.put(vec5);
-			verticesBuffer.put((tint == null) ? new float[]{0.4f,0.4f,0.23f,0.58f} : tint);
+		for(float[] vec6 : vertices){
+			verticesBuffer.put(vec6);
+			verticesBuffer.put((tint == null || tint.length != 4) ? new float[]{0.4f,0.4f,0.23f,0.58f} : tint);
 		}
 		
 		verticesBuffer.flip();

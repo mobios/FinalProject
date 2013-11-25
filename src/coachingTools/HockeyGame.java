@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class HockeyGame extends Game {
 
 	public HockeyGame() {
-		super();
+		super(null);
 		
 	}
 	

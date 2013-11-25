@@ -8,6 +8,7 @@ import java.nio.ByteBuffer;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL13;
+import org.lwjgl.opengl.GL30;
 
 import de.matthiasmann.twl.utils.PNGDecoder;
 import de.matthiasmann.twl.utils.PNGDecoder.Format;
@@ -23,7 +24,7 @@ public class Texture {
 		
 	public void load(String path){
 		generate();
-		ByteBuffer textureBuffer = BufferUtils.createByteBuffer(0);
+		ByteBuffer textureBuffer = null;
 		int imageWidth =0;
 		int imageHeight =0;
 		try{
@@ -44,7 +45,14 @@ public class Texture {
 		
 		GL13.glActiveTexture(textureUnit);
 		GL11.glBindTexture(GL11.GL_TEXTURE_2D, textureID);
-		GL11.glPixelStorei(GL11.GL_PACK_ALIGNMENT, 1);
+		GL11.glPixelStorei(GL11.GL_UNPACK_ALIGNMENT, 1);
 		GL11.glTexImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGB, imageWidth, imageHeight, 0, GL11.GL_RGBA, GL11.GL_UNSIGNED_BYTE, textureBuffer);
+		GL30.glGenerateMipmap(GL11.GL_TEXTURE_2D);
+		
+		GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_S, GL11.GL_REPEAT);
+		GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_T, GL11.GL_REPEAT);
+		
+		GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
+		GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_LINEAR_MIPMAP_LINEAR);
 	}
 }

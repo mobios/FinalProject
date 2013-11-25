@@ -26,8 +26,8 @@ public class GameTests {
 	@Before
 	public void setUp(){
 		game = new SoccerGame();
-		//game.getGameField().setHeight(FIELD_HEIGHT);
-		//game.getGameField().setWidth(FIELD_LENGTH);
+		game.getGameField().setHeight(FIELD_HEIGHT);
+		game.getGameField().setWidth(FIELD_LENGTH);
 	}
 
 	// to test moving to various locations on the field
