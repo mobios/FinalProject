@@ -4,10 +4,11 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL13;
 
 import graphics.Texture;
-import graphics.quadrangle.dynamicQuad;
+import graphics.quadrangle.Dynamic;
+import graphics.quadrangle.Vec10quad;
 import util.Rectangle;
 
-public class PlayerModel extends dynamicQuad{
+public class PlayerModel extends Dynamic{
 	public static Texture sprite;
 	public static String spriteURL = "resources/schmile.png";
 	
@@ -19,14 +20,8 @@ public class PlayerModel extends dynamicQuad{
 	}
 
 	@Override
-	public void staticSetup(){
-		super.staticSetup();
-		
-	}
-
-	@Override
 	public void bindTexture() {
-		GL13.glActiveTexture(sprite.textureUnit);
+		GL13.glActiveTexture(Texture.textureUnit);
 		GL11.glBindTexture(GL11.GL_TEXTURE_2D, sprite.textureID);
 	}
 }
