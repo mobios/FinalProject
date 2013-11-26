@@ -16,12 +16,17 @@ public class PlayerModel extends Dynamic{
 		super(rect, tint);
 		sprite = new Texture();
 		sprite.load(spriteURL);
-		
 	}
 
 	@Override
 	public void bindTexture() {
 		GL13.glActiveTexture(Texture.textureUnit);
 		GL11.glBindTexture(GL11.GL_TEXTURE_2D, sprite.textureID);
+	}
+
+	@Override
+	public void staticSetup() {
+		super.setupVAO();
+		
 	}
 }

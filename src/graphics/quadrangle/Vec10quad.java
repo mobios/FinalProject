@@ -12,23 +12,24 @@ import util.Rectangle;
 
 public abstract class Vec10quad extends Quad{
 	private float[] tint;
-	private static int count=0;
 	
 	public Vec10quad(Rectangle rect, float[] tint){
 		super(rect);
 		if(rect == null)
 			return;
+		
 		this.tint = tint;
-		buffluc = count;
-		count++;
 		reloadVBO();
 	}
 	
 	@Override
 	public void setupVAO(){		
 		super.setupVAO();
+		bindVAO();
 		setupVBO();
-
+		
+		setupAttribs();
+		
 		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, 0);
 		GL30.glBindVertexArray(0);
 		setupVIBO();
@@ -52,17 +53,11 @@ public abstract class Vec10quad extends Quad{
 		}
 		
 		verticesBuffer.flip();
-		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, vbo);
+		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, getVBO());
 		GL15.glBufferSubData(GL15.GL_ARRAY_BUFFER, getStride()*buffluc, verticesBuffer);
 		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, 0);
 	}
 	
-	@Override
-	public void move(float deltx, float delty) {
-		area.move(deltx, delty);
-		
-	}
-
 	@Override
 	public void remove() {
 		// TODO Auto-generated method stub
@@ -75,17 +70,8 @@ public abstract class Vec10quad extends Quad{
 	}
 
 	@Override
-	public void bindVBO() {
-	}
-	
-	@Override
-	public void unbindVBO() {
-		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, 0);
-	}
-
-	@Override
 	public void renderLoop() {
-		GL11.glDrawElements(GL11.GL_TRIANGLES, indexElementCount*count, GL11.GL_UNSIGNED_BYTE, 0);
+		GL11.glDrawElements(GL11.GL_TRIANGLES, indexElementCount*getMax(), GL11.GL_UNSIGNED_BYTE, 0);
 		
 	}
 	

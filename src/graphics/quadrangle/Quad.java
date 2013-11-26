@@ -19,15 +19,14 @@ public abstract class Quad implements renderCall{
 	protected final static int indexElementCount = Rectangle.elementCount();
 	protected int buffluc;
 	
-	public abstract void move(float deltx, float delty);
 	public abstract void remove(); // DO NOT USE// FORWARD IMPLEMENTATION ONLY
 	
 	public abstract int getStride();
 	public abstract int getMax();
+	public abstract int getNumElements();
 	
 	public void setupVAO(){
 		setVAO(GL30.glGenVertexArrays());
-		GL30.glBindVertexArray(getVAO());
 	}
 	
 	public void setupVBO(){
@@ -76,7 +75,9 @@ public abstract class Quad implements renderCall{
 		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, getVBO());
 	}
 	
-	public abstract void unbindVBO();
+	public void unbindVBO(){
+		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, 0);
+	}
 	public abstract void reloadVBO();
 	
 	public abstract void setupAttribs();
@@ -104,5 +105,10 @@ public abstract class Quad implements renderCall{
 		unbindVIBO();
 		unbindAttribs();
 		unbindVAO();
+	}
+	
+	public void move(float deltx, float delty) {
+		area.move(deltx, delty);
+		reloadVBO();
 	}
 }
