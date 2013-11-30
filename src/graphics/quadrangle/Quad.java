@@ -111,4 +111,6 @@ public abstract class Quad implements renderCall{
 		area.move(deltx, delty);
 		reloadVBO();
 	}
+	
+	public abstract int getLuc();
 }

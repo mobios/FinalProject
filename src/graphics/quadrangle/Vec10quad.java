@@ -19,6 +19,7 @@ public abstract class Vec10quad extends Quad{
 			return;
 		
 		this.tint = tint;
+		buffluc = getLuc();
 		reloadVBO();
 	}
 	
@@ -54,7 +55,7 @@ public abstract class Vec10quad extends Quad{
 		
 		verticesBuffer.flip();
 		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, getVBO());
-		GL15.glBufferSubData(GL15.GL_ARRAY_BUFFER, getStride()*buffluc, verticesBuffer);
+		GL15.glBufferSubData(GL15.GL_ARRAY_BUFFER, getStride()*buffluc*4*2, verticesBuffer);
 		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, 0);
 	}
 	

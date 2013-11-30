@@ -11,6 +11,7 @@ import util.Rectangle;
 public class PlayerModel extends Dynamic{
 	public static Texture sprite;
 	public static String spriteURL = "resources/schmile.png";
+	private static int nextluc = 0;
 	
 	public PlayerModel(Rectangle rect, float[] tint) {
 		super(rect, tint);
@@ -27,6 +28,12 @@ public class PlayerModel extends Dynamic{
 	@Override
 	public void staticSetup() {
 		super.setupVAO();
-		
+	}
+
+	@Override
+	public int getLuc() {
+		int templuc = nextluc;
+		nextluc++;
+		return templuc;
 	}
 }
