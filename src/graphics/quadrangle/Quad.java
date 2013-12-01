@@ -24,6 +24,7 @@ public abstract class Quad implements renderCall{
 	public abstract int getStride();
 	public abstract int getMax();
 	public abstract int getNumElements();
+	public abstract int getNumObjects();
 	
 	public void setupVAO(){
 		setVAO(GL30.glGenVertexArrays());
@@ -51,16 +52,17 @@ public abstract class Quad implements renderCall{
 	}
 	
 	public void setupVIBO(){
-		ByteBuffer indexBuffer = BufferUtils.createByteBuffer(indexElementCount*2);
-		indexBuffer.put(Rectangle.getOrder());
-		indexBuffer.put(Rectangle.getOrder(4));
+		ByteBuffer indexBuffer = BufferUtils.createByteBuffer(indexElementCount*getNumObjects());
+		for(int i = 0; i < getNumObjects(); ++i){
+			indexBuffer.put(Rectangle.getOrder(4*i));
+		}
 		indexBuffer.flip();
 //		byte[] retArr = new byte[50];
 //		indexBuffer.get(retArr, 0, indexBuffer.capacity());
 //		System.out.println(retArr);
 		vibo = GL15.glGenBuffers();
 		GL15.glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, vibo);
-		GL15.glBufferData(GL15.GL_ELEMENT_ARRAY_BUFFER, indexBuffer, GL15.GL_STATIC_DRAW);
+		GL15.glBufferData(GL15.GL_ELEMENT_ARRAY_BUFFER, indexBuffer, GL15.GL_DYNAMIC_DRAW);
 		GL15.glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, 0);
 	}
 	

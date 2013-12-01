@@ -36,4 +36,9 @@ public class PlayerModel extends Dynamic{
 		nextluc++;
 		return templuc;
 	}
+	
+	@Override
+	public int getNumObjects(){
+		return 3;
+	}
 }

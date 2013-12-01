@@ -8,6 +8,6 @@ in vec4 pass_tint;
 out vec4 color;
 
 void main(){
-	color = texture2D(texelSample, pass_uv)+ pass_tint;
+	color = texture2D(texelSample, pass_uv) * pass_tint;
 	//color = pass_tint;
 }

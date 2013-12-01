@@ -74,7 +74,7 @@ public abstract class Vec10quad extends Quad{
 	public void renderLoop() {
 		// TODO remove debug
 		int debugvalue = indexElementCount*getMax();
-		GL11.glDrawElements(GL11.GL_TRIANGLES, 12, GL11.GL_UNSIGNED_BYTE, 0);
+		GL11.glDrawElements(GL11.GL_TRIANGLES, indexElementCount*getMax(), GL11.GL_UNSIGNED_BYTE, 0);
 		
 	}
 	
