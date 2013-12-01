@@ -51,10 +51,13 @@ public abstract class Quad implements renderCall{
 	}
 	
 	public void setupVIBO(){
-		ByteBuffer indexBuffer = BufferUtils.createByteBuffer(indexElementCount);
+		ByteBuffer indexBuffer = BufferUtils.createByteBuffer(indexElementCount*2);
 		indexBuffer.put(Rectangle.getOrder());
+		indexBuffer.put(Rectangle.getOrder(4));
 		indexBuffer.flip();
-		
+//		byte[] retArr = new byte[50];
+//		indexBuffer.get(retArr, 0, indexBuffer.capacity());
+//		System.out.println(retArr);
 		vibo = GL15.glGenBuffers();
 		GL15.glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, vibo);
 		GL15.glBufferData(GL15.GL_ELEMENT_ARRAY_BUFFER, indexBuffer, GL15.GL_STATIC_DRAW);

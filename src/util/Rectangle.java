@@ -65,7 +65,14 @@ public class Rectangle implements Region{
 	}
 	
 	public static byte[] getOrder(){
-		return new byte[]{0,1,2,2,3,0};
+		return getOrder(0);
+	}
+	
+	public static byte[] getOrder(int offset){
+		byte [] ret = new byte[]{0,1,2,2,3,0};
+		for(int i = 0; i < ret.length; i++)
+			ret[i] += offset;
+		return ret;
 	}
 	
 	public static int elementCount(){

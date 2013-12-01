@@ -55,7 +55,7 @@ public abstract class Vec10quad extends Quad{
 		
 		verticesBuffer.flip();
 		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, getVBO());
-		GL15.glBufferSubData(GL15.GL_ARRAY_BUFFER, getStride()*buffluc*4*2, verticesBuffer);
+		GL15.glBufferSubData(GL15.GL_ARRAY_BUFFER, getStride()*buffluc*4*4, verticesBuffer);
 		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, 0);
 	}
 	
@@ -72,7 +72,9 @@ public abstract class Vec10quad extends Quad{
 
 	@Override
 	public void renderLoop() {
-		GL11.glDrawElements(GL11.GL_TRIANGLES, indexElementCount*getMax(), GL11.GL_UNSIGNED_BYTE, 0);
+		// TODO remove debug
+		int debugvalue = indexElementCount*getMax();
+		GL11.glDrawElements(GL11.GL_TRIANGLES, 12, GL11.GL_UNSIGNED_BYTE, 0);
 		
 	}
 	

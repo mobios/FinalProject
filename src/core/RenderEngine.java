@@ -32,6 +32,7 @@ public class RenderEngine {
 	}
 	
 	public static void test(){
+		new PlayerModel(new Rectangle(-.8f, -.78f, .72f, .22f),new float[]{0,0,0});
 		new PlayerModel(new Rectangle(0f, 0f, .52f, .72f),new float[]{0,0,0});
 		new PlayerModel(new Rectangle(.5f, .5f, .52f, .72f),new float[]{0,0,0});
 	}
