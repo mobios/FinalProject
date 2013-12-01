@@ -25,7 +25,7 @@ public class RenderEngine {
 	}
 	
 	public static void setup(){
-		dquadStaticHandle = new PlayerModel(null, null);
+		dquadStaticHandle = new PlayerModel();
 		dquadStaticHandle.staticSetup();
 		initializeShaders();
 		initializeProgram();

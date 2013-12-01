@@ -27,6 +27,7 @@ public class Texture {
 		ByteBuffer textureBuffer = null;
 		int imageWidth =0;
 		int imageHeight =0;
+		
 		try{
 			InputStream texIn = new FileInputStream(path);
 			PNGDecoder decoder = new PNGDecoder(texIn);

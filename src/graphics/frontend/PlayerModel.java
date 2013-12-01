@@ -15,10 +15,12 @@ public class PlayerModel extends Dynamic{
 	
 	public PlayerModel(Rectangle rect, float[] tint) {
 		super(rect, tint);
-		sprite = new Texture();
-		sprite.load(spriteURL);
 	}
 
+	public PlayerModel(){
+		this(null, null);
+	}
+	
 	@Override
 	public void bindTexture() {
 		GL13.glActiveTexture(Texture.textureUnit);
@@ -28,6 +30,8 @@ public class PlayerModel extends Dynamic{
 	@Override
 	public void staticSetup() {
 		super.setupVAO();
+		sprite = new Texture();
+		sprite.load(spriteURL);
 	}
 
 	@Override
