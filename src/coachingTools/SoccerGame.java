@@ -74,9 +74,9 @@ public class SoccerGame extends Game {
 		p.setBall(true);
 		
 		Random generator = new Random();
-		int totalNumPlayers = offensiveTeam.size() + defensiveTeam.size();
+		int totalPlayers = offensiveTeam.size() + defensiveTeam.size();
 		
-		int num = generator.nextInt(totalNumPlayers);
+		int num = generator.nextInt(totalPlayers);
 		
 		if(offensiveTeam.get(num) != p){
 			if(num < offensiveTeam.size()) {
@@ -89,10 +89,10 @@ public class SoccerGame extends Game {
 				if(shot == 0)
 					((SoccerPlayer) offensiveTeam.get(num)).scoreGoal();
 			} else {
-				p.pass(defensiveTeam.get(num));
+				p.pass(defensiveTeam.get(num - offensiveTeam.size()));
 			}
 		} else {
-			if(num < totalNumPlayers/2){
+			if(num < totalPlayers/2){
 				num++;
 			} else {
 				num--;
