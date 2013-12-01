@@ -33,8 +33,8 @@ public class RenderEngine {
 	
 	public static void test(){
 		new PlayerModel(new Rectangle(-.8f, -.78f, .72f, .22f),new float[]{.8f,1f,1f,1f});
-		new PlayerModel(new Rectangle(0f, 0f, .52f, .72f),new float[]{.25f,0,0,0});
-		new PlayerModel(new Rectangle(.5f, .5f, .52f, .72f),new float[]{0,0,.5f,0});
+		new PlayerModel(new Rectangle(0f, 0f, .52f, .72f),new float[]{.25f,0,0,1f});
+		new PlayerModel(new Rectangle(.5f, .5f, .52f, .72f),new float[]{0,0,.5f,1f});
 	}
 	
 	@SuppressWarnings("deprecation")
@@ -77,6 +77,10 @@ public class RenderEngine {
 		ProgramID = GL20.glCreateProgram();
 		GL20.glAttachShader(ProgramID, vertexShaderID);
 		GL20.glAttachShader(ProgramID, fragmentShaderID);
+		
+		GL11.glEnable(GL11.GL_BLEND);
+		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+		GL11.glDisable(GL11.GL_DEPTH_TEST);
 		
 		//GL20.glBindAttribLocation(ProgramID, 0, "position");
 		//GL20.glBindAttribLocation(ProgramID, 1, "uv");

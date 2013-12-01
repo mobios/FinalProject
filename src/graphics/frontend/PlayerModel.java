@@ -10,7 +10,7 @@ import util.Rectangle;
 
 public class PlayerModel extends Dynamic{
 	public static Texture sprite;
-	public static String spriteURL = "resources/schmile.png";
+	public static String spriteURL = "resources/player.png";
 	private static int nextluc = 0;
 	
 	public PlayerModel(Rectangle rect, float[] tint) {
