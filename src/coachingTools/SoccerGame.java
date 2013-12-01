@@ -70,10 +70,29 @@ public class SoccerGame extends Game {
 
 	}
 
-	public void cornerKick(){
+	public void cornerKick(Player p, ArrayList<Player> offensiveTeam, ArrayList<Player> defensiveTeam){
+		p.setBall(true);
 		
+		Random generator = new Random();
 		
+		int num = generator.nextInt(offensiveTeam.size() + defensiveTeam.size());
 		
+		if(offensiveTeam.get(num) != p){
+			p.pass(offensiveTeam.get(num));
+			
+			//about 1 in 40 corner kicks result in a goal
+			//part of this was already taken into account when we picked a random player
+			//from either team to receive the ball
+			int shot = generator.nextInt(20);
+			if(shot == 0)
+				((SoccerPlayer) offensiveTeam.get(num)).scoreGoal();
+		} else {
+			if(num < 10){
+				num++;
+			} else {
+				num--;
+			}
+		}
 	}
 	
 	public void kickOff(Player p, ArrayList<Player> players){
