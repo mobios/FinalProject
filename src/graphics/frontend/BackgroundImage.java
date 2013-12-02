@@ -15,7 +15,7 @@ public class BackgroundImage extends Static{
 	private Texture image;
 	private static int nextluc = 0;
 	
-	private static List<BackgroundImage> allBackground;
+	protected static List<BackgroundImage> allBackground;
 	
 	public BackgroundImage(Rectangle rect, String imagePath){
 		this(rect, (float[])null);
