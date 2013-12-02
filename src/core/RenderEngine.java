@@ -1,7 +1,9 @@
 package core;
 
+import graphics.frontend.BackgroundImage;
 import graphics.frontend.PlayerModel;
 import graphics.quadrangle.Quad;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -14,6 +16,7 @@ import util.Rectangle;
 public class RenderEngine {
 	public static Quad quads;
 	public static PlayerModel dquadStaticHandle;
+	public static BackgroundImage squadStaticHandle;
 	
 	public static int ProgramID;
 	public static int fragmentShaderID;
@@ -22,11 +25,16 @@ public class RenderEngine {
 	public static void render(){
 		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
 		dquadStaticHandle.render();
+		squadStaticHandle.render();
 	}
 	
 	public static void setup(){
 		dquadStaticHandle = new PlayerModel();
 		dquadStaticHandle.staticSetup();
+
+		squadStaticHandle = new BackgroundImage();
+		squadStaticHandle.staticSetup();
+		
 		initializeShaders();
 		initializeProgram();
 	}
@@ -35,6 +43,8 @@ public class RenderEngine {
 		new PlayerModel(new Rectangle(-.8f, -.78f, .22f, .22f),new float[]{.8f,1f,1f,1f});
 		new PlayerModel(new Rectangle(0f, 0f, .52f, .52f),new float[]{.25f,0,0,1f});
 		new PlayerModel(new Rectangle(.5f, .5f, .52f, .52f),new float[]{0,0,.5f,1f});
+		
+		new BackgroundImage(new Rectangle(.8f, -.78f, .4f, .4f), "resources/schmile.png");
 	}
 	
 	@SuppressWarnings("deprecation")

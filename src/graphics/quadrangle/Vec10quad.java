@@ -50,7 +50,7 @@ public abstract class Vec10quad extends Quad{
 		FloatBuffer verticesBuffer = BufferUtils.createFloatBuffer(vertices.length*(core.Size.pvs + core.Size.mvs + core.Size.tvs));
 		for(float[] vec6 : vertices){
 			verticesBuffer.put(vec6);
-			verticesBuffer.put((tint == null || tint.length != 4) ? new float[]{0.f,0.f,0.f,1.f} : tint);
+			verticesBuffer.put((tint == null || tint.length != 4) ? new float[]{1.f,1.f,1.f,1.f} : tint);
 		}
 		
 		verticesBuffer.flip();
