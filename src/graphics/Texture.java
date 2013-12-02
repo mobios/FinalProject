@@ -1,5 +1,7 @@
 package graphics;
 
+import graphics.backend.TextureManager;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,7 +24,16 @@ public class Texture {
 		textureID = GL11.glGenTextures();
 	}
 		
-	public void load(String path){
+	public Texture(String path){
+		if(TextureManager.isLoaded(path)){
+			textureID = TextureManager.getIndex(path);
+			return;
+		}
+		
+		TextureManager.load(path, load(path));
+	}
+	
+	private int load(String path){
 		generate();
 		ByteBuffer textureBuffer = null;
 		int imageWidth =0;
@@ -55,5 +66,6 @@ public class Texture {
 		
 		GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
 		GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_LINEAR_MIPMAP_LINEAR);
+		return textureID;
 	}
 }

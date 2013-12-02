@@ -1,5 +1,6 @@
 package core;
 
+import graphics.backend.TextureManager;
 import graphics.frontend.BackgroundImage;
 import graphics.frontend.Button;
 import graphics.frontend.PlayerModel;
@@ -31,6 +32,7 @@ public class RenderEngine {
 	}
 	
 	public static void setup(){
+		TextureManager.setup();
 		dquadStaticHandle = new PlayerModel();
 		dquadStaticHandle.staticSetup();
 

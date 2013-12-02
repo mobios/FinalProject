@@ -19,8 +19,7 @@ public class BackgroundImage extends Static{
 	
 	public BackgroundImage(Rectangle rect, String imagePath){
 		this(rect, (float[])null);
-		image = new Texture();
-		image.load(imagePath);
+		image = new Texture(imagePath);
 		allBackground.add(this);
 	}
 	

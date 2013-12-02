@@ -30,8 +30,7 @@ public class PlayerModel extends Dynamic{
 	@Override
 	public void staticSetup() {
 		super.setupVAO();
-		sprite = new Texture();
-		sprite.load(spriteURL);
+		sprite = new Texture(spriteURL);
 	}
 
 	@Override
