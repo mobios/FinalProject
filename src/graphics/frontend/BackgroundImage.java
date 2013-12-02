@@ -46,14 +46,14 @@ public class BackgroundImage extends Static{
 
 	@Override
 	public int getLuc() {
-		int templuc = nextluc;
-		nextluc++;
+		int templuc = BackgroundImage.nextluc;
+		BackgroundImage.nextluc++;
 		return templuc;
 	}
 	
 	@Override
 	public int getNumObjects(){
-		return 3;
+		return ((BackgroundImage.nextluc == 0) ? getMax() : BackgroundImage.nextluc);
 	}
 	
 	public void blit(){

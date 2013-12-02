@@ -8,7 +8,7 @@ import org.lwjgl.opengl.GL15;
 import util.Rectangle;
 
 public abstract class Static extends Vec10quad{
-	public static int VBO, VAO;
+	public static int VBO, VAO, VIBO;
 	public static final int vboSize = 50;
 	
 
@@ -49,6 +49,11 @@ public abstract class Static extends Vec10quad{
 	public void setVBO(int VBO) {
 		Static.VBO = VBO;
 	}
+	
+	@Override
+	public void setVIBO(int VIBO) {
+		Static.VIBO = VIBO;
+	}
 
 	@Override
 	public int getVAO() {
@@ -60,5 +65,11 @@ public abstract class Static extends Vec10quad{
 	public int getVBO() {
 		// TODO Auto-generated method stub
 		return Static.VBO;
+	}
+	
+	@Override
+	public int getVIBO() {
+		// TODO Auto-generated method stub
+		return Static.VIBO;
 	}
 }

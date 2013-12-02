@@ -14,7 +14,6 @@ import util.Rectangle;
 
 public abstract class Quad implements renderCall{
 	protected Rectangle area;
-	protected static int vibo;
 	
 	protected final static int indexElementCount = Rectangle.elementCount();
 	protected int buffluc;
@@ -36,8 +35,11 @@ public abstract class Quad implements renderCall{
 	
 	public abstract void setVAO(int arg1);
 	public abstract void setVBO(int arg1);
+	public abstract void setVIBO(int arg1);
+	
 	public abstract int getVAO();
 	public abstract int getVBO();
+	public abstract int getVIBO();
 	
 	public Quad(Rectangle area){
 		this.area = area;
@@ -48,7 +50,6 @@ public abstract class Quad implements renderCall{
 		bindTexture();
 		renderLoop();
 		teardownBatch();
-		
 	}
 	
 	public void setupVIBO(){
@@ -57,11 +58,8 @@ public abstract class Quad implements renderCall{
 			indexBuffer.put(Rectangle.getOrder(4*i));
 		}
 		indexBuffer.flip();
-//		byte[] retArr = new byte[50];
-//		indexBuffer.get(retArr, 0, indexBuffer.capacity());
-//		System.out.println(retArr);
-		vibo = GL15.glGenBuffers();
-		GL15.glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, vibo);
+		setVIBO(GL15.glGenBuffers());
+		GL15.glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, getVIBO());
 		GL15.glBufferData(GL15.GL_ELEMENT_ARRAY_BUFFER, indexBuffer, GL15.GL_DYNAMIC_DRAW);
 		GL15.glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, 0);
 	}
@@ -89,11 +87,11 @@ public abstract class Quad implements renderCall{
 	public abstract void bindAttribs();
 	public abstract void unbindAttribs();
 	
-	public static void bindVIBO(){
-		GL15.glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, vibo);
+	public void bindVIBO(){
+		GL15.glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, getVIBO());
 	}
 	
-	public static void unbindVIBO(){
+	public void unbindVIBO(){
 		GL15.glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, 0);
 		
 	}

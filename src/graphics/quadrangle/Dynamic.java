@@ -10,6 +10,7 @@ import util.Rectangle;
 public abstract class Dynamic extends Vec10quad{
 	public static int VBO;
 	public static int VAO;
+	public static int VIBO;
 	
 	public static final int vboSize = 50;
 	
@@ -47,16 +48,24 @@ public abstract class Dynamic extends Vec10quad{
 	}
 
 	@Override
-	public int getVAO() {
+	public void setVIBO(int VIBO){
+		Dynamic.VIBO = VIBO;
+	}
+	
+	@Override
+	public int getVAO(){
 		// TODO Auto-generated method stub
 		return Dynamic.VAO;
 	}
 
 	@Override
-	public int getVBO() {
+	public int getVBO(){
 		// TODO Auto-generated method stub
 		return Dynamic.VBO;
 	}
 
-	
+	@Override
+	public int getVIBO(){
+		return Dynamic.VIBO;
+	}
 }

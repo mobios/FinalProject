@@ -35,13 +35,13 @@ public class PlayerModel extends Dynamic{
 
 	@Override
 	public int getLuc() {
-		int templuc = nextluc;
-		nextluc++;
+		int templuc = PlayerModel.nextluc;
+		PlayerModel.nextluc++;
 		return templuc;
 	}
 	
 	@Override
 	public int getNumObjects(){
-		return 3;
+		return ((PlayerModel.nextluc == 0) ? getMax() : PlayerModel.nextluc);
 	}
 }
