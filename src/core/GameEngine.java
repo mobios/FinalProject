@@ -1,8 +1,13 @@
 package core;
 
+import graphics.frontend.Button;
+
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.lwjgl.LWJGLException;
+import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.ContextAttribs;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
@@ -12,6 +17,8 @@ import org.lwjgl.opengl.PixelFormat;
 public class GameEngine {
 	public static final int WIDTH = 800;
 	public static final int HEIGHT = 600;
+	
+	public static List<Button> buttons;
 	
 	public static void main(String[] args) {
 		System.setProperty("org.lwjgl.librarypath", new File("native").getAbsolutePath());
@@ -43,6 +50,7 @@ public class GameEngine {
 		OpenGL3();
 		//GL11.glHint(GL11.GL_PERSPECTIVE_CORRECTION_HINT, GL11.GL_FASTEST);
 		RenderEngine.setup();
+		buttons = new ArrayList<Button>();
 	}
 	
 	public static void run(){
@@ -50,6 +58,7 @@ public class GameEngine {
 		if(error > 0)
 			return;
 		while(!Display.isCloseRequested()){
+			handleMouse();
 			RenderEngine.render();
 			Display.sync(60);
 			Display.update();
@@ -57,5 +66,15 @@ public class GameEngine {
 		
 		Display.destroy();
 		
+	}
+	
+	public static void handleMouse(){
+		while(Mouse.next()){
+			if(Mouse.getEventButton() != -1){
+				for(Button button : buttons){
+					button.clickMade(Mouse.getEventX(), Mouse.getEventY());
+				}
+			}
+		}
 	}
 }

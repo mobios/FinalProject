@@ -1,6 +1,7 @@
 package core;
 
 import graphics.frontend.BackgroundImage;
+import graphics.frontend.Button;
 import graphics.frontend.PlayerModel;
 import graphics.quadrangle.Quad;
 
@@ -17,6 +18,7 @@ public class RenderEngine {
 	public static Quad quads;
 	public static PlayerModel dquadStaticHandle;
 	public static BackgroundImage squadStaticHandle;
+	public static Button button;
 	
 	public static int ProgramID;
 	public static int fragmentShaderID;
@@ -34,7 +36,7 @@ public class RenderEngine {
 
 		squadStaticHandle = new BackgroundImage();
 		squadStaticHandle.staticSetup();
-		
+
 		initializeShaders();
 		initializeProgram();
 	}
@@ -42,9 +44,10 @@ public class RenderEngine {
 	public static void test(){
 		new PlayerModel(new Rectangle(-.8f, -.78f, .22f, .22f),new float[]{.8f,1f,1f,1f});
 		new PlayerModel(new Rectangle(0f, 0f, .52f, .52f),new float[]{.25f,0,0,1f});
-		new PlayerModel(new Rectangle(.5f, .5f, .52f, .52f),new float[]{0,0,.5f,1f});
+		new PlayerModel(new Rectangle(1f, 1f, .5f, .5f),new float[]{0,0,.5f,1f});
 		
-		new BackgroundImage(new Rectangle(.8f, -.78f, .4f, .4f), "resources/schmile.png");
+		new BackgroundImage(new Rectangle(.3f, -.58f, .4f, .4f), "resources/schmile.png");
+		new Button(new Rectangle(.3f, .58f, .4f, .4f), "resources/schmile.png");
 	}
 	
 	@SuppressWarnings("deprecation")
