@@ -1,6 +1,6 @@
 package graphics.frontend;
 
-import graphics.Texture;
+import graphics.backend.Texture;
 import graphics.quadrangle.Static;
 
 import java.util.ArrayList;

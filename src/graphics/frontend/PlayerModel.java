@@ -1,6 +1,6 @@
 package graphics.frontend;
 
-import graphics.Texture;
+import graphics.backend.Texture;
 import graphics.quadrangle.Dynamic;
 
 import org.lwjgl.opengl.GL11;

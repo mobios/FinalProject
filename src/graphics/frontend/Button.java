@@ -1,6 +1,7 @@
 package graphics.frontend;
 
-import graphics.Texture;
+import graphics.backend.Texture;
+import util.PressAction;
 import util.Rectangle;
 import core.GameEngine;
 

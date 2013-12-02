@@ -1,6 +1,4 @@
-package graphics;
-
-import graphics.backend.TextureManager;
+package graphics.backend;
 
 import java.io.FileInputStream;
 import java.io.IOException;
