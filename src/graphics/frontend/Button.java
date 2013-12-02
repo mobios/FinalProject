@@ -1,8 +1,8 @@
 package graphics.frontend;
 
 import graphics.Texture;
-import core.GameEngine;
 import util.Rectangle;
+import core.GameEngine;
 
 public class Button extends BackgroundImage{
 	Texture up, down, over;

@@ -3,11 +3,9 @@ package graphics.quadrangle;
 import graphics.backend.renderCall;
 
 import java.nio.ByteBuffer;
-import java.nio.FloatBuffer;
 
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL15;
-import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
 
 import util.Rectangle;

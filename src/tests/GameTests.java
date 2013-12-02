@@ -1,21 +1,22 @@
 package tests;
 
-import static org.junit.Assert.*;
-import util.Rectangle;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import util.Rectangle;
 import coachingTools.Game;
 import coachingTools.Player;
-import coachingTools.Field;
 import coachingTools.SoccerGame;
 import coachingTools.SoccerPlayer;
 import coachingTools.SoccerTeam;
 import coachingTools.SoccerTeam.FormationType;
-import coachingTools.Team;
 
 public class GameTests {
 	Game game;

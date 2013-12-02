@@ -1,11 +1,11 @@
 package graphics.frontend;
 
+import graphics.Texture;
+import graphics.quadrangle.Dynamic;
+
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL13;
 
-import graphics.Texture;
-import graphics.quadrangle.Dynamic;
-import graphics.quadrangle.Vec10quad;
 import util.Rectangle;
 
 public class PlayerModel extends Dynamic{
