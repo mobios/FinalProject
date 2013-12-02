@@ -32,9 +32,9 @@ public class RenderEngine {
 	}
 	
 	public static void test(){
-		new PlayerModel(new Rectangle(-.8f, -.78f, .72f, .22f),new float[]{.8f,1f,1f,1f});
-		new PlayerModel(new Rectangle(0f, 0f, .52f, .72f),new float[]{.25f,0,0,1f});
-		new PlayerModel(new Rectangle(.5f, .5f, .52f, .72f),new float[]{0,0,.5f,1f});
+		new PlayerModel(new Rectangle(-.8f, -.78f, .22f, .22f),new float[]{.8f,1f,1f,1f});
+		new PlayerModel(new Rectangle(0f, 0f, .52f, .52f),new float[]{.25f,0,0,1f});
+		new PlayerModel(new Rectangle(.5f, .5f, .52f, .52f),new float[]{0,0,.5f,1f});
 	}
 	
 	@SuppressWarnings("deprecation")
