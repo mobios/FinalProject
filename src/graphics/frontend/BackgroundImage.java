@@ -68,4 +68,12 @@ public class BackgroundImage extends Static{
 			bg.blit();
 		}
 	}
+	
+	public Texture getTexture(){
+		return image;
+	}
+	
+	protected void setTexture(Texture texture){
+		image = texture;
+	}
 }

@@ -70,9 +70,21 @@ public class GameEngine {
 	
 	public static void handleMouse(){
 		while(Mouse.next()){
-			if(Mouse.getEventButton() != -1){
+			if(Mouse.getEventButton() == 0){
+				if(Mouse.isButtonDown(0)){
+					for(Button button : buttons){
+						button.mouseDown(Mouse.getEventX(), Mouse.getEventY());
+					}
+					return;
+				}
+
 				for(Button button : buttons){
-					button.clickMade(Mouse.getEventX(), Mouse.getEventY());
+					button.mouseUp(Mouse.getEventX(), Mouse.getEventY());
+				}
+			}
+			else{
+				for(Button button : buttons){
+					button.mouseMove(Mouse.getEventX(), Mouse.getEventY());
 				}
 			}
 		}

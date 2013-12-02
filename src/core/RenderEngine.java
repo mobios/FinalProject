@@ -49,7 +49,7 @@ public class RenderEngine {
 		new PlayerModel(new Rectangle(1f, 1f, .5f, .5f),new float[]{0,0,.5f,1f});
 		
 		new BackgroundImage(new Rectangle(.3f, -.58f, .4f, .4f), "resources/schmile.png");
-		new Button(new Rectangle(.3f, .58f, .4f, .4f), "resources/schmile.png");
+		new Button(new Rectangle(.3f, .58f, .4f, .4f), "resources/schmile.png", "resources/schmile_down.png", "resources/schmile_over.png", (new graphics.frontend.PressAction(){public void fire(){System.exit(0);};}));
 	}
 	
 	@SuppressWarnings("deprecation")
