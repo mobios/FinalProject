@@ -26,6 +26,10 @@ public abstract class Player {
 		scoredPoints = 0;
 		display = new PlayerModel(p, tint);
 	}
+	
+	public void setPosition(float x, float y) {
+		display.move(x, y);
+	}
 
 	public void move(float x, float y, int stamina){
 		

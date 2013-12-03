@@ -56,5 +56,7 @@ public class SoccerPlayer extends Player {
 	public void goalKick(){
 		
 	}
+
+
 	
 }
