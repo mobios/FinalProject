@@ -35,6 +35,7 @@ public class Team {
 		this.fieldHalf = half;
 	}
 	
+<<<<<<< HEAD
 	// this constructor is used to make an empty static team that is only used to the store a team that is already in use
 	public Team() {	
 		
@@ -42,6 +43,9 @@ public class Team {
 	}
 	
 	// to set players in the correct position depending on a enum FormationType
+=======
+
+>>>>>>> d8afd3fdda02c34285abb25036220d58d5f35160
 	public void getInFormation(FormationType f){
 		formation = f;
 		//j is used to place the players on the correct side of the field, and rightOffset offsets the players on the right side in the x direction

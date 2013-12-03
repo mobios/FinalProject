@@ -1,5 +1,6 @@
 package core;
 
+import graphics.frontend.BackgroundImage;
 import graphics.frontend.Button; 
 
 import java.io.File;
@@ -14,13 +15,21 @@ import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.PixelFormat;
 
+import coachingTools.Game;
+import coachingTools.Player;
+import coachingTools.Team;
 import util.MouseEvent;
+import util.Rectangle;
 
 public class GameEngine {
 	public static final int WIDTH = 1000;
 	public static final int HEIGHT = 600;
 	
 	public static List<Button> buttons;
+	public static Team team;
+	public static Game game;
+	
+	public static Button passButton;
 	
 	public static void main(String[] args) {
 		System.setProperty("org.lwjgl.librarypath", new File("native").getAbsolutePath());
@@ -56,9 +65,25 @@ public class GameEngine {
 		//GL11.glHint(GL11.GL_PERSPECTIVE_CORRECTION_HINT, GL11.GL_FASTEST);
 		RenderEngine.setup();
 		buttons = new ArrayList<Button>();
+		createBackgroundandButtons();
+		
 	}
-	
+
 	// checks for errors then runs the program in a loop until a close request is made.
+	private static void createBackgroundandButtons() {
+		new BackgroundImage(new Rectangle(-.15f, .0f, 1.7f, 2.0f), "resources/field.png");
+		game = new Game();
+		team = game.getTeam1();
+		game.getTeam1().getInFormation(Team.FormationType.FourFourTwo);
+		game.getTeam2().getInFormation(Team.FormationType.ThreeFourThree);
+		game.getTeam2().getPlayers().get(8).setBall(true);
+
+		createButtons(game);
+
+
+		
+	}
+
 	public static void run(){
 		int error = GL11.glGetError();
 		if(error > 0)
@@ -114,4 +139,38 @@ public class GameEngine {
 //			}
 		}
 	}
+	
+	
+	private static void createButtons(final Game game) {
+		//team selection buttons
+		new Button(new Rectangle(.775f, .91f, .1f, .1f), "resources/bluebuttonteam1.png", "resources/redbuttonteam1.png", "resources/bluebuttonteam1.png", (new util.PressAction(){public void fire(){team = game.getTeam1();};}));
+		new Button(new Rectangle(.92f, .91f, .1f, .1f), "resources/bluebuttonteam2.png", "resources/redbuttonteam2.png", "resources/bluebuttonteam2.png", (new util.PressAction(){public void fire(){team = game.getTeam2();};}));
+		
+		//pass buttons
+		passButton = new Button(new Rectangle(.85f, -.25f, .25f, .13f), "resources/Passbutton.png", "resources/Passbutton_down.png", "resources/Passbutton.png", (new util.PressAction(){public void fire(){pass();};}));
+		
+		//formation buttons
+		new Button(new Rectangle(.85f, .75f, .25f, .13f), "resources/bluebutton442.png", "resources/redbutton442.png", "resources/bluebutton442.png", (new util.PressAction(){public void fire(){team.getInFormation(Team.FormationType.FourFourTwo);};}));
+		new Button(new Rectangle(.85f, .55f, .25f, .13f), "resources/bluebutton433.png", "resources/redbutton433.png", "resources/bluebutton433.png", (new util.PressAction(){public void fire(){team.getInFormation(Team.FormationType.FourThreeThree);};}));
+		new Button(new Rectangle(.85f, .35f, .25f, .13f), "resources/bluebutton343.png", "resources/redbutton343.png", "resources/bluebutton343.png", (new util.PressAction(){public void fire(){team.getInFormation(Team.FormationType.ThreeFiveTwo);};}));
+		new Button(new Rectangle(.85f, .15f, .25f, .13f), "resources/bluebutton352.png", "resources/redbutton352.png", "resources/bluebutton352.png", (new util.PressAction(){public void fire(){team.getInFormation(Team.FormationType.ThreeFourThree);};}));
+	}
+	
+	
+	private static void pass(){
+		passButton.setSticky(true);
+		boolean test = true;
+		Player ballHolder = game.getPlayerWithBall();
+		
+		
+		while(test){
+			test = false;
+		}
+		
+		
+	}
+	
+	
+	
+	
 }
