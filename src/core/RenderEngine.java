@@ -53,7 +53,7 @@ public class RenderEngine {
 		new PlayerModel(new Rectangle(0f, 0f, .52f, .52f),new float[]{.25f,0,0,1f});
 		new PlayerModel(new Rectangle(1f, 1f, .5f, .5f),new float[]{0,0,.5f,1f});
 		
-		new BackgroundImage(new Rectangle(.0f, .0f, 1.0f, 1.0f), "resources/field.png");
+		new BackgroundImage(new Rectangle(-.15f, .0f, 1.7f, 2.0f), "resources/field.png");
 		new Button(new Rectangle(.3f, .58f, .4f, .4f), "resources/schmile.png", "resources/schmile_down.png", "resources/schmile_over.png", (new util.PressAction(){public void fire(){System.exit(0);};}));
 		guiStaticHandle.populate();
 	}
