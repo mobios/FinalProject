@@ -30,10 +30,13 @@ public class Button extends BackgroundImage{
 	}
 	
 	public void mouseUp(float x, float y){
-		if(inBounds(x,y) && getTexture() == down){
-			trigger.fire();
+		if(getTexture() == down){
+			if(inBounds(x,y)){
+				trigger.fire();
+			}
 			setTexture(up);
 		}
+		
 	}
 	
 	public void mouseMove(float x, float y){

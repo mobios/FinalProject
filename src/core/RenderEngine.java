@@ -84,8 +84,8 @@ public class RenderEngine {
 	}
 	
 	public static void initializeShaders(){
-		vertexShaderID = loadShader("src/graphics/vertex.glsl", GL20.GL_VERTEX_SHADER);
-		fragmentShaderID = loadShader("src/graphics/fragment.glsl", GL20.GL_FRAGMENT_SHADER);
+		vertexShaderID = loadShader("src/graphics/backend/vertex.glsl", GL20.GL_VERTEX_SHADER);
+		fragmentShaderID = loadShader("src/graphics/backend/fragment.glsl", GL20.GL_FRAGMENT_SHADER);
 	}
 	
 	public static void initializeProgram(){

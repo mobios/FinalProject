@@ -11,7 +11,7 @@ import org.lwjgl.opengl.GL30;
 import util.Rectangle;
 
 public abstract class Vec10quad extends Quad{
-	private float[] tint;
+	protected float[] tint;
 	
 	public Vec10quad(Rectangle rect, float[] tint){
 		super(rect);
