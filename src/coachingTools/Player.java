@@ -19,14 +19,12 @@ public class Player {
 	private float[] teamColor;
 	private float[] ballHolderColor;
 
-
 	public Player(int number, int stamina, Point p, float[] tint) {
 		super();
 
 		this.number = number;
 		this.stamina = stamina;
 		scoredPoints = 0;
-		ballHolderColor = new float[] {1.0f, 1.0f, 1.0f, 1.0f};
 		display = new PlayerModel(p, tint);
 		teamColor = tint;
 		updateFieldArea();

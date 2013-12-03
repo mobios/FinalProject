@@ -1,6 +1,9 @@
 package core;
 
 import graphics.backend.TextureManager;
+import graphics.backend.segmentDisplay.SegmentHorizontal;
+import graphics.backend.segmentDisplay.SegmentVertical;
+import graphics.backend.segmentDisplay.SevenSegmentDisplay;
 import graphics.frontend.BackgroundImage;
 import graphics.frontend.BallModel;
 import graphics.frontend.Button;
@@ -16,6 +19,7 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
 
 
+
 import coachingTools.Game;
 import coachingTools.Player;
 import coachingTools.Team;
@@ -27,6 +31,9 @@ public class RenderEngine {
 	public static PlayerModel dquadStaticHandle;
 	public static BackgroundImage squadStaticHandle;
 	public static GuiElement guiStaticHandle;
+	
+	public static SegmentHorizontal horizSeg;
+	public static SegmentVertical vertSeg;
 	
 	public static int ProgramID;
 	public static int fragmentShaderID;
@@ -51,7 +58,12 @@ public class RenderEngine {
 		
 		guiStaticHandle = new GuiElement();
 		guiStaticHandle.staticSetup();
-
+		
+		horizSeg = new SegmentHorizontal();
+		vertSeg = new SegmentVertical();
+		horizSeg.staticSetup();
+		vertSeg.staticSetup();
+		
 		initializeShaders();
 		initializeProgram();
 	}

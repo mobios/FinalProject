@@ -180,6 +180,49 @@ public class Game {
 		
 	}
 	
+	public Team getTeamWithBall(){
+		for(Player player: team1.getPlayers()){
+			if(player.hasBall())
+				return team1;
+		}
+		
+		for(Player player: team2.getPlayers()){
+			if(player.hasBall())
+				return team2;
+		}
+		
+		return null;
+	}
+
+	public void go() {
+		ArrayList<Player> players = team1.getPlayers();
+		
+
+		
+		float minX = gameField.getRect().getX() - gameField.getRect().getWidth()/2;
+		float maxX = gameField.getRect().getX() + gameField.getRect().getWidth()/2;
+		float minY = gameField.getRect().getY() - gameField.getRect().getHeight()/2;
+		float maxY = gameField.getRect().getY() + gameField.getRect().getHeight()/2;
+		
+		
+		for(int i = 1; i < players.size(); i++){
+			int n = new Random().nextInt(11);
+			n -= 5;
+			players.get(i).move((float)(0.01+n*0.005), (float)(n*0.005), 1);
+			
+			if(players.get(i).getDisplay().getRect().getX() <= minX)
+				players.get(i).move(0.1f, 0f, 1);
+			if(players.get(i).getDisplay().getRect().getX() >= maxX)
+				players.get(i).move(-0.1f, 0f, 1);
+			if(players.get(i).getDisplay().getRect().getX() <= minY)
+				players.get(i).move(0f, 0.1f, 1);
+			if(players.get(i).getDisplay().getRect().getX() >= maxY)
+				players.get(i).move(0f, -0.1f, 1);
+		}
+		
+		
+	}
+	
 	
 	
 	
