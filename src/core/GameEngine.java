@@ -45,7 +45,7 @@ public class GameEngine {
 			System.exit(1);
 		}
 		
-		GL11.glClearColor(0.4f, 0.6f, 0.9f, 0);
+		GL11.glClearColor(0f, 0f, 0f, 0f);
 	}
 	
 	public static void setup(){

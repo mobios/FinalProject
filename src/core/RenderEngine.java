@@ -14,6 +14,8 @@ import java.io.IOException;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
 
+import coachingTools.Game;
+import coachingTools.Team;
 import util.Rectangle;
 
 public class RenderEngine {
@@ -49,12 +51,24 @@ public class RenderEngine {
 	}
 	
 	public static void test(){
-		new PlayerModel(new Rectangle(-.8f, -.78f, .22f, .22f),new float[]{.8f,1f,1f,1f});
-		new PlayerModel(new Rectangle(-.61f, -.915f, .03f, .03f),new float[]{.25f,0,0,1f});
-		new PlayerModel(new Rectangle(1f, 1f, .5f, .5f),new float[]{0,0,.5f,1f});
 		
 		new BackgroundImage(new Rectangle(-.15f, .0f, 1.7f, 2.0f), "resources/field.png");
-		new Button(new Rectangle(-.58f, 0.0f, .05f, .4f), "resources/schmile.png", "resources/schmile_down.png", "resources/schmile_over.png", (new util.PressAction(){public void fire(){System.exit(0);};}));
+
+		//team selection buttons
+		new Button(new Rectangle(.775f, .91f, .1f, .1f), "resources/button.png", "resources/button.png", "resources/button.png", (new util.PressAction(){public void fire(){System.exit(0);};}));
+		new Button(new Rectangle(.92f, .91f, .1f, .1f), "resources/button.png", "resources/button.png", "resources/button.png", (new util.PressAction(){public void fire(){System.exit(0);};}));
+		
+		
+		
+		//formation buttons
+		new Button(new Rectangle(.85f, .75f, .25f, .13f), "resources/button.png", "resources/button.png", "resources/button.png", (new util.PressAction(){public void fire(){System.exit(0);};}));
+		new Button(new Rectangle(.85f, .55f, .25f, .13f), "resources/button.png", "resources/button.png", "resources/button.png", (new util.PressAction(){public void fire(){System.exit(0);};}));
+		new Button(new Rectangle(.85f, .35f, .25f, .13f), "resources/button.png", "resources/button.png", "resources/button.png", (new util.PressAction(){public void fire(){System.exit(0);};}));
+		new Button(new Rectangle(.85f, .15f, .25f, .13f), "resources/button.png", "resources/button.png", "resources/button.png", (new util.PressAction(){public void fire(){System.exit(0);};}));
+		
+		Game game = new Game();
+		game.getTeam1().getInFormation(Team.FormationType.FourFourTwo);
+		game.getTeam2().getInFormation(Team.FormationType.ThreeFourThree);
 		guiStaticHandle.populate();
 	}
 	
