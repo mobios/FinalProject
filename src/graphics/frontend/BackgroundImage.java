@@ -12,7 +12,7 @@ import org.lwjgl.opengl.GL13;
 import util.Rectangle;
 
 public class BackgroundImage extends Static{
-	private Texture image;
+	protected Texture image;
 	private static int nextluc = 0;
 	
 	protected static List<BackgroundImage> allBackground;

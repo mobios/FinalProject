@@ -114,4 +114,8 @@ public abstract class Quad implements renderCall{
 	}
 	
 	public abstract int getLuc();
+	
+	public Rectangle getRect(){
+		return area;
+	}
 }
