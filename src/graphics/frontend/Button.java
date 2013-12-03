@@ -32,6 +32,10 @@ public class Button extends GuiElement{
 		GameEngine.buttons.add(this);
 	}
 	
+	public Button() {
+
+	}
+
 	public void setSticky(){
 		sticky = true;
 	}

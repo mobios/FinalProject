@@ -186,4 +186,16 @@ public class Game {
 		this.gameField = gameField;
 	}
 	
+	public Player getPlayerWithBall(){
+		for(Player player: getAllPlayers()){
+			if(player.hasBall())
+				return player;
+		}
+		return null;
+		
+	}
+	
+	
+	
+	
 }
