@@ -50,7 +50,7 @@ public class GameEngine {
 		GL11.glClearColor(0f, 0f, 0f, 0f);
 	}
 	
-	// sets up the game by calling the setup fnx (in the renderEngin), openGL3 fnx, and creating an arryalist of buttons 
+	// sets up the game by calling the setup fnx (in the renderEngin), openGL3 fnx, and creating an ArrayList of buttons 
 	public static void setup(){
 		OpenGL3();
 		//GL11.glHint(GL11.GL_PERSPECTIVE_CORRECTION_HINT, GL11.GL_FASTEST);
@@ -58,6 +58,7 @@ public class GameEngine {
 		buttons = new ArrayList<Button>();
 	}
 	
+	// checks for errors then runs the program in a loop until a close request is made.
 	public static void run(){
 		int error = GL11.glGetError();
 		if(error > 0)
@@ -73,6 +74,7 @@ public class GameEngine {
 		
 	}
 	
+	// used to get and deal with mouse clicks
 	public static void handleMouse(){
 		MouseEvent event;
 		
