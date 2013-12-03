@@ -1,13 +1,15 @@
 package coachingTools;
 
+import graphics.frontend.BackgroundImage;
+
 import java.util.ArrayList;
 
 public abstract class Game {
 	private int period, speed = 100;
 	protected Team team1, team2;
-	protected Field gameField;
+	protected BackgroundImage gameField;
 	
-	public Game(Field gameField) {
+	public Game(BackgroundImage gameField) {
 		super();
 		this.gameField = gameField;
 	}
@@ -58,7 +60,7 @@ public abstract class Game {
 		this.team2 = team2;
 	}
 
-	public Field getGameField() {
+	public BackgroundImage getGameField() {
 		return gameField;
 	}
 	
@@ -77,7 +79,7 @@ public abstract class Game {
 		return team2.getScore();
 	}
 
-	public void setGameField(Field gameField) {
+	public void setGameField(BackgroundImage gameField) {
 		this.gameField = gameField;
 	}
 	
