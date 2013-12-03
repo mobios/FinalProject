@@ -46,7 +46,7 @@ public class Button extends GuiElement{
 	}
 	
 	public boolean mouseUp(float x, float y){
-		if(getTexture() == down){
+		if(getTexture() == down || (sticky && inBounds(x,y))){
 			if(inBounds(x,y) && active)
 				trigger.fire();
 			

@@ -124,19 +124,21 @@ public class GameEngine {
 		int mx = Mouse.getEventX();
 		int my = Mouse.getEventY();
 
-		if(game.duringPass){
-			for(Player p : game.getAllPlayers()){
-				if(p.getDisplay().getRect().contains(Clamp.clampX(mx), Clamp.clampY(my))){
-					game.ball.targetPlayer(p);
-					game.duringPass = false;
-				}
-			}
-		}
 		
 		while(Mouse.next()){
 			if(Mouse.getEventButton() == 0){
-				if(Mouse.isButtonDown(0))
+				if(Mouse.isButtonDown(0)){
+					if(game.duringPass){
+						for(Player p : game.getAllPlayers()){
+							if(p.getDisplay().getRect().contains(Clamp.clampX(mx), Clamp.clampY(my))){
+								game.ball.targetPlayer(p);
+								game.duringPass = false;
+								break;
+							}
+						}
+					}
 					event = MouseEvent.DOWN;
+				}
 				else
 					event = MouseEvent.UP;
 			}
@@ -157,7 +159,7 @@ public class GameEngine {
 	private static void createButtons(final Game game) {
 		//pass buttons
 		passButton = new Button(new Rectangle(.85f, -.05f, .25f, .13f), "resources/Passbutton.png", "resources/Passbutton_down.png", "resources/Passbutton.png", (new util.PressAction(){public void fire(){pass();};}));
-		
+		passButton.setSticky(true);
 		//Go buttons
 		new Button(new Rectangle(.85f, -.25f, .25f, .13f), "resources/GObutton.png", "resources/GObutton_down.png", "resources/GObutton.png", (new util.PressAction(){public void fire(){move();};}));
 
@@ -182,8 +184,6 @@ public class GameEngine {
 	// used to give the pass button functionality
 
 	private static void pass(){
-		passButton.setSticky(true);
-		boolean test = true;
 		Player ballHolder = game.getPlayerWithBall();
 		Team teamWithBall = game.getTeamWithBall();
 

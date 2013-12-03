@@ -272,7 +272,6 @@ public class Game {
 
 		dontMoveOnTop();
 
-
 		setFieldBounds(players1, players2);
 
 		Player closestPlayer = getOpposingPlayerClosestBall();
@@ -281,6 +280,7 @@ public class Game {
 		closestPlayer.move((float)(deltaX*0.05), (float)(deltaY*0.05), 1);
 
 		scoreGoal();
+		ball.step();
 
 	}
 

@@ -43,12 +43,15 @@ public class BallModel extends PlayerModel {
 			return;
 		float hypotnuse = (float) Math.sqrt(Math.pow((getRect().getX() - targetPlayer.getDisplay().getRect().getX()),2)+
 									Math.pow((getRect().getY() - targetPlayer.getDisplay().getRect().getY()), 2));
+		
+		double angle = Math.PI + Math.atan((getRect().getY() - targetPlayer.getDisplay().getRect().getY())/(getRect().getX() - targetPlayer.getDisplay().getRect().getX()));
+		
 		if(hypotnuse < .04f){
 			targetPlayer.setBall(this);
 			targetPlayer = null;
 			return;
 		}
 		
-		
+		this.move((float)(stepVal*Math.cos(angle)), (float)(stepVal*Math.sin(angle)));
 	}
 }
