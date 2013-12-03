@@ -14,6 +14,8 @@ import java.io.IOException;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
 
+import coachingTools.SoccerGame;
+import coachingTools.SoccerTeam;
 import util.Rectangle;
 
 public class RenderEngine {
@@ -51,6 +53,7 @@ public class RenderEngine {
 	public static void test(){
 		
 		new BackgroundImage(new Rectangle(-.15f, .0f, 1.7f, 2.0f), "resources/field.png");
+<<<<<<< HEAD
 		new Button(new Rectangle(.3f, .58f, .4f, .4f), "resources/schmile.png", "resources/schmile_down.png", "resources/schmile_over.png", (new util.PressAction(){public void fire(){System.exit(0);};}));
 		
 		//team selection buttons
@@ -66,6 +69,11 @@ public class RenderEngine {
 		new Button(new Rectangle(.85f, .15f, .25f, .13f), "resources/button.png", "resources/button.png", "resources/button.png", (new util.PressAction(){public void fire(){System.exit(0);};}));
 		
 		
+=======
+		//new Button(new Rectangle(.3f, .58f, .4f, .4f), "resources/schmile.png", "resources/schmile_down.png", "resources/schmile_over.png", (new util.PressAction(){public void fire(){System.exit(0);};}));
+		SoccerTeam team = new SoccerTeam("team", new float[] {1.0f, 1.0f, 0.6f, 1f});
+		team.getInFormation(SoccerTeam.FormationType.ThreeFiveTwo);
+>>>>>>> 533726f5a5d3b62668d356479ac2a717141f5050
 		guiStaticHandle.populate();
 	}
 	

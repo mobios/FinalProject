@@ -30,10 +30,10 @@ public class SoccerTeam extends Team {
 					((SoccerPlayer)players.get(i)).setPosition((float) -0.7, (float)((i-2.5)*0.5));
 
 				if(i >= 5 && i <= 8)
-					((SoccerPlayer)players.get(i)).setPosition((float) -0.5, (float)((i-6.5)*0.5));
+					((SoccerPlayer)players.get(i)).setPosition((float) -0.45, (float)((i-6.5)*0.5));
 
 				if(i >= 9)
-					((SoccerPlayer)players.get(i)).setPosition((float) -0.3, (float)((i-8.5)*0.6));
+					((SoccerPlayer)players.get(i)).setPosition((float) -0.25, (float)((i-9.5)*0.6));
 			}
 
 			if(isInFormation(FormationType.FourThreeThree)){
@@ -41,10 +41,10 @@ public class SoccerTeam extends Team {
 					((SoccerPlayer)players.get(i)).setPosition((float) -0.7, (float)((i-2.5)*0.5));
 
 				if(i >= 5 && i <= 7)
-					((SoccerPlayer)players.get(i)).setPosition((float) -0.5, (float)((i-6)*0.6));
+					((SoccerPlayer)players.get(i)).setPosition((float) -0.45, (float)((i-6)*0.6));
 
 				if(i >= 8)
-					((SoccerPlayer)players.get(i)).setPosition((float) -0.5, (float)((i-9)*0.6));
+					((SoccerPlayer)players.get(i)).setPosition((float) -0.25, (float)((i-9)*0.6));
 			}
 			
 			
@@ -53,10 +53,10 @@ public class SoccerTeam extends Team {
 					((SoccerPlayer)players.get(i)).setPosition((float) -0.7, (float)((i-2)*0.6));
 
 				if(i >= 4 && i <= 7)
-					((SoccerPlayer)players.get(i)).setPosition((float) -0.5, (float)((i-5.5)*0.5));
+					((SoccerPlayer)players.get(i)).setPosition((float) -0.45, (float)((i-5.5)*0.5));
 
 				if(i >= 8)
-					((SoccerPlayer)players.get(i)).setPosition((float) -0.5, (float)((i-9)*0.6));
+					((SoccerPlayer)players.get(i)).setPosition((float) -0.25, (float)((i-9)*0.6));
 			}
 			
 			if(isInFormation(FormationType.ThreeFiveTwo)){
@@ -64,10 +64,10 @@ public class SoccerTeam extends Team {
 					((SoccerPlayer)players.get(i)).setPosition((float) -0.7, (float)((i-2)*0.6));
 
 				if(i >= 4 && i <= 8)
-					((SoccerPlayer)players.get(i)).setPosition((float) -0.5, (float)((i-6)*0.4));
+					((SoccerPlayer)players.get(i)).setPosition((float) -0.45, (float)((i-6)*0.4));
 
 				if(i >= 9)
-					((SoccerPlayer)players.get(i)).setPosition((float) -0.3, (float)((i-8.5)*0.6));
+					((SoccerPlayer)players.get(i)).setPosition((float) -0.25, (float)((i-9.5)*0.6));
 			}
 			
 		}

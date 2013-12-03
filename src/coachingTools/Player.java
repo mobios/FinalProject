@@ -28,7 +28,7 @@ public abstract class Player {
 	}
 	
 	public void setPosition(float x, float y) {
-		display.move(x, y);
+		display.setPosition(x, y);
 	}
 
 	public void move(float x, float y, int stamina){
