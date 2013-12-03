@@ -1,6 +1,5 @@
 package core;
 
-import graphics.backend.segmentDisplay.SevenSegmentDisplay;
 import graphics.frontend.BackgroundImage;
 import graphics.frontend.Button; 
 import graphics.frontend.ScoreDisplay;
@@ -33,7 +32,8 @@ public class GameEngine {
 	public static List<Button> buttons;
 	public static Team team;
 	public static Game game;
-
+	
+	public static ScoreDisplay scoreDisplay;
 	public static Button passButton;
 
 	public static void main(String[] args) {
@@ -75,7 +75,6 @@ public class GameEngine {
 		RenderEngine.setup();
 		buttons = new ArrayList<Button>();
 		createBackgroundandButtons();
-
 	}
 
 
@@ -88,7 +87,7 @@ public class GameEngine {
 		game.getTeam1().getInFormation(Team.FormationType.FourFourTwo);
 		game.getTeam2().getInFormation(Team.FormationType.ThreeFourThree);
 		game.getTeam2().getPlayers().get(8).setBall(true);
-		ScoreDisplay sd = new ScoreDisplay(new Point(0.85f, -0.5f));
+		scoreDisplay = new ScoreDisplay(new Point(0.85f, -0.5f));
 		
 		createButtons(game);
 	}

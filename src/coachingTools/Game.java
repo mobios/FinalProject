@@ -73,8 +73,8 @@ public class Game {
 		
 		int num = generator.nextInt(totalPlayers);
 		
-		if(offensiveTeam.get(num) != p){
-			if(num < offensiveTeam.size()) {
+		if(offensiveTeam.get(num) != p && num != 0){
+			if(num < offensiveTeam.size()){
 				p.pass(offensiveTeam.get(num));
 				
 				//about 1 in 40 corner kicks result in a goal
