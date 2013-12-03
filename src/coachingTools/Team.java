@@ -105,7 +105,9 @@ public class Team {
 			}
 			
 		}
-
+		
+		if(GameEngine.game.getPlayerWithBall() != null)
+				GameEngine.game.ball.connect(GameEngine.game.getPlayerWithBall());
 	}
 		public boolean isInFormation(FormationType f){
 		if (f == formation){

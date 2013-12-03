@@ -14,8 +14,8 @@ import util.Point;
 
 public class Game {
 	private int period, speed = 100;
-	private Team team1;
-	private Team team2;
+	private static Team team1;
+	private static Team team2;
 	public BallModel ball;
 	private BackgroundImage gameField;
 	public ScoreDisplay scoreDisplay;
@@ -145,11 +145,11 @@ public class Game {
 		this.team1 = team1;
 	}
 
-	public Team getTeam1() {
+	public static Team getTeam1() {
 		return team1;
 	}
 
-	public Team getTeam2() {
+	public static Team getTeam2() {
 		return team2;
 	}
 

@@ -40,8 +40,9 @@ public class BallModel extends PlayerModel {
 		float hypotnuse = (float) Math.sqrt(Math.pow((getRect().getX() - targetPlayer.getDisplay().getRect().getX()),2)+
 									Math.pow((getRect().getY() - targetPlayer.getDisplay().getRect().getY()), 2));
 		
-		double angle = Math.PI + Math.atan((getRect().getY() - targetPlayer.getDisplay().getRect().getY())/(getRect().getX() - targetPlayer.getDisplay().getRect().getX()));
-		
+		double angle = Math.atan((getRect().getY() - targetPlayer.getDisplay().getRect().getY())/(getRect().getX() - targetPlayer.getDisplay().getRect().getX()));
+		if((getRect().getX() - targetPlayer.getDisplay().getRect().getX()) > 0)
+			angle += Math.PI;
 		if(hypotnuse < .04f){
 			attached(targetPlayer);
 			targetPlayer = null;
