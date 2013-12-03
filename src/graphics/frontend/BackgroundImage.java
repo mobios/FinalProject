@@ -4,6 +4,7 @@ import graphics.backend.Texture;
 import graphics.quadrangle.Static;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.lwjgl.opengl.GL11;
@@ -64,12 +65,14 @@ public class BackgroundImage extends Static{
 	@Override
 	public void render(){
 		setupBatch();
-		for(BackgroundImage bg : allBackground){
+		for(BackgroundImage bg : getCollection()){
 			bg.blit();
 		}
 	}
 	
-	
+	public Collection<BackgroundImage> getCollection(){
+		return allBackground;
+	}
 	
 	public Texture getTexture(){
 		return image;

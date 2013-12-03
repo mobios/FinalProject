@@ -3,6 +3,7 @@ package core;
 import graphics.backend.TextureManager;
 import graphics.frontend.BackgroundImage;
 import graphics.frontend.Button;
+import graphics.frontend.GuiElement;
 import graphics.frontend.PlayerModel;
 import graphics.quadrangle.Quad;
 
@@ -19,7 +20,7 @@ public class RenderEngine {
 	public static Quad quads;
 	public static PlayerModel dquadStaticHandle;
 	public static BackgroundImage squadStaticHandle;
-	public static Button button;
+	public static GuiElement guiStaticHandle;
 	
 	public static int ProgramID;
 	public static int fragmentShaderID;
@@ -27,8 +28,9 @@ public class RenderEngine {
 	
 	public static void render(){
 		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
-		dquadStaticHandle.render();
 		squadStaticHandle.render();
+		dquadStaticHandle.render();
+		guiStaticHandle.render();
 	}
 	
 	public static void setup(){
@@ -38,6 +40,9 @@ public class RenderEngine {
 
 		squadStaticHandle = new BackgroundImage();
 		squadStaticHandle.staticSetup();
+		
+		guiStaticHandle = new GuiElement();
+		guiStaticHandle.staticSetup();
 
 		initializeShaders();
 		initializeProgram();
@@ -50,6 +55,7 @@ public class RenderEngine {
 		
 		new BackgroundImage(new Rectangle(.0f, .0f, 1.0f, 1.0f), "resources/field.png");
 		new Button(new Rectangle(.3f, .58f, .4f, .4f), "resources/schmile.png", "resources/schmile_down.png", "resources/schmile_over.png", (new util.PressAction(){public void fire(){System.exit(0);};}));
+		guiStaticHandle.populate();
 	}
 	
 	@SuppressWarnings("deprecation")
