@@ -39,6 +39,9 @@ public class GameEngine {
 		run();
 	}
 
+	//creates a window with a pixelFormat and the correct contextAtrributes, sets the display mode and title
+	//and handles errors.
+
 	public static void OpenGL3(){
 		PixelFormat pixelFormat = new PixelFormat();
 		ContextAttribs contextAtrributes = new ContextAttribs(3,2)
@@ -58,6 +61,10 @@ public class GameEngine {
 		GL11.glClearColor(0f, 0f, 0f, 0f);
 	}
 
+
+	
+	// sets up the game by calling the setup fnx (in the renderEngin), openGL3 fnx, and creating an ArrayList of buttons 
+
 	public static void setup(){
 		OpenGL3();
 		//GL11.glHint(GL11.GL_PERSPECTIVE_CORRECTION_HINT, GL11.GL_FASTEST);
@@ -66,6 +73,9 @@ public class GameEngine {
 		createBackgroundandButtons();
 
 	}
+
+
+	// checks for errors then runs the program in a loop until a close request is made.
 
 	private static void createBackgroundandButtons() {
 		new BackgroundImage(new Rectangle(-.15f, .0f, 1.7f, 2.0f), "resources/field.png");
@@ -90,13 +100,18 @@ public class GameEngine {
 
 	}
 
+	
+	// used to get and deal with mouse clicks
 	public static float getMouseX(){
 		return Clamp.clampX(Mouse.getX());
 	}
-
+	
+	// used to get and deal with mouse clicks
 	public static float getMouseY(){
 		return Clamp.clampY(Mouse.getY());
 	}
+	
+	// used to get and deal with mouse clicks
 
 	public static void handleMouse(){
 		MouseEvent event;
@@ -123,7 +138,9 @@ public class GameEngine {
 		}
 	}
 
-	private static void createButtons(final Game game) {	
+	
+	//Creates buttons for control of the game
+	private static void createButtons(final Game game) {
 		//pass buttons
 		passButton = new Button(new Rectangle(.85f, -.25f, .25f, .13f), "resources/Passbutton.png", "resources/Passbutton_down.png", "resources/Passbutton.png", (new util.PressAction(){public void fire(){pass();};}));
 
@@ -134,6 +151,10 @@ public class GameEngine {
 		new Button(new Rectangle(.85f, .15f, .25f, .13f), "resources/bluebutton352.png", "resources/redbutton352.png", "resources/bluebutton352.png", (new util.PressAction(){public void fire(){team.getInFormation(Team.FormationType.ThreeFiveTwo);};}));
 	}
 
+
+
+
+	// used to give the pass button functionality
 
 	private static void pass(){
 		passButton.setSticky(true);
