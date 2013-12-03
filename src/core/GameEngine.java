@@ -162,21 +162,8 @@ public class GameEngine {
 		Player ballHolder = game.getPlayerWithBall();
 		Team teamWithBall = game.getTeamWithBall();
 
-
-
-		float x = getMouseX();
-		float y = getMouseY();
-		for(Player player : teamWithBall.getPlayers()){
-			if(player.getDisplay().getRect().contains(x, y)){
-				ballHolder.pass(player);
-				test = false;
-			}
-		}
-
-
-
-
-
+		
+		game.duringPass = true;
 
 	}
 
