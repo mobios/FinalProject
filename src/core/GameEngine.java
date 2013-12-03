@@ -195,7 +195,7 @@ public class GameEngine {
 		Player ballHolder = game.getPlayerWithBall();
 		Team teamWithBall = game.getTeamWithBall();
 
-		ballHolder.setBall(null);
+		if(ballHolder != null) ballHolder.setBall(null);
 		game.duringPass = true;
 
 	}
