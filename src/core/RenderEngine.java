@@ -4,6 +4,7 @@ import graphics.backend.TextureManager;
 import graphics.frontend.BackgroundImage;
 import graphics.frontend.Button;
 import graphics.frontend.GuiElement;
+import graphics.frontend.Placeable;
 import graphics.frontend.PlayerModel;
 import graphics.quadrangle.Quad;
 
@@ -70,6 +71,7 @@ public class RenderEngine {
 		new Button(new Rectangle(.85f, .35f, .25f, .13f), "resources/button.png", "resources/button.png", "resources/button.png", (new util.PressAction(){public void fire(){game.getTeam1().getInFormation(Team.FormationType.ThreeFiveTwo);};}));
 		new Button(new Rectangle(.85f, .15f, .25f, .13f), "resources/button.png", "resources/button.png", "resources/button.png", (new util.PressAction(){public void fire(){game.getTeam1().getInFormation(Team.FormationType.ThreeFourThree);};}));
 
+		Placeable.setup();
 		guiStaticHandle.populate();
 	}
 	
