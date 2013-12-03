@@ -34,9 +34,6 @@ public class Team {
 		this.fieldHalf = half;
 	}
 	
-	public Team() {
-
-	}
 
 	public void getInFormation(FormationType f){
 		formation = f;

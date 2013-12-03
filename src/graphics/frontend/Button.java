@@ -32,10 +32,6 @@ public class Button extends GuiElement{
 		this.trigger = trigger;
 		GameEngine.buttons.add(this);
 	}
-	
-	public Button() {
-
-	}
 
 	public void setSticky(boolean arg){
 		sticky = arg;

@@ -28,10 +28,7 @@ public class RenderEngine {
 	public static int ProgramID;
 	public static int fragmentShaderID;
 	public static int vertexShaderID;
-	public static Team team = new Team();
-	public static Game game;
-	
-	public static Button passButton = new Button();
+
 	
 	public static void render(){
 		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
@@ -56,46 +53,14 @@ public class RenderEngine {
 	}
 	
 	public static void test(){
-		
-		new BackgroundImage(new Rectangle(-.15f, .0f, 1.7f, 2.0f), "resources/field.png");
-		game = new Game();
-		team = game.getTeam1();
-		game.getTeam1().getInFormation(Team.FormationType.FourFourTwo);
-		game.getTeam2().getInFormation(Team.FormationType.ThreeFourThree);
-		game.getTeam2().getPlayers().get(8).setBall(true);
-
-		createButtons(game);
 
 		guiStaticHandle.populate();
 	}
 
-	private static void createButtons(final Game game) {
-		//team selection buttons
-		new Button(new Rectangle(.775f, .91f, .1f, .1f), "resources/bluebuttonteam1.png", "resources/redbuttonteam1.png", "resources/bluebuttonteam1.png", (new util.PressAction(){public void fire(){team = game.getTeam1();};}));
-		new Button(new Rectangle(.92f, .91f, .1f, .1f), "resources/bluebuttonteam2.png", "resources/redbuttonteam2.png", "resources/bluebuttonteam2.png", (new util.PressAction(){public void fire(){team = game.getTeam2();};}));
-		
-		//pass buttons
-		passButton = new Button(new Rectangle(.85f, -.25f, .25f, .13f), "resources/Passbutton.png", "resources/Passbutton_down.png", "resources/Passbutton.png", (new util.PressAction(){public void fire(){pass();};}));
-		
-		//formation buttons
-		new Button(new Rectangle(.85f, .75f, .25f, .13f), "resources/bluebutton442.png", "resources/redbutton442.png", "resources/bluebutton442.png", (new util.PressAction(){public void fire(){team.getInFormation(Team.FormationType.FourFourTwo);};}));
-		new Button(new Rectangle(.85f, .55f, .25f, .13f), "resources/bluebutton433.png", "resources/redbutton433.png", "resources/bluebutton433.png", (new util.PressAction(){public void fire(){team.getInFormation(Team.FormationType.FourThreeThree);};}));
-		new Button(new Rectangle(.85f, .35f, .25f, .13f), "resources/bluebutton343.png", "resources/redbutton343.png", "resources/bluebutton343.png", (new util.PressAction(){public void fire(){team.getInFormation(Team.FormationType.ThreeFiveTwo);};}));
-		new Button(new Rectangle(.85f, .15f, .25f, .13f), "resources/bluebutton352.png", "resources/redbutton352.png", "resources/bluebutton352.png", (new util.PressAction(){public void fire(){team.getInFormation(Team.FormationType.ThreeFourThree);};}));
-	}
 	
 	
-	private static void pass(){
-		passButton.setSticky(true);
-		boolean test = true;
-		Player ballHolder = game.getPlayerWithBall();
-		
-		while(test){
-			test = false;
-		}
-		
-		
-	}
+	
+
 	
 	@SuppressWarnings("deprecation")
 	public static int loadShader(String source, int type){
