@@ -113,6 +113,12 @@ public abstract class Quad implements renderCall{
 		reloadVBO();
 	}
 	
+	public void setPosition(float x, float y){
+		area.setX(x);
+		area.setY(y);
+		reloadVBO();
+	}
+	
 	public abstract int getLuc();
 	
 	public Rectangle getRect(){
