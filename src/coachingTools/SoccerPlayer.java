@@ -10,6 +10,10 @@ public class SoccerPlayer extends Player {
 	private SoccerArea region;
 	private boolean goalie = false;
 	
+	public SoccerPlayer(int number, int stamina){
+		super(number, stamina);
+	}
+	
 	public SoccerPlayer(int number, int stamina, Point p, float[] tint) {
 		super(number, stamina, p, tint);
 	}

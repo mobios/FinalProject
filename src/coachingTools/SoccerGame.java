@@ -9,8 +9,8 @@ public class SoccerGame extends Game {
 		super(new SoccerField());
 
 		gameField = new SoccerField();
-		team1 = new SoccerTeam("BestTeamEver");
-		team2 = new SoccerTeam("BesterTeamEver");
+		//team1 = new SoccerTeam("BestTeamEver");
+		//team2 = new SoccerTeam("BesterTeamEver");
 	}
 	
 	public void throwIn(ArrayList<Player> players, Player p){
