@@ -61,15 +61,15 @@ public class RenderEngine {
 		game.getTeam2().getPlayers().get(8).setBall(true);
 
 		//team selection buttons
-		new Button(new Rectangle(.775f, .91f, .1f, .1f), "resources/button.png", "resources/button.png", "resources/button.png", (new util.PressAction(){public void fire(){System.exit(0);};}));
-		new Button(new Rectangle(.92f, .91f, .1f, .1f), "resources/button.png", "resources/button.png", "resources/button.png", (new util.PressAction(){public void fire(){System.exit(0);};}));
+		new Button(new Rectangle(.775f, .91f, .1f, .1f), "resources/bluebuttonteam1.png", "resources/redbuttonteam1.png", "resources/bluebuttonteam1.png", (new util.PressAction(){public void fire(){System.exit(0);};}));
+		new Button(new Rectangle(.92f, .91f, .1f, .1f), "resources/bluebuttonteam2.png", "resources/redbuttonteam2.png", "resources/bluebuttonteam2.png", (new util.PressAction(){public void fire(){System.exit(0);};}));
 		
 		
 		//formation buttons
-		new Button(new Rectangle(.85f, .75f, .25f, .13f), "resources/button.png", "resources/button.png", "resources/button.png", (new util.PressAction(){public void fire(){game.getTeam1().getInFormation(Team.FormationType.FourFourTwo);};}));
-		new Button(new Rectangle(.85f, .55f, .25f, .13f), "resources/button.png", "resources/button.png", "resources/button.png", (new util.PressAction(){public void fire(){game.getTeam1().getInFormation(Team.FormationType.FourThreeThree);};}));
-		new Button(new Rectangle(.85f, .35f, .25f, .13f), "resources/button.png", "resources/button.png", "resources/button.png", (new util.PressAction(){public void fire(){game.getTeam1().getInFormation(Team.FormationType.ThreeFiveTwo);};}));
-		new Button(new Rectangle(.85f, .15f, .25f, .13f), "resources/button.png", "resources/button.png", "resources/button.png", (new util.PressAction(){public void fire(){game.getTeam1().getInFormation(Team.FormationType.ThreeFourThree);};}));
+		new Button(new Rectangle(.85f, .75f, .25f, .13f), "resources/bluebutton442.png", "resources/redbutton442.png", "resources/bluebutton442.png", (new util.PressAction(){public void fire(){game.getTeam1().getInFormation(Team.FormationType.FourFourTwo);};}));
+		new Button(new Rectangle(.85f, .55f, .25f, .13f), "resources/bluebutton433.png", "resources/redbutton433.png", "resources/bluebutton433.png", (new util.PressAction(){public void fire(){game.getTeam1().getInFormation(Team.FormationType.FourThreeThree);};}));
+		new Button(new Rectangle(.85f, .35f, .25f, .13f), "resources/bluebutton343.png", "resources/redbutton343.png", "resources/bluebutton343.png", (new util.PressAction(){public void fire(){game.getTeam1().getInFormation(Team.FormationType.ThreeFiveTwo);};}));
+		new Button(new Rectangle(.85f, .15f, .25f, .13f), "resources/bluebutton352.png", "resources/redbutton352.png", "resources/bluebutton352.png", (new util.PressAction(){public void fire(){game.getTeam1().getInFormation(Team.FormationType.ThreeFourThree);};}));
 
 		Placeable.setup();
 		guiStaticHandle.populate();
