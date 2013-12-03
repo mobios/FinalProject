@@ -6,6 +6,7 @@ import graphics.frontend.Button;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Mouse;
@@ -142,7 +143,10 @@ public class GameEngine {
 	//Creates buttons for control of the game
 	private static void createButtons(final Game game) {
 		//pass buttons
-		passButton = new Button(new Rectangle(.85f, -.25f, .25f, .13f), "resources/Passbutton.png", "resources/Passbutton_down.png", "resources/Passbutton.png", (new util.PressAction(){public void fire(){pass();};}));
+		passButton = new Button(new Rectangle(.85f, -.05f, .25f, .13f), "resources/Passbutton.png", "resources/Passbutton_down.png", "resources/Passbutton.png", (new util.PressAction(){public void fire(){pass();};}));
+		
+		//Go buttons
+		new Button(new Rectangle(.85f, -.25f, .25f, .13f), "resources/GObutton.png", "resources/GObutton_down.png", "resources/GObutton.png", (new util.PressAction(){public void fire(){move();};}));
 
 		//formation buttons
 		new Button(new Rectangle(.85f, .75f, .25f, .13f), "resources/bluebutton442.png", "resources/redbutton442.png", "resources/bluebutton442.png", (new util.PressAction(){public void fire(){team.getInFormation(Team.FormationType.FourFourTwo);};}));
@@ -167,6 +171,13 @@ public class GameEngine {
 
 	}
 
+	//give the move button functionality
+	private static void move(){
+		
+		
+		game.go();
+		
+	}
 
 
 
