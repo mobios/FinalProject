@@ -3,6 +3,7 @@ package coachingTools;
 import graphics.frontend.PlayerModel;
 import util.Point;
 
+
 public class Player {
 	
 	private PlayerModel display;
@@ -132,6 +133,14 @@ public class Player {
 		
 	}
 
+	public PlayerModel getDisplay() {
+		return display;
+	}
 
+	public void setDisplay(PlayerModel display) {
+		this.display = display;
+	}
+	
+	
 	
 }

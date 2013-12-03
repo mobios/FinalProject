@@ -3,7 +3,6 @@ package coachingTools;
 import util.Rectangle;
 import graphics.frontend.BackgroundImage;
 
-
 public class Field extends BackgroundImage {
 	
 	public Field() {

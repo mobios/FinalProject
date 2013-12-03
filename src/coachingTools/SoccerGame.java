@@ -1,13 +1,12 @@
 package coachingTools;
 
-import java.util.ArrayList;
+import java.util.ArrayList; 
 import java.util.Random;
 
 public class SoccerGame extends Game {
 
 	public SoccerGame() {
-		super(new SoccerField());
-
+		super();
 		gameField = new SoccerField();
 		team1 = new SoccerTeam("BestTeamEver", new float[] {0f, 0f, 0f, 0f});
 		//team2 = new SoccerTeam("BesterTeamEver", new float[] {1.0f, 0.6f, 1.0f, 1.0f});

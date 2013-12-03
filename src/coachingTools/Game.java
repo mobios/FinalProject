@@ -13,7 +13,6 @@ public class Game {
 
 	public Game() {
 		super();
-		this.gameField = gameField;
 		gameField = new Field();
 		team1 = new Team("BestTeamEver", new float[] {0.6f, 0.7f, 0.6f, 1.0f}, Team.FieldHalf.Left);
 		team2 = new Team("BesterTeamEver", new float[] {1.0f, 0.6f, 1.0f, 1.0f}, Team.FieldHalf.Right);

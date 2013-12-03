@@ -11,4 +11,5 @@ public class SoccerField extends BackgroundImage {
 		new BackgroundImage(new Rectangle(-.15f, .0f, 1.7f, 2.0f), "resources/field.png");
 	}
 	
+	
 }
