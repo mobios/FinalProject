@@ -25,7 +25,7 @@ public class Team {
 		players = new ArrayList<Player>();
 		for (int i = 0; i < NUMBER_OF_PLAYERS; i++){
 
-			players.add(new Player(i, 100, new Point(((float)i)/15.0f,((float)i)/15.0f), tint));		
+			players.add(new Player(i, 100, new Point(0, 0), tint));		
 			if (i == 0){
 				((Player)players.get(0)).setGoalie();
 			}
@@ -36,60 +36,60 @@ public class Team {
 	
 	public void getInFormation(FormationType f){
 		formation = f;
+		//j is used to place the players on the correct side of the field, and rightOffset offsets the players on the right side in the x direction
 		float j = 1f;
-		float k = 0f;
+		float rightOffset = 0f;
 		if(fieldHalf == FieldHalf.Right){
 			j = -1f;
-			k = 0.3f;
+			rightOffset = 0.3f;
 		}
-		((Player)players.get(0)).setPosition(j*(float) -0.9 - k, 0);
-		//j is used to place the players on the correct side of the field
+		((Player)players.get(0)).setPosition(j*(float) -0.9 - rightOffset, 0);
 		
 
 		for(int i = 1; i < players.size(); i++){
 			if(isInFormation(FormationType.FourFourTwo)){
 				if(i <= 4)
-					((Player)players.get(i)).setPosition(j*-0.7f - k, (float)((i-2.5)*0.5));
+					((Player)players.get(i)).setPosition(j*-0.7f - rightOffset, (float)((i-2.5)*0.5));
 
 				if(i >= 5 && i <= 8)
-					((Player)players.get(i)).setPosition(j*-0.45f - k, (float)((i-6.5)*0.5));
+					((Player)players.get(i)).setPosition(j*-0.45f - rightOffset, (float)((i-6.5)*0.5));
 
 				if(i >= 9)
-					((Player)players.get(i)).setPosition(j*-0.25f - k, (float)((i-9.5)*0.6));
+					((Player)players.get(i)).setPosition(j*-0.25f - rightOffset, (float)((i-9.5)*0.6));
 			}
 
 			if(isInFormation(FormationType.FourThreeThree)){
 				if(i <= 4)
-					((Player)players.get(i)).setPosition(j*-0.7f - k, (float)((i-2.5)*0.5));
+					((Player)players.get(i)).setPosition(j*-0.7f - rightOffset, (float)((i-2.5)*0.5));
 
 				if(i >= 5 && i <= 7)
-					((Player)players.get(i)).setPosition(j*-0.45f - k, (float)((i-6)*0.6));
+					((Player)players.get(i)).setPosition(j*-0.45f - rightOffset, (float)((i-6)*0.6));
 
 				if(i >= 8)
-					((Player)players.get(i)).setPosition(j*-0.25f - k, (float)((i-9)*0.6));
+					((Player)players.get(i)).setPosition(j*-0.25f - rightOffset, (float)((i-9)*0.6));
 			}
 			
 			
 			if(isInFormation(FormationType.ThreeFourThree)){
 				if(i <= 3)
-					((Player)players.get(i)).setPosition(j*-0.7f - k, (float)((i-2)*0.6));
+					((Player)players.get(i)).setPosition(j*-0.7f - rightOffset, (float)((i-2)*0.6));
 
 				if(i >= 4 && i <= 7)
-					((Player)players.get(i)).setPosition(j*-0.45f - k, (float)((i-5.5)*0.5));
+					((Player)players.get(i)).setPosition(j*-0.45f - rightOffset, (float)((i-5.5)*0.5));
 
 				if(i >= 8)
-					((Player)players.get(i)).setPosition(j*-0.25f - k, (float)((i-9)*0.6));
+					((Player)players.get(i)).setPosition(j*-0.25f - rightOffset, (float)((i-9)*0.6));
 			}
 			
 			if(isInFormation(FormationType.ThreeFiveTwo)){
 				if(i <= 3)
-					((Player)players.get(i)).setPosition(j*-0.7f - k, (float)((i-2)*0.6));
+					((Player)players.get(i)).setPosition(j*-0.7f - rightOffset, (float)((i-2)*0.6));
 
 				if(i >= 4 && i <= 8)
-					((Player)players.get(i)).setPosition(j*-0.45f - k, (float)((i-6)*0.4));
+					((Player)players.get(i)).setPosition(j*-0.45f - rightOffset, (float)((i-6)*0.4));
 
 				if(i >= 9)
-					((Player)players.get(i)).setPosition(j*-0.25f - k, (float)((i-9.5)*0.6));
+					((Player)players.get(i)).setPosition(j*-0.25f - rightOffset, (float)((i-9.5)*0.6));
 			}
 			
 		}

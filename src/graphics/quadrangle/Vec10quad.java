@@ -89,4 +89,9 @@ public abstract class Vec10quad extends Quad{
 		GL20.glDisableVertexAttribArray(1);
 		GL20.glDisableVertexAttribArray(0);
 	}
+	
+	public void setTint(float[] t){
+		tint = t;
+		reloadVBO();
+	}
 }

@@ -15,6 +15,8 @@ public class Player {
 	private FieldSide fieldHalf;
 	private SoccerArea region;
 	private boolean goalie = false;
+	private float[] teamColor;
+	private float[] ballHolderColor;
 	
 	
 	public Player(int number, int stamina, Point p, float[] tint) {
@@ -23,7 +25,9 @@ public class Player {
 		this.number = number;
 		this.stamina = stamina;
 		scoredPoints = 0;
+		ballHolderColor = new float[] {1.0f, 1.0f, 1.0f, 1.0f};
 		display = new PlayerModel(p, tint);
+		teamColor = tint;
 	}
 	
 	public void scoreGoal() {
@@ -48,7 +52,9 @@ public class Player {
 	public void pass(Player player){
 		if(hasBall){
 			hasBall = false;
+			display.setTint(teamColor); 
 			player.setBall(true);
+			player.display.setTint(ballHolderColor);
 		}
 		
 	}
@@ -92,7 +98,11 @@ public class Player {
 
 	public void setBall(boolean hasBall) {
 		this.hasBall = hasBall;
-	}	
+		if(this.hasBall == true)
+			display.setTint(ballHolderColor);
+		else
+			display.setTint(teamColor);
+	}
 	
 	public SoccerArea getRegion() {
 		return region;

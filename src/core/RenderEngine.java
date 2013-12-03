@@ -53,22 +53,23 @@ public class RenderEngine {
 	public static void test(){
 		
 		new BackgroundImage(new Rectangle(-.15f, .0f, 1.7f, 2.0f), "resources/field.png");
+		
+		final Game game = new Game();
+		game.getTeam1().getInFormation(Team.FormationType.FourFourTwo);
+		game.getTeam2().getInFormation(Team.FormationType.ThreeFourThree);
+		game.getTeam2().getPlayers().get(8).setBall(true);
 
 		//team selection buttons
 		new Button(new Rectangle(.775f, .91f, .1f, .1f), "resources/button.png", "resources/button.png", "resources/button.png", (new util.PressAction(){public void fire(){System.exit(0);};}));
 		new Button(new Rectangle(.92f, .91f, .1f, .1f), "resources/button.png", "resources/button.png", "resources/button.png", (new util.PressAction(){public void fire(){System.exit(0);};}));
 		
 		
-		
 		//formation buttons
-		new Button(new Rectangle(.85f, .75f, .25f, .13f), "resources/button.png", "resources/button.png", "resources/button.png", (new util.PressAction(){public void fire(){System.exit(0);};}));
-		new Button(new Rectangle(.85f, .55f, .25f, .13f), "resources/button.png", "resources/button.png", "resources/button.png", (new util.PressAction(){public void fire(){System.exit(0);};}));
-		new Button(new Rectangle(.85f, .35f, .25f, .13f), "resources/button.png", "resources/button.png", "resources/button.png", (new util.PressAction(){public void fire(){System.exit(0);};}));
-		new Button(new Rectangle(.85f, .15f, .25f, .13f), "resources/button.png", "resources/button.png", "resources/button.png", (new util.PressAction(){public void fire(){System.exit(0);};}));
-		
-		Game game = new Game();
-		game.getTeam1().getInFormation(Team.FormationType.FourFourTwo);
-		game.getTeam2().getInFormation(Team.FormationType.ThreeFourThree);
+		new Button(new Rectangle(.85f, .75f, .25f, .13f), "resources/button.png", "resources/button.png", "resources/button.png", (new util.PressAction(){public void fire(){game.getTeam1().getInFormation(Team.FormationType.FourFourTwo);};}));
+		new Button(new Rectangle(.85f, .55f, .25f, .13f), "resources/button.png", "resources/button.png", "resources/button.png", (new util.PressAction(){public void fire(){game.getTeam1().getInFormation(Team.FormationType.FourThreeThree);};}));
+		new Button(new Rectangle(.85f, .35f, .25f, .13f), "resources/button.png", "resources/button.png", "resources/button.png", (new util.PressAction(){public void fire(){game.getTeam1().getInFormation(Team.FormationType.ThreeFiveTwo);};}));
+		new Button(new Rectangle(.85f, .15f, .25f, .13f), "resources/button.png", "resources/button.png", "resources/button.png", (new util.PressAction(){public void fire(){game.getTeam1().getInFormation(Team.FormationType.ThreeFourThree);};}));
+
 		guiStaticHandle.populate();
 	}
 	
