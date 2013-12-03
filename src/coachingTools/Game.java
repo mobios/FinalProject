@@ -212,7 +212,7 @@ public class Game {
 		for(int i = 1; i < players.size(); i++){
 			int n = new Random().nextInt(11);
 			n -= 5;
-			players.get(i).move((float)(0.02+n*0.005), (float)(n*0.005), 1);
+			players.get(i).move((float)(0.01+n*0.005), (float)(n*0.005), 1);
 			
 			if(players.get(i).getDisplay().getRect().getX() <= minX)
 				players.get(i).move(0.1f, 0f, 1);
