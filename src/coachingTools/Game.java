@@ -15,7 +15,7 @@ public class Game {
 	private int period, speed = 100;
 	private Team team1;
 	private Team team2;
-	private BallModel ball;
+	public BallModel ball;
 	private BackgroundImage gameField;
 
 	public boolean duringPass;
@@ -30,7 +30,7 @@ public class Game {
 
 	//throws the ball to a random player on the thrower's team for a ThrowIn
 	public void throwIn(ArrayList<Player> players, Player p){
-		p.setBall(true);
+		p.setBall(ball);
 		int num = GameEngine.rgen.nextInt(11);
 
 		if(players.get(num) != p){
@@ -49,7 +49,7 @@ public class Game {
 	public void goalKick( ArrayList<Player> players, Player p){
 
 		if (((Player)p).isGoalie()){
-			p.setBall(true);
+			p.setBall(ball);
 			int num = GameEngine.rgen.nextInt(11);
 
 			if(players.get(num) != p){
@@ -67,8 +67,7 @@ public class Game {
 
 	// Kicks the ball form the corner to a player on the kickers team with a chance for a goal of interception.
 	public void cornerKick(Player p, ArrayList<Player> offensiveTeam, ArrayList<Player> defensiveTeam){
-		p.setBall(true);
-
+		p.setBall(ball);
 		int totalPlayers = offensiveTeam.size() + defensiveTeam.size();
 
 		int num = GameEngine.rgen.nextInt(totalPlayers);
@@ -97,8 +96,8 @@ public class Game {
 
 	//kicks the ball to a random player from an arrayList of players to start a round
 	public void kickOff(Player p, ArrayList<Player> players){
-		p.setBall(true);
-
+		p.setBall(ball);
+		
 		int num = GameEngine.rgen.nextInt(11);
 
 		if(players.get(num) != p){
