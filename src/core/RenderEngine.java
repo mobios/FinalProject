@@ -66,10 +66,9 @@ public class RenderEngine {
 		new Button(new Rectangle(.85f, .35f, .25f, .13f), "resources/button.png", "resources/button.png", "resources/button.png", (new util.PressAction(){public void fire(){System.exit(0);};}));
 		new Button(new Rectangle(.85f, .15f, .25f, .13f), "resources/button.png", "resources/button.png", "resources/button.png", (new util.PressAction(){public void fire(){System.exit(0);};}));
 		
-		Team team1 = new Team("BestTeamEver", new float[] {0.6f, 1.0f, 1.0f, 1.0f}, Team.FieldHalf.Left);
-		team1.getInFormation(Team.FormationType.FourThreeThree);
-		Team team2 = new Team("BesterTeamEver", new float[] {1.0f, 0.6f, 1.0f, 1.0f}, Team.FieldHalf.Right);
-		team2.getInFormation(Team.FormationType.ThreeFiveTwo);
+		Game game = new Game();
+		game.getTeam1().getInFormation(Team.FormationType.FourFourTwo);
+		game.getTeam2().getInFormation(Team.FormationType.ThreeFourThree);
 		guiStaticHandle.populate();
 	}
 	

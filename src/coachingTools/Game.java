@@ -7,16 +7,16 @@ import java.util.Random;
 
 public class Game {
 	private int period, speed = 100;
-	Team team1;
-	protected Team team2;
-	protected BackgroundImage gameField;
+	private Team team1;
+	private Team team2;
+	private BackgroundImage gameField;
 
 	public Game() {
 		super();
 		this.gameField = gameField;
 		gameField = new Field();
-		team1 = new Team("BestTeamEver", new float[] {0f, 0f, 0f, 0f}, Team.FieldHalf.Left);
-		//team2 = new SoccerTeam("BesterTeamEver", new float[] {1.0f, 0.6f, 1.0f, 1.0f}, SoccerTeam.FieldHalf.Right);
+		team1 = new Team("BestTeamEver", new float[] {0.6f, 1.0f, 1.0f, 1.0f}, Team.FieldHalf.Left);
+		team2 = new Team("BesterTeamEver", new float[] {1.0f, 0.6f, 1.0f, 1.0f}, Team.FieldHalf.Right);
 	}
 	
 	public void throwIn(ArrayList<Player> players, Player p){

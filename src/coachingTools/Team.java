@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import util.Point;
 
 public class Team {
-	protected ArrayList<Player> players;
+	private ArrayList<Player> players;
 	public String name;
 	public float[] teamColor;
 	public final static int NUMBER_OF_PLAYERS = 11;

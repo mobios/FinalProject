@@ -7,7 +7,7 @@ public class Player {
 	
 	private PlayerModel display;
 	private int number, stamina, skill;
-	protected int scoredPoints;
+	public int scoredPoints;
 	private boolean hasBall;
 	private int width, height;
 	public static enum SoccerArea {GOAL, PENALTY_AREA, PENALTY_ARC, GOAL_AREA, CENTER_CIRCLE, GOAL_KICK};
