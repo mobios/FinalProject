@@ -8,7 +8,7 @@ public class ScoreDisplay {
 	private float spacing;
 	
 	public ScoreDisplay(Point center) {
-		spacing = 0.1f;
+		spacing = 0.13f;
 		team1Display = new SevenSegmentDisplay(new Point(center.x - spacing/2f, center.y));
 		team2Display = new SevenSegmentDisplay(new Point(center.x + spacing/2f, center.y));
 	}
