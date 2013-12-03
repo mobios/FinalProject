@@ -1,5 +1,7 @@
 package coachingTools;
 
+import graphics.frontend.PlayerModel;
+
 public abstract class Player extends Image {
 	private float x, y;
 	private int number, stamina, skill;
