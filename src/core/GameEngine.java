@@ -1,7 +1,9 @@
 package core;
 
+import graphics.backend.segmentDisplay.SevenSegmentDisplay;
 import graphics.frontend.BackgroundImage;
 import graphics.frontend.Button; 
+import graphics.frontend.ScoreDisplay;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -20,6 +22,7 @@ import coachingTools.Player;
 import coachingTools.Team;
 import util.Clamp;
 import util.MouseEvent;
+import util.Point;
 import util.Rectangle;
 
 public class GameEngine {
@@ -84,7 +87,8 @@ public class GameEngine {
 		game.getTeam1().getInFormation(Team.FormationType.FourFourTwo);
 		game.getTeam2().getInFormation(Team.FormationType.ThreeFourThree);
 		game.getTeam2().getPlayers().get(8).setBall(true);
-
+		ScoreDisplay sd = new ScoreDisplay(new Point(0.85f, -0.5f));
+		
 		createButtons(game);
 	}
 

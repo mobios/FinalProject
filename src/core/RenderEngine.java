@@ -1,14 +1,14 @@
 package core;
 
 import graphics.backend.TextureManager;
+import graphics.backend.segmentDisplay.SegmentHorizontal;
+import graphics.backend.segmentDisplay.SegmentVertical;
+import graphics.backend.segmentDisplay.SevenSegmentDisplay;
 import graphics.frontend.BackgroundImage;
 import graphics.frontend.BallModel;
 import graphics.frontend.Button;
 import graphics.frontend.GuiElement;
 import graphics.frontend.PlayerModel;
-import graphics.frontend.SegmentHorizontal;
-import graphics.frontend.SegmentVertical;
-import graphics.frontend.SevenSegmentDisplay;
 import graphics.quadrangle.Quad;
 
 import java.io.BufferedReader;
@@ -17,6 +17,7 @@ import java.io.IOException;
 
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
+
 
 
 import coachingTools.Game;
@@ -60,19 +61,15 @@ public class RenderEngine {
 		
 		horizSeg = new SegmentHorizontal();
 		vertSeg = new SegmentVertical();
-
+		horizSeg.staticSetup();
+		vertSeg.staticSetup();
+		
 		initializeShaders();
 		initializeProgram();
 	}
 	
 	
-	public static void test(){		
-		//7-segment score display
-		horizSeg.staticSetup();
-		vertSeg.staticSetup();
-		SevenSegmentDisplay s = new SevenSegmentDisplay(new Point(0f, 0f));
-		s.writeValue(9);
-		s.updateDisplay();
+	public static void test(){
 		guiStaticHandle.populate();
 	}
 	
