@@ -87,7 +87,7 @@ public class GameEngine {
 		team = game.getTeam1();
 		game.getTeam1().getInFormation(Team.FormationType.FourFourTwo);
 		game.getTeam2().getInFormation(Team.FormationType.genRnd());
-		//game.getTeam2().getPlayers().get(8).setBall(true);
+		game.getTeam2().getPlayers().get(8).setBall(game.ball);
 		
 		createButtons(game);
 	}
