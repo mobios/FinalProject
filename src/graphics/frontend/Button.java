@@ -49,7 +49,7 @@ public class Button extends GuiElement{
 			if(inBounds(x,y) && active)
 				trigger.fire();
 			
-			setTexture((sticky) ? ((getTexture() == down) ? up : down) : up);
+			if(active)setTexture((sticky) ? ((getTexture() == down) ? up : down) : up);
 			return true;
 		}
 		return false;
@@ -69,7 +69,10 @@ public class Button extends GuiElement{
 		return false;
 	}
 	
-	public boolean handleMouse(MouseEvent event, float x, float y){		
+	public boolean handleMouse(MouseEvent event, float x, float y){
+		if(!active){
+			return false;
+		}
 		switch(event){
 		case UP:
 			return mouseUp(x,y);
