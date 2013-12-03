@@ -21,6 +21,8 @@ public class Game {
 	public ScoreDisplay scoreDisplay;
 	int[] score;
 
+	public Player interceptPlayer;
+	
 	public boolean duringPass;
 
 	public Game() {
@@ -183,7 +185,7 @@ public class Game {
 			if(player.hasBall())
 				return player;
 		}
-		return null;
+		return interceptPlayer;
 
 	}
 
@@ -335,8 +337,14 @@ public class Game {
 		}
 	}
 
-
-
+	public void giveBall(Player p, BallModel ball){
+		for(Player pla : this.getAllPlayers()){
+			if(pla == p){
+				pla.setBall(ball);
+				break;
+			}
+		}
+	}
 
 
 	public void scoreGoal(){

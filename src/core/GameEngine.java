@@ -1,6 +1,7 @@
 package core;
 
 import graphics.frontend.BackgroundImage;
+import graphics.frontend.BallModel;
 import graphics.frontend.Button; 
 import graphics.frontend.ScoreDisplay;
 
@@ -88,6 +89,7 @@ public class GameEngine {
 		team = game.getTeam1();
 		game.getTeam1().getInFormation(Team.FormationType.FourFourTwo);
 		game.getTeam2().getInFormation(Team.FormationType.genRnd());
+		game.getTeam1().getPlayers().get(8).setBall(game.ball);
 	}
 
 	public static void run(){
@@ -129,6 +131,7 @@ public class GameEngine {
 						for(Player p : game.getAllPlayers()){
 							if(p.getDisplay().getRect().contains(Clamp.clampX(mx), Clamp.clampY(my))){
 								game.ball.targetPlayer(p);
+								game.interceptPlayer = p;
 								game.duringPass = false;
 								break;
 							}
@@ -184,7 +187,7 @@ public class GameEngine {
 		Player ballHolder = game.getPlayerWithBall();
 		Team teamWithBall = game.getTeamWithBall();
 
-		
+		ballHolder.setBall(null);
 		game.duringPass = true;
 
 	}

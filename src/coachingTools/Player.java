@@ -52,8 +52,10 @@ public class Player {
 
 	//used to move a player from one place to another and update that players stamina
 	public void move(float x, float y, int stamina){
-
 		display.move(x, y);
+		if(ball != null){
+			ball.connect(this);
+		}
 		this.stamina -= stamina;
 		updateFieldArea();
 	}
