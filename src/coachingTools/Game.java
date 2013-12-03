@@ -340,8 +340,8 @@ public class Game {
 
 
 		if(getTeamWithBall() == team1){
-			float x2 = team1.getPlayers().get(0).getXLeft();
-			float y2 = team1.getPlayers().get(0).getYTop();
+			float x2 = team2.getPlayers().get(0).getXLeft();
+			float y2 = team2.getPlayers().get(0).getYTop();
 			float distance = (float)Math.sqrt(Math.pow((x-x2), 2) + Math.pow((y-y2), 2));
 			if(distance < 0.7){
 				int n = new Random().nextInt(10);
@@ -352,8 +352,8 @@ public class Game {
 		}
 
 		if(getTeamWithBall() == team2){
-			float x2 = team2.getPlayers().get(0).getXLeft();
-			float y2 = team2.getPlayers().get(0).getYTop();
+			float x2 = team1.getPlayers().get(0).getXLeft();
+			float y2 = team1.getPlayers().get(0).getYTop();
 			float distance = (float)Math.sqrt(Math.pow((x-x2), 2) + Math.pow((y-y2), 2));
 			if(distance < 0.7){
 				int n = new Random().nextInt(10);
