@@ -2,6 +2,7 @@ package coachingTools;
 
 import java.util.ArrayList;
 
+import core.GameEngine;
 import util.Point;
 
 public class Team {
@@ -16,6 +17,10 @@ public class Team {
 	}
 	public enum FormationType {
 		FourFourTwo, FourThreeThree, ThreeFourThree, ThreeFiveTwo;
+		
+		public static FormationType genRnd(){
+			return FormationType.values()[GameEngine.rgen.nextInt(FormationType.values().length)];
+		}
 	}
 
 	public Team(String name, float[] tint, FieldHalf half) {

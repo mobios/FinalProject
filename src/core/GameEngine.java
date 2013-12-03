@@ -1,11 +1,12 @@
 package core;
 
 import graphics.frontend.BackgroundImage;
-import graphics.frontend.Button; 
+import graphics.frontend.Button;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Mouse;
@@ -15,12 +16,12 @@ import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.PixelFormat;
 
-import coachingTools.Game;
-import coachingTools.Player;
-import coachingTools.Team;
 import util.Clamp;
 import util.MouseEvent;
 import util.Rectangle;
+import coachingTools.Game;
+import coachingTools.Player;
+import coachingTools.Team;
 
 public class GameEngine {
 	public static final int WIDTH = 1000;
@@ -29,6 +30,7 @@ public class GameEngine {
 	public static List<Button> buttons;
 	public static Team team;
 	public static Game game;
+	public static Random rgen;
 	
 	public static Button passButton;
 	
@@ -62,12 +64,12 @@ public class GameEngine {
 	
 	// sets up the game by calling the setup fnx (in the renderEngin), openGL3 fnx, and creating an ArrayList of buttons 
 	public static void setup(){
+		rgen = new Random();
 		OpenGL3();
 		//GL11.glHint(GL11.GL_PERSPECTIVE_CORRECTION_HINT, GL11.GL_FASTEST);
 		RenderEngine.setup();
 		buttons = new ArrayList<Button>();
 		createBackgroundandButtons();
-		
 	}
 
 	// checks for errors then runs the program in a loop until a close request is made.
@@ -76,7 +78,7 @@ public class GameEngine {
 		game = new Game();
 		team = game.getTeam1();
 		game.getTeam1().getInFormation(Team.FormationType.FourFourTwo);
-		game.getTeam2().getInFormation(Team.FormationType.ThreeFourThree);
+		game.getTeam2().getInFormation(Team.FormationType.genRnd());
 		game.getTeam2().getPlayers().get(8).setBall(true);
 
 		createButtons(game);
