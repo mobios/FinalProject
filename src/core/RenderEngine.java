@@ -15,6 +15,7 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
 
 import coachingTools.SoccerGame;
+import coachingTools.SoccerTeam;
 import util.Rectangle;
 
 public class RenderEngine {
@@ -52,8 +53,9 @@ public class RenderEngine {
 	public static void test(){
 		
 		new BackgroundImage(new Rectangle(-.15f, .0f, 1.7f, 2.0f), "resources/field.png");
-		new Button(new Rectangle(.3f, .58f, .4f, .4f), "resources/schmile.png", "resources/schmile_down.png", "resources/schmile_over.png", (new util.PressAction(){public void fire(){System.exit(0);};}));
-		new SoccerGame();
+		//new Button(new Rectangle(.3f, .58f, .4f, .4f), "resources/schmile.png", "resources/schmile_down.png", "resources/schmile_over.png", (new util.PressAction(){public void fire(){System.exit(0);};}));
+		SoccerTeam team = new SoccerTeam("team", new float[] {1.0f, 1.0f, 0.6f, 1f});
+		team.getInFormation(SoccerTeam.FormationType.ThreeFiveTwo);
 		guiStaticHandle.populate();
 	}
 	
