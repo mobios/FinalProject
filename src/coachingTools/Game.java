@@ -18,7 +18,7 @@ public class Game {
 	private Team team2;
 	public BallModel ball;
 	private BackgroundImage gameField;
-	public static ScoreDisplay scoreDisplay;
+	public ScoreDisplay scoreDisplay;
 	int[] score;
 
 	public boolean duringPass;
@@ -31,6 +31,7 @@ public class Game {
 		ball = new BallModel(new Point(0,0), new float[]{0f,0f,0f,1f});
 		score = new int[] {0,0};
 		scoreDisplay = new ScoreDisplay(new Point(0.85f, -0.5f));
+		scoreDisplay.updateScore(score);
 	}
 
 	//throws the ball to a random player on the thrower's team for a ThrowIn

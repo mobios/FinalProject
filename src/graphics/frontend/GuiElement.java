@@ -21,6 +21,7 @@ public class GuiElement extends BackgroundImage{
 	}
 	
 	public GuiElement(Rectangle rect, String imagePath) {
+		super(rect, imagePath);
 		area = rect;
 		tint = new float[]{1.f,1.f,1f,1.f};
 		

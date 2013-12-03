@@ -23,7 +23,6 @@ public class SevenSegmentDisplay{
 		segments = new ArrayList<Segment>();
 		seg = new boolean[7];
 		Arrays.fill(seg, true);
-		seg[6] = false;
 		this.center = center;
 		
 		segments.add(0, new SegmentHorizontal(new Point(center.x, center.y + Y_OFFSET)));
@@ -93,6 +92,8 @@ public class SevenSegmentDisplay{
             	Arrays.fill(seg, true);
                 break;
 	        }
+        
+        updateDisplay();
 	  }
 	
 	public void updateDisplay(){

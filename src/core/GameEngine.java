@@ -34,7 +34,6 @@ public class GameEngine {
 	public static Game game;
 	public static Random rgen;
 	
-	public static ScoreDisplay scoreDisplay;
 	public static Button passButton;
 
 	public static void main(String[] args) {
@@ -83,14 +82,12 @@ public class GameEngine {
 	// checks for errors then runs the program in a loop until a close request is made.
 
 	private static void createBackgroundandButtons() {
+		createButtons(game);
+		
 		game = new Game();
 		team = game.getTeam1();
 		game.getTeam1().getInFormation(Team.FormationType.FourFourTwo);
 		game.getTeam2().getInFormation(Team.FormationType.genRnd());
-		game.getTeam2().getPlayers().get(8).setBall(game.ball);
-		scoreDisplay = game.scoreDisplay;
-		
-		createButtons(game);
 	}
 
 	public static void run(){
