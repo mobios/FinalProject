@@ -8,8 +8,8 @@ import util.Rectangle;
 import core.GameEngine;
 
 public class Button extends GuiElement{
-	Texture up, down, over, disable;
-	PressAction trigger;
+	private Texture up, down, over, disable;
+	public PressAction trigger;
 	
 	private boolean active = true;
 	private boolean sticky = false;
@@ -101,5 +101,9 @@ public class Button extends GuiElement{
 			active = true;
 			setTexture(up);
 		}
+	}
+	
+	public boolean isDown(){
+		return getTexture() == down;
 	}
 }

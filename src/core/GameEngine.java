@@ -35,7 +35,7 @@ public class GameEngine {
 	public static Game game;
 	public static Random rgen;
 	
-	public static Button passButton;
+	public static Button passButton, goButton;
 
 	public static void main(String[] args) {
 		System.setProperty("org.lwjgl.librarypath", new File("native").getAbsolutePath());
@@ -86,18 +86,25 @@ public class GameEngine {
 		createButtons(game);
 		
 		game = new Game();
-		team = game.getTeam1();
-		game.getTeam1().getInFormation(Team.FormationType.FourFourTwo);
-		game.getTeam2().getInFormation(Team.FormationType.genRnd());
-		game.getTeam1().getPlayers().get(8).setBall(game.ball);
-		game.ball.connect(game.getTeam1().getPlayers().get(8));
+		team = Game.getTeam1();
+		Game.getTeam1().getInFormation(Team.FormationType.FourFourTwo);
+		Game.getTeam2().getInFormation(Team.FormationType.genRnd());
+		Game.getTeam1().getPlayers().get(8).setBall(game.ball);
+		game.ball.connect(Game.getTeam1().getPlayers().get(8));
 	}
 
 	public static void run(){
+		int count = 0;
 		while(!Display.isCloseRequested()){			//	This is the core logic loop... so let's check if the program is ready to shut down.
+			if(count > 20){
+				if(goButton.isDown())goButton.trigger.fire();
+				count -= 20;
+			}
+			
 			handleMouse();							//	handleMouse() checks for mouse activity, and if there is any, dispatches the events to the GUI
 			RenderEngine.render();					//	Draws final output onto the back framebuffer
 			Display.sync(60);						//	Limits the flip speed to prevent tearing and to sync with the diplay's Hertz
+			++count;			
 			Display.update();						//	Copies the back framebuffer into the front framebuffer
 		}
 
@@ -162,21 +169,21 @@ public class GameEngine {
 		passButton = new Button(new Rectangle(.85f, -.05f, .25f, .13f), "resources/Passbutton.png", "resources/Passbutton_down.png", "resources/Passbutton.png", (new util.PressAction(){public void fire(){pass();};}));
 		passButton.setSticky(true);
 		//Go buttons
-		new Button(new Rectangle(.85f, -.25f, .25f, .13f), "resources/GObutton.png", "resources/GObutton_down.png", "resources/GObutton.png", (new util.PressAction(){public void fire(){move();};}));
-
+		goButton = new Button(new Rectangle(.85f, -.25f, .25f, .13f), "resources/GObutton.png", "resources/GObutton_down.png", "resources/GObutton.png", (new util.PressAction(){public void fire(){move();};}));
+		goButton.setSticky(true);
 		//formation buttons
 		new Button(new Rectangle(.85f, .75f, .25f, .13f), "resources/bluebutton442.png", "resources/redbutton442.png", "resources/bluebutton442.png", (new util.PressAction(){public void fire(){
 				team.getInFormation(Team.FormationType.FourFourTwo);
-				game.getTeam2().getInFormation(Team.FormationType.genRnd());};}));
+				Game.getTeam2().getInFormation(Team.FormationType.genRnd());};}));
 		new Button(new Rectangle(.85f, .55f, .25f, .13f), "resources/bluebutton433.png", "resources/redbutton433.png", "resources/bluebutton433.png", (new util.PressAction(){public void fire(){
 				team.getInFormation(Team.FormationType.FourThreeThree);
-				game.getTeam2().getInFormation(Team.FormationType.genRnd());};}));
+				Game.getTeam2().getInFormation(Team.FormationType.genRnd());};}));
 		new Button(new Rectangle(.85f, .35f, .25f, .13f), "resources/bluebutton343.png", "resources/redbutton343.png", "resources/bluebutton343.png", (new util.PressAction(){public void fire(){
 				team.getInFormation(Team.FormationType.ThreeFourThree);
-				game.getTeam2().getInFormation(Team.FormationType.genRnd());};}));
+				Game.getTeam2().getInFormation(Team.FormationType.genRnd());};}));
 		new Button(new Rectangle(.85f, .15f, .25f, .13f), "resources/bluebutton352.png", "resources/redbutton352.png", "resources/bluebutton352.png", (new util.PressAction(){public void fire(){
 				team.getInFormation(Team.FormationType.ThreeFiveTwo);
-				game.getTeam2().getInFormation(Team.FormationType.genRnd());};}));
+				Game.getTeam2().getInFormation(Team.FormationType.genRnd());};}));
 	}
 
 
