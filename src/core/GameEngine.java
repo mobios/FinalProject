@@ -82,7 +82,6 @@ public class GameEngine {
 	// checks for errors then runs the program in a loop until a close request is made.
 
 	private static void createBackgroundandButtons() {
-		new BackgroundImage(new Rectangle(-.15f, .0f, 1.7f, 2.0f), "resources/field.png");
 		game = new Game();
 		team = game.getTeam1();
 		game.getTeam1().getInFormation(Team.FormationType.FourFourTwo);

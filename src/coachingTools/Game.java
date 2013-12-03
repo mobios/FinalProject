@@ -231,6 +231,40 @@ public class Game {
 		}
 		
 	}
+	
+	public void dontMoveOnTop(){
+		ArrayList<Player> players = getAllPlayers();
+		float width = players.get(0).getDisplay().getRect().getWidth()/2;
+		float height = players.get(0).getDisplay().getRect().getHeight()/2;
+		
+		for(Player player: players){
+			ArrayList<Player> players2 = getAllPlayers();
+			players2.remove(player);
+			float x = player.getDisplay().getRect().getX();
+			float y = player.getDisplay().getRect().getY();
+			
+			for(Player player2: players2){
+				float x2 = player2.getDisplay().getRect().getX();
+				float y2 = player2.getDisplay().getRect().getY();
+				if(x+width > x2 - width && x-width < x2-width && Math.abs(y-y2) < height){
+					player.move(-0.025f, 0f, 1);
+					player2.move(0.025f, 0f, 1);
+				}
+				if(x-width < x2+width && x+width > x2+width && Math.abs(y-y2) < height) {
+					player.move(0.025f, 0f, 1);
+					player2.move(-0.025f, 0f, 1);
+				}
+				if(y+height > y2 - height && y-height < y2-height && Math.abs(x-x2) < width){
+					player.move(0f, -0.025f, 1);
+					player2.move(0f, 0.025f, 1);
+				}
+				if(y-height < y2+height && y+height > y2+height && Math.abs(x-x2) < width) {
+					player.move(0f, 0.025f, 1);
+					player2.move(0f, -0.025f, 1);
+				}
+			}
+		}
+	}
 
 	public void go() {
 		ArrayList<Player> players1 = team1.getPlayers();
@@ -239,6 +273,7 @@ public class Game {
 		Player player = getPlayerWithBall();
 		Team team = getTeamWithBall();
 		
+		dontMoveOnTop();
 
 		
 		float minX = gameField.getRect().getX() - gameField.getRect().getWidth()/2;
@@ -253,13 +288,13 @@ public class Game {
 			players1.get(i).move((float)(0.01+n*0.005), (float)(n*0.005), 1);
 			
 			if(players1.get(i).getDisplay().getRect().getX() <= minX)
-				players1.get(i).move(0.1f, 0f, 1);
+				players1.get(i).move(0.2f, 0f, 1);
 			if(players1.get(i).getDisplay().getRect().getX() >= maxX)
-				players1.get(i).move(-0.1f, 0f, 1);
-			if(players1.get(i).getDisplay().getRect().getX() <= minY)
-				players1.get(i).move(0f, 0.1f, 1);
-			if(players1.get(i).getDisplay().getRect().getX() >= maxY)
-				players1.get(i).move(0f, -0.1f, 1);
+				players1.get(i).move(-0.2f, 0f, 1);
+			if(players1.get(i).getDisplay().getRect().getY() <= minY)
+				players1.get(i).move(0f, 0.2f, 1);
+			if(players1.get(i).getDisplay().getRect().getY() >= maxY)
+				players1.get(i).move(0f, -0.2f, 1);
 			
 			//do stuff depending on distance to ball and closest player using getopposingplayerclosestball
 
