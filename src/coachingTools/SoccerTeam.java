@@ -8,7 +8,7 @@ public class SoccerTeam extends Team {
 	}
 
 	public SoccerTeam(String name, float[] tint) {
-		super(name);
+		super(name, tint);
 		for (int i = 0; i < NUMBER_OF_PLAYERS; i++){
 
 			players.add(new SoccerPlayer(i, 100));		

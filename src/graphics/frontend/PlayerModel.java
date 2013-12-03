@@ -6,6 +6,7 @@ import graphics.quadrangle.Dynamic;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL13;
 
+import util.Point;
 import util.Rectangle;
 
 public class PlayerModel extends Dynamic{
@@ -13,12 +14,19 @@ public class PlayerModel extends Dynamic{
 	public static String spriteURL = "resources/player.png";
 	private static int nextluc = 0;
 	
-	public PlayerModel(Rectangle rect, float[] tint) {
+	private static final float width = .07f;
+	private static final float height = .07f;
+	
+	public PlayerModel(Point pt, float[] tint){
+		this(new Rectangle(pt.x, pt.y, width, height), tint);
+	}
+	
+	private PlayerModel(Rectangle rect, float[] tint) {
 		super(rect, tint);
 	}
 
 	public PlayerModel(){
-		this(null, null);
+		this((Rectangle)null, null);
 	}
 	
 	@Override
