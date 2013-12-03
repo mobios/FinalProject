@@ -6,7 +6,7 @@ import util.Rectangle;
 
 
 public class Player {
-	
+
 	private PlayerModel display;
 	private int number, stamina, skill;
 	public int scoredPoints;
@@ -18,11 +18,11 @@ public class Player {
 	private boolean goalie = false;
 	private float[] teamColor;
 	private float[] ballHolderColor;
-	
-	
+
+
 	public Player(int number, int stamina, Point p, float[] tint) {
 		super();
-		
+
 		this.number = number;
 		this.stamina = stamina;
 		scoredPoints = 0;
@@ -31,30 +31,30 @@ public class Player {
 		teamColor = tint;
 		updateFieldArea();
 	}
-	
+
 	public void scoreGoal() {
 		scoredPoints++;
 	}
-	
+
 	public void setGoalie(){
 		goalie = true;
 	}
-	
+
 	//used to set a players initial position
 	public void setPosition(float x, float y) {
-		
+
 		display.setPosition(x, y);
 		updateFieldArea();
 	}
-	
+
 	//used to move a player from one place to another and update that players stamina
 	public void move(float x, float y, int stamina){
-		
+
 		display.move(x, y);
 		this.stamina -= stamina;
 		updateFieldArea();
 	}
-	
+
 	//used to pass the ball form one player to another.
 	public void pass(Player player){
 		if(hasBall){
@@ -63,9 +63,9 @@ public class Player {
 			player.setBall(true);
 			player.display.setTint(ballHolderColor);
 		}
-		
+
 	}
-	
+
 	// used to tell players where the important areas of the field are
 	public void updateFieldArea(){
 
@@ -100,26 +100,22 @@ public class Player {
 			region = SoccerArea.NONE;
 		}
 	}
-	
-	public void goalKick(){
-		
-	}
-	
-		public void setBall(boolean hasBall) {
+
+	public void setBall(boolean hasBall) {
 		this.hasBall = hasBall;
 		if(this.hasBall == true)
 			display.setTint(ballHolderColor);
 		else
 			display.setTint(teamColor);
 	}
-		
+
 	public boolean isOffside(){
 		return false;
 	}	
 
-	
+
 	// ------ getters and setters ------ \\
-	
+
 	public int getNumber() {
 		return number;
 	}
@@ -147,7 +143,7 @@ public class Player {
 	public boolean hasBall() {
 		return hasBall;
 	}
-	
+
 	public SoccerArea getRegion() {
 		return region;
 	}
@@ -163,7 +159,7 @@ public class Player {
 	public void setRegion(SoccerArea region) {
 		this.region = region;
 	}
-	
+
 	public boolean isGoalie(){
 		return goalie;
 	}
@@ -175,5 +171,5 @@ public class Player {
 	public void setDisplay(PlayerModel display) {
 		this.display = display;
 	}
-	
+
 }

@@ -14,8 +14,8 @@ public class Game {
 	public Game() {
 		super();
 		gameField = new Field();
-		team1 = new Team("BestTeamEver", new float[] {0.6f, 0.7f, 0.6f, 1.0f}, Team.FieldHalf.Left);
-		team2 = new Team("BesterTeamEver", new float[] {1.0f, 0.6f, 1.0f, 1.0f}, Team.FieldHalf.Right);
+		team1 = new Team("BestTeamEver", new float[] {1f, 0f, 0f, 1.0f}, Team.FieldHalf.Left);
+		team2 = new Team("BesterTeamEver", new float[] {.02f, 0.2f, 1.0f, 1.0f}, Team.FieldHalf.Right);
 	}
 	
 	//throws the ball to a random player on the thrower's team for a ThrowIn

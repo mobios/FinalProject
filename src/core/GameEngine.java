@@ -18,6 +18,7 @@ import org.lwjgl.opengl.PixelFormat;
 import coachingTools.Game;
 import coachingTools.Player;
 import coachingTools.Team;
+import util.Clamp;
 import util.MouseEvent;
 import util.Rectangle;
 
@@ -79,24 +80,28 @@ public class GameEngine {
 		game.getTeam2().getPlayers().get(8).setBall(true);
 
 		createButtons(game);
-
-
-		
 	}
 
 	public static void run(){
-		int error = GL11.glGetError();
-		if(error > 0)
-			return;
-		while(!Display.isCloseRequested()){
-			handleMouse();
-			RenderEngine.render();
-			Display.sync(60);
-			Display.update();
+		while(!Display.isCloseRequested()){			//	This is the core logic loop... so let's check if the program is ready to shut down.
+			handleMouse();							//	handleMouse() checks for mouse activity, and if there is any, dispatches the events to the GUI
+			RenderEngine.render();					//	Draws final output onto the back framebuffer
+			Display.sync(60);						//	Limits the flip speed to prevent tearing and to sync with the diplay's Hertz
+			Display.update();						//	Copies the back framebuffer into the front framebuffer
 		}
 		
 		Display.destroy();
 		
+	}
+	
+	// used to get and deal with mouse clicks
+	public static float getMouseX(){
+		return Clamp.clampX(Mouse.getX());
+	}
+	
+	// used to get and deal with mouse clicks
+	public static float getMouseY(){
+		return Clamp.clampY(Mouse.getY());
 	}
 	
 	// used to get and deal with mouse clicks
@@ -113,30 +118,15 @@ public class GameEngine {
 				else
 					event = MouseEvent.UP;
 			}
+			
 			else{
 				event = MouseEvent.MOVE;
 			}
-			for(Button button : buttons)
+			
+			for(Button button : buttons){
 				if(button.handleMouse(event, mx, my))
 					break;
-			
-//			if(Mouse.getEventButton() == 0){
-//				if(Mouse.isButtonDown(0)){
-//					for(Button button : buttons){
-//						button.mouseDown(Mouse.getEventX(), Mouse.getEventY());
-//					}
-//					return;
-//				}
-//
-//				for(Button button : buttons){
-//					button.mouseUp(Mouse.getEventX(), Mouse.getEventY());
-//				}
-//			}
-//			else{
-//				for(Button button : buttons){
-//					button.mouseMove(Mouse.getEventX(), Mouse.getEventY());
-//				}
-//			}
+			}
 		}
 	}
 	

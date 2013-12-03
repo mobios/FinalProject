@@ -1,6 +1,7 @@
 package graphics.frontend;
 
 import graphics.backend.Texture;
+import util.Clamp;
 import util.MouseEvent;
 import util.PressAction;
 import util.Rectangle;
@@ -86,20 +87,8 @@ public class Button extends GuiElement{
 		return false;
 	}
 	
-	private float clampX(float x){
-		x -= GameEngine.WIDTH/2.f;
-		x /= GameEngine.WIDTH/2.f;
-		return x;
-	}
-	
-	private float clampY(float y){
-		y -= GameEngine.HEIGHT/2.f;
-		y /= GameEngine.HEIGHT/2.f;
-		return y;
-	}
-	
 	private boolean inBounds(float x, float y){
-		return area.contains(clampX(x), clampY(y));
+		return area.contains(Clamp.clampX(x), Clamp.clampY(y));
 	}
 	
 	public void toggle(){

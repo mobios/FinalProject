@@ -2,8 +2,9 @@ package core;
 
 import graphics.backend.TextureManager;
 import graphics.frontend.BackgroundImage;
+import graphics.frontend.BallModel;
+import graphics.frontend.Button;
 import graphics.frontend.GuiElement;
-import graphics.frontend.Placeable;
 import graphics.frontend.PlayerModel;
 import graphics.quadrangle.Quad;
 
@@ -14,6 +15,12 @@ import java.io.IOException;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
 
+
+import coachingTools.Game;
+import coachingTools.Player;
+import coachingTools.Team;
+import util.Point;
+import util.Rectangle;
 
 public class RenderEngine {
 	public static Quad quads;
@@ -51,8 +58,7 @@ public class RenderEngine {
 	
 	
 	public static void test(){
-
-		Placeable.setup();
+		BallModel ball = new BallModel(new Point(0,0), new float[]{0f,0f,0f,1f});
 		guiStaticHandle.populate();
 	}
 	
