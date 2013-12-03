@@ -2,6 +2,7 @@ package coachingTools;
 
 import graphics.frontend.PlayerModel;
 import util.Point;
+import util.Rectangle;
 
 
 public class Player {
@@ -11,8 +12,8 @@ public class Player {
 	public int scoredPoints;
 	private boolean hasBall;
 	private int width, height;
-	public static enum SoccerArea {GOAL, PENALTY_AREA, PENALTY_ARC, GOAL_AREA, CENTER_CIRCLE, GOAL_KICK};
-	public static enum FieldSide  {LEFT_HALF, RIGHT_HALF}
+	public static enum SoccerArea {GOAL, PENALTY_AREA, PENALTY_ARC, GOAL_AREA, CENTER_CIRCLE, GOAL_KICK, NONE};
+	public static enum FieldSide  {LEFT_HALF, RIGHT_HALF, HALF_LINE}
 	private FieldSide fieldHalf;
 	private SoccerArea region;
 	private boolean goalie = false;
@@ -29,6 +30,7 @@ public class Player {
 		ballHolderColor = new float[] {1.0f, 1.0f, 1.0f, 1.0f};
 		display = new PlayerModel(p, tint);
 		teamColor = tint;
+		updateFieldArea();
 	}
 	
 	public void scoreGoal() {
@@ -60,7 +62,40 @@ public class Player {
 		
 	}
 	
-	
+	public void updateFieldArea(){
+
+		// so the player knows which half of the field they are on
+		if((this.getDisplay().getRect().getX() > -0.91f) && (this.getDisplay().getRect().getX() < -1.55f)){
+			fieldHalf = FieldSide.LEFT_HALF;
+		}else if((this.getDisplay().getRect().getX() < 0.61f) && (this.getDisplay().getRect().getX() > -1.45f)){
+			fieldHalf = FieldSide.RIGHT_HALF;
+		}else if((this.getDisplay().getRect().getX() <= -1.55f) && (this.getDisplay().getRect().getX() >= -1.45f)){
+			fieldHalf = FieldSide.HALF_LINE;
+		}
+		// so the player knows what earea they are in.
+		if((((this.getDisplay().getRect().getX() < -0.91f) && (this.getDisplay().getRect().getX() > -0.955f))&&
+				((this.getDisplay().getRect().getY() < 0.165f)&&(this.getDisplay().getRect().getY() > -0.17f))) ||
+				(((this.getDisplay().getRect().getX() < 0.655f) && (this.getDisplay().getRect().getX() > 0.61f))&&
+						((this.getDisplay().getRect().getY() < 0.165f)&&(this.getDisplay().getRect().getY() > -0.17f)))){
+			region = SoccerArea.GOAL;
+		}else if((((this.getDisplay().getRect().getX() < -0.61f) && (this.getDisplay().getRect().getX() > -0.91f))&&
+				((this.getDisplay().getRect().getY() < 0.915f)&&(this.getDisplay().getRect().getY() > -0.915f))) ||
+				(((this.getDisplay().getRect().getX() < 0.61f) && (this.getDisplay().getRect().getX() > 0.31f))&&
+						((this.getDisplay().getRect().getY() < 0.915f)&&(this.getDisplay().getRect().getY() > -0.915f))) ){
+			region = SoccerArea.PENALTY_AREA;
+		}else if((new Rectangle(-.86f, 0.0f, .1f, .63f).contains(this.getDisplay().getRect().getX(), this.getDisplay().getRect().getY())) ||
+				(new Rectangle(.56f, 0.0f, .1f, .63f).contains(this.getDisplay().getRect().getX(), this.getDisplay().getRect().getY()))){
+			region = SoccerArea.GOAL_AREA;
+		}else if((new Rectangle(-.15f, 0.0f, .3f, .5f).contains(this.getDisplay().getRect().getX(), this.getDisplay().getRect().getY()))){
+			region = SoccerArea.CENTER_CIRCLE;
+		}else if((new Rectangle(-.86f, 0.0f, .1f, .63f).contains(this.getDisplay().getRect().getX(), this.getDisplay().getRect().getY())) ||
+				(new Rectangle(-.58f, 0.0f, .05f, .4f).contains(this.getDisplay().getRect().getX(), this.getDisplay().getRect().getY()))){
+			region = SoccerArea.PENALTY_ARC;
+		}else{
+			region = SoccerArea.NONE;
+		}
+	}
+
 	public void loadImage(String img){
 		
 		

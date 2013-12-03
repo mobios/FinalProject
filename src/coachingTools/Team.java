@@ -34,6 +34,10 @@ public class Team {
 		this.fieldHalf = half;
 	}
 	
+	public Team() {
+
+	}
+
 	public void getInFormation(FormationType f){
 		formation = f;
 		//j is used to place the players on the correct side of the field, and rightOffset offsets the players on the right side in the x direction
