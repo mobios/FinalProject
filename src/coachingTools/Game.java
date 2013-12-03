@@ -9,6 +9,7 @@ import java.util.Random;
 
 import coachingTools.Player.FieldSide;
 import coachingTools.Player.SoccerArea;
+import coachingTools.Team.FormationType;
 import core.GameEngine;
 import util.Point;
 
@@ -142,7 +143,7 @@ public class Game {
 	}
 
 	public void setTeam1(Team team1) {
-		this.team1 = team1;
+		Game.team1 = team1;
 	}
 
 	public static Team getTeam1() {
@@ -154,7 +155,7 @@ public class Game {
 	}
 
 	public void setTeam2(Team team2) {
-		this.team2 = team2;
+		Game.team2 = team2;
 	}
 
 	public BackgroundImage getGameField() {
@@ -206,6 +207,8 @@ public class Game {
 	public Player getOpposingPlayerClosestBall(){
 		float cdistance = 100f;
 		Player ballHolder = getPlayerWithBall();
+		if(ballHolder == null)
+			return null;
 		float ballX = ballHolder.getDisplay().getRect().getX();
 		float ballY = ballHolder.getDisplay().getRect().getY();
 		int index = 0;
@@ -283,11 +286,13 @@ public class Game {
 		setFieldBounds(players1, players2);
 
 		Player closestPlayer = getOpposingPlayerClosestBall();
-		float deltaX = player.getDisplay().getRect().getX() - closestPlayer.getDisplay().getRect().getX();
-		float deltaY = player.getDisplay().getRect().getY() - closestPlayer.getDisplay().getRect().getY();
-		closestPlayer.move((float)(deltaX*0.05), (float)(deltaY*0.05), 1);
-
-		scoreGoal();
+		if(closestPlayer != null){
+			float deltaX = player.getDisplay().getRect().getX() - closestPlayer.getDisplay().getRect().getX();
+			float deltaY = player.getDisplay().getRect().getY() - closestPlayer.getDisplay().getRect().getY();
+			closestPlayer.move((float)(deltaX*0.05), (float)(deltaY*0.05), 1);
+		}
+		
+		scoreGoal(player);
 		ball.step();
 
 	}
@@ -347,10 +352,12 @@ public class Game {
 	}
 
 
-	public void scoreGoal(){
+	public void scoreGoal(Player p){
 		//might need to add stuff to Player.scoreGoal() so that this works correctly
-		float x = getPlayerWithBall().getXLeft();
-		float y = getPlayerWithBall().getYTop();
+		if(p == null)
+			return;
+		float x = p.getXLeft();
+		float y = p.getYTop();
 
 
 		if(getTeamWithBall() == team1){
@@ -383,11 +390,17 @@ public class Game {
 	public void team1Scored(){
 		score[0]++;
 		scoreDisplay.updateScore(score);
+		Game.getTeam2().getInFormation(FormationType.genRnd());
+		Game.getTeam1().getInFormation(FormationType.genRnd());
+		Game.getTeam2().getPlayers().get(GameEngine.rgen.nextInt(Game.getTeam2().getPlayers().size())).setBall(GameEngine.game.ball);
 	}
 	
 	public void team2Scored(){
 		score[1]++;
 		scoreDisplay.updateScore(score);
+		Game.getTeam2().getInFormation(FormationType.genRnd());
+		Game.getTeam1().getInFormation(FormationType.genRnd());
+		Game.getTeam1().getPlayers().get(GameEngine.rgen.nextInt(Game.getTeam1().getPlayers().size())).setBall(GameEngine.game.ball);
 	}
 }
 

@@ -12,7 +12,7 @@ public class BallModel extends PlayerModel {
 	public static float height = PlayerModel.height/3f;
 	public static float stepVal = 0.06f;
 	
-	public static final float widthBuf = .02f;
+	public static final float widthBuf = .01f;
 	
 	public static Player targetPlayer;
 	
