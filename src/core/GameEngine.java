@@ -18,6 +18,7 @@ import org.lwjgl.opengl.PixelFormat;
 import coachingTools.Game;
 import coachingTools.Player;
 import coachingTools.Team;
+import util.Clamp;
 import util.MouseEvent;
 import util.Rectangle;
 
@@ -93,6 +94,14 @@ public class GameEngine {
 		
 		Display.destroy();
 		
+	}
+	
+	public static float getMouseX(){
+		return Clamp.clampX(Mouse.getX());
+	}
+	
+	public static float getMouseY(){
+		return Clamp.clampY(Mouse.getY());
 	}
 	
 	public static void handleMouse(){
