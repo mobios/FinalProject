@@ -1,29 +1,34 @@
 package coachingTools;
 
 import graphics.frontend.BackgroundImage;
+import graphics.frontend.BallModel;
 
 import java.util.ArrayList;
 import java.util.Random;
+
+import util.Point;
 
 public class Game {
 	private int period, speed = 100;
 	private Team team1;
 	private Team team2;
+	private BallModel ball;
 	private BackgroundImage gameField;
+	
+	public boolean duringPass;
 
 	public Game() {
 		super();
 		gameField = new Field();
-		team1 = new Team("BestTeamEver", new float[] {0.6f, 0.7f, 0.6f, 1.0f}, Team.FieldHalf.Left);
-		team2 = new Team("BesterTeamEver", new float[] {1.0f, 0.6f, 1.0f, 1.0f}, Team.FieldHalf.Right);
+		team1 = new Team("BestTeamEver", new float[] {1f, 0f, 0f, 1.0f}, Team.FieldHalf.Left);
+		team2 = new Team("BesterTeamEver", new float[] {.02f, 0.2f, 1.0f, 1.0f}, Team.FieldHalf.Right);
+		ball = new BallModel(new Point(0,0), new float[]{0f,0f,0f,1f});
 	}
 	
+	//throws the ball to a random player on the thrower's team for a ThrowIn
 	public void throwIn(ArrayList<Player> players, Player p){
-		
 		p.setBall(true);
-		
 		Random generator = new Random();
-		
 		int num = generator.nextInt(11);
 		
 		if(players.get(num) != p){
@@ -34,28 +39,16 @@ public class Game {
 			} else {
 				num--;
 			}
-			
 			p.pass(players.get(num));
 		}
-		
-		
 	}
 
-	public Team getTeam1() {
-		return team1;
-	}
-	
-	public Team getTeam2() {
-		return team2;
-	}
-
-	public void goalKick(Player p, ArrayList<Player> players){
+	//kicks the ball to a random player from an arrayList of players (a goal kick is made by the goalie)
+	public void goalKick( ArrayList<Player> players, Player p){
 
 		if (((Player)p).isGoalie()){
 			p.setBall(true);
-
 			Random generator = new Random();
-
 			int num = generator.nextInt(11);
 
 			if(players.get(num) != p){
@@ -66,13 +59,12 @@ public class Game {
 				} else {
 					num--;
 				}
-
 				p.pass(players.get(num));
 			}
 		}
-
 	}
-
+	
+	// Kicks the ball form the corner to a player on the kickers team with a chance for a goal of interception.
 	public void cornerKick(Player p, ArrayList<Player> offensiveTeam, ArrayList<Player> defensiveTeam){
 		p.setBall(true);
 		
@@ -103,6 +95,7 @@ public class Game {
 		}
 	}
 	
+	//kicks the ball to a random player from an arrayList of players to start a round
 	public void kickOff(Player p, ArrayList<Player> players){
 		p.setBall(true);
 		
@@ -124,17 +117,6 @@ public class Game {
 		
 	}
 	
-	public void Formation(ArrayList<Player> players){
-		
-		
-		
-	}
-	
-	public void setDebugSeed(){
-		
-		
-		
-	}
 	
 	// ------ getters and setters ------ \\
 	
@@ -158,6 +140,13 @@ public class Game {
 		this.team1 = team1;
 	}
 
+	public Team getTeam1() {
+		return team1;
+	}
+	
+	public Team getTeam2() {
+		return team2;
+	}
 
 	public void setTeam2(Team team2) {
 		this.team2 = team2;
@@ -185,5 +174,31 @@ public class Game {
 	public void setGameField(BackgroundImage gameField) {
 		this.gameField = gameField;
 	}
+	
+	public Player getPlayerWithBall(){
+		for(Player player: getAllPlayers()){
+			if(player.hasBall())
+				return player;
+		}
+		return null;
+		
+	}
+	
+	public Team getTeamWithBall(){
+		for(Player player: team1.getPlayers()){
+			if(player.hasBall())
+				return team1;
+		}
+		
+		for(Player player: team2.getPlayers()){
+			if(player.hasBall())
+				return team2;
+		}
+		
+		return null;
+	}
+	
+	
+	
 	
 }

@@ -2,6 +2,7 @@ package core;
 
 import graphics.backend.TextureManager;
 import graphics.frontend.BackgroundImage;
+import graphics.frontend.BallModel;
 import graphics.frontend.Button;
 import graphics.frontend.GuiElement;
 import graphics.frontend.PlayerModel;
@@ -17,7 +18,9 @@ import java.io.IOException;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
 
+
 import coachingTools.Game;
+import coachingTools.Player;
 import coachingTools.Team;
 import util.Point;
 import util.Rectangle;
@@ -34,7 +37,8 @@ public class RenderEngine {
 	public static int ProgramID;
 	public static int fragmentShaderID;
 	public static int vertexShaderID;
-	
+
+	// renders the the various images displayed ie the player, the background and the GUI
 	public static void render(){
 		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
 		squadStaticHandle.render();
@@ -42,6 +46,7 @@ public class RenderEngine {
 		guiStaticHandle.render();
 	}
 	
+	// used to setup all the thing needed in creating a image on screen like textures shaders and the program itself
 	public static void setup(){
 		TextureManager.setup();
 		dquadStaticHandle = new PlayerModel();
@@ -60,27 +65,8 @@ public class RenderEngine {
 		initializeProgram();
 	}
 	
-	public static void test(){
-		/*
-		new BackgroundImage(new Rectangle(-.15f, .0f, 1.7f, 2.0f), "resources/field.png");
-		
-		final Game game = new Game();
-		game.getTeam1().getInFormation(Team.FormationType.FourFourTwo);
-		game.getTeam2().getInFormation(Team.FormationType.ThreeFourThree);
-		game.getTeam2().getPlayers().get(8).setBall(true);
-
-		//team selection buttons
-		new Button(new Rectangle(.775f, .91f, .1f, .1f), "resources/button.png", "resources/button.png", "resources/button.png", (new util.PressAction(){public void fire(){System.exit(0);};}));
-		new Button(new Rectangle(.92f, .91f, .1f, .1f), "resources/button.png", "resources/button.png", "resources/button.png", (new util.PressAction(){public void fire(){System.exit(0);};}));
-		
-		
-		//formation buttons
-		new Button(new Rectangle(.85f, .75f, .25f, .13f), "resources/button.png", "resources/button.png", "resources/button.png", (new util.PressAction(){public void fire(){game.getTeam1().getInFormation(Team.FormationType.FourFourTwo);};}));
-		new Button(new Rectangle(.85f, .55f, .25f, .13f), "resources/button.png", "resources/button.png", "resources/button.png", (new util.PressAction(){public void fire(){game.getTeam1().getInFormation(Team.FormationType.FourThreeThree);};}));
-		new Button(new Rectangle(.85f, .35f, .25f, .13f), "resources/button.png", "resources/button.png", "resources/button.png", (new util.PressAction(){public void fire(){game.getTeam1().getInFormation(Team.FormationType.ThreeFiveTwo);};}));
-		new Button(new Rectangle(.85f, .15f, .25f, .13f), "resources/button.png", "resources/button.png", "resources/button.png", (new util.PressAction(){public void fire(){game.getTeam1().getInFormation(Team.FormationType.ThreeFourThree);};}));
-		 */
-		
+	
+	public static void test(){		
 		//7-segment score display
 		horizSeg.staticSetup();
 		vertSeg.staticSetup();
@@ -90,6 +76,7 @@ public class RenderEngine {
 		guiStaticHandle.populate();
 	}
 	
+	// loads the shaders form a .glsl file that is passed in as a string (the path to the file)
 	@SuppressWarnings("deprecation")
 	public static int loadShader(String source, int type){
 		int shaderID;
@@ -121,24 +108,27 @@ public class RenderEngine {
 		return shaderID;
 	}
 	
+	// creates the shaders used in setup() by calling loadShader()
 	public static void initializeShaders(){
 		vertexShaderID = loadShader("src/graphics/backend/vertex.glsl", GL20.GL_VERTEX_SHADER);
 		fragmentShaderID = loadShader("src/graphics/backend/fragment.glsl", GL20.GL_FRAGMENT_SHADER);
 	}
 	
+	// initializes the program by by setting its ID, attaching and the shaders
+	// must be called after initializeShaders()
 	public static void initializeProgram(){
 		ProgramID = GL20.glCreateProgram();
 		GL20.glAttachShader(ProgramID, vertexShaderID);
 		GL20.glAttachShader(ProgramID, fragmentShaderID);
 		
+		// set blending
 		GL11.glEnable(GL11.GL_BLEND);
 		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+		
+		//disables the GL depth test
 		GL11.glDisable(GL11.GL_DEPTH_TEST);
 		
-		//GL20.glBindAttribLocation(ProgramID, 0, "position");
-		//GL20.glBindAttribLocation(ProgramID, 1, "uv");
-		//GL20.glBindAttribLocation(ProgramID, 2, "tint");
-		
+		// likes the program to its ID and validates that ID
 		GL20.glLinkProgram(ProgramID);
 		GL20.glValidateProgram(ProgramID);
 		GL20.glUseProgram(ProgramID);
