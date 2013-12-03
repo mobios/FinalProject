@@ -5,6 +5,9 @@ import graphics.frontend.BackgroundImage;
 import graphics.frontend.Button;
 import graphics.frontend.GuiElement;
 import graphics.frontend.PlayerModel;
+import graphics.frontend.SegmentHorizontal;
+import graphics.frontend.SegmentVertical;
+import graphics.frontend.SevenSegmentDisplay;
 import graphics.quadrangle.Quad;
 
 import java.io.BufferedReader;
@@ -16,6 +19,7 @@ import org.lwjgl.opengl.GL20;
 
 import coachingTools.Game;
 import coachingTools.Team;
+import util.Point;
 import util.Rectangle;
 
 public class RenderEngine {
@@ -23,6 +27,9 @@ public class RenderEngine {
 	public static PlayerModel dquadStaticHandle;
 	public static BackgroundImage squadStaticHandle;
 	public static GuiElement guiStaticHandle;
+	
+	public static SegmentHorizontal horizSeg;
+	public static SegmentVertical vertSeg;
 	
 	public static int ProgramID;
 	public static int fragmentShaderID;
@@ -45,13 +52,16 @@ public class RenderEngine {
 		
 		guiStaticHandle = new GuiElement();
 		guiStaticHandle.staticSetup();
+		
+		horizSeg = new SegmentHorizontal();
+		vertSeg = new SegmentVertical();
 
 		initializeShaders();
 		initializeProgram();
 	}
 	
 	public static void test(){
-		
+		/*
 		new BackgroundImage(new Rectangle(-.15f, .0f, 1.7f, 2.0f), "resources/field.png");
 		
 		final Game game = new Game();
@@ -69,7 +79,14 @@ public class RenderEngine {
 		new Button(new Rectangle(.85f, .55f, .25f, .13f), "resources/button.png", "resources/button.png", "resources/button.png", (new util.PressAction(){public void fire(){game.getTeam1().getInFormation(Team.FormationType.FourThreeThree);};}));
 		new Button(new Rectangle(.85f, .35f, .25f, .13f), "resources/button.png", "resources/button.png", "resources/button.png", (new util.PressAction(){public void fire(){game.getTeam1().getInFormation(Team.FormationType.ThreeFiveTwo);};}));
 		new Button(new Rectangle(.85f, .15f, .25f, .13f), "resources/button.png", "resources/button.png", "resources/button.png", (new util.PressAction(){public void fire(){game.getTeam1().getInFormation(Team.FormationType.ThreeFourThree);};}));
-
+		 */
+		
+		//7-segment score display
+		horizSeg.staticSetup();
+		vertSeg.staticSetup();
+		SevenSegmentDisplay s = new SevenSegmentDisplay(new Point(0f, 0f));
+		s.writeValue(9);
+		s.updateDisplay();
 		guiStaticHandle.populate();
 	}
 	

@@ -17,7 +17,7 @@ public class Player {
 	private SoccerArea region;
 	private boolean goalie = false;
 	private float[] teamColor;
-	private float[] ballHolderColor;
+	private static final float[] ballHolderColor = new float[] {1.0f, 1.0f, 1.0f, 1.0f};
 	
 	
 	public Player(int number, int stamina, Point p, float[] tint) {
@@ -26,7 +26,6 @@ public class Player {
 		this.number = number;
 		this.stamina = stamina;
 		scoredPoints = 0;
-		ballHolderColor = new float[] {1.0f, 1.0f, 1.0f, 1.0f};
 		display = new PlayerModel(p, tint);
 		teamColor = tint;
 	}
