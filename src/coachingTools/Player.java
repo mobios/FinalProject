@@ -20,12 +20,8 @@ public class Player {
 	private boolean goalie = false;
 	private float[] teamColor;
 	private float[] ballHolderColor;
-	
-	public static final float step = 0.02f;
-	public static final float drift = (float) (1f/16.f*Math.PI);
-	
-	private float vecRadians;
-	private BallModel intercept;
+
+	private BallModel ball;
 
 	public Player(int number, int stamina, Point p, float[] tint) {
 		super();
@@ -40,40 +36,11 @@ public class Player {
 
 	public void scoreGoal() {
 		scoredPoints++;
-		setBall(false);
+		setBall(null);
 	}
 
 	public void setGoalie(){
 		goalie = true;
-	}
-	
-	public void clampRad(){
-		if(vecRadians > Math.PI)
-			vecRadians -= Math.PI;
-		else if(vecRadians < 0)
-			vecRadians += Math.PI;
-	}
-
-	public void drift(){
-		vecRadians += GameEngine.rgen.nextGaussian()*drift;
-	}
-	
-	public void step(){
-		float deltx, delty;
-		deltx = (float) Math.cos(vecRadians)*step;
-		delty = (float) Math.sin(vecRadians)*step;
-		
-		if(delty+getYTop() > Field.top){
-			vecRadians -= 1/6*Math.PI;
-			step();
-		}
-		
-		if(delty+getYBottom() < Field.bottom){
-			vecRadians += 1/6*Math.PI;
-			step();
-		}
-		
-		move(deltx, delty, 0);
 	}
 	
 	//used to set a players initial position
@@ -96,7 +63,6 @@ public class Player {
 		if(hasBall){
 			hasBall = false;
 			display.setTint(teamColor); 
-			player.setBall(true);
 			player.display.setTint(ballHolderColor);
 		}
 
@@ -137,12 +103,13 @@ public class Player {
 		}
 	}
 
-	public void setBall(boolean hasBall) {
-		this.hasBall = hasBall;
+	public void setBall(BallModel arg1ball) {
+		this.hasBall = arg1ball !=null;
 		if(this.hasBall == true)
 			display.setTint(ballHolderColor);
 		else
 			display.setTint(teamColor);
+		this.ball = arg1ball;
 	}
 
 	public boolean isOffside(){

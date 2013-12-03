@@ -15,8 +15,9 @@ public class Game {
 	private int period, speed = 100;
 	private Team team1;
 	private Team team2;
-	private BallModel ball;
+	public BallModel ball;
 	private BackgroundImage gameField;
+	int[] score;
 
 	public boolean duringPass;
 
@@ -26,11 +27,12 @@ public class Game {
 		team1 = new Team("BestTeamEver", new float[] {1f, 0f, 0f, 1.0f}, Team.FieldHalf.Left);
 		team2 = new Team("BesterTeamEver", new float[] {.02f, 0.2f, 1.0f, 1.0f}, Team.FieldHalf.Right);
 		ball = new BallModel(new Point(0,0), new float[]{0f,0f,0f,1f});
+		score = new int[] {0,0};
 	}
 
 	//throws the ball to a random player on the thrower's team for a ThrowIn
 	public void throwIn(ArrayList<Player> players, Player p){
-		p.setBall(true);
+		p.setBall(ball);
 		int num = GameEngine.rgen.nextInt(11);
 
 		if(players.get(num) != p){
@@ -49,7 +51,7 @@ public class Game {
 	public void goalKick( ArrayList<Player> players, Player p){
 
 		if (((Player)p).isGoalie()){
-			p.setBall(true);
+			p.setBall(ball);
 			int num = GameEngine.rgen.nextInt(11);
 
 			if(players.get(num) != p){
@@ -67,8 +69,7 @@ public class Game {
 
 	// Kicks the ball form the corner to a player on the kickers team with a chance for a goal of interception.
 	public void cornerKick(Player p, ArrayList<Player> offensiveTeam, ArrayList<Player> defensiveTeam){
-		p.setBall(true);
-
+		p.setBall(ball);
 		int totalPlayers = offensiveTeam.size() + defensiveTeam.size();
 
 		int num = GameEngine.rgen.nextInt(totalPlayers);
@@ -97,8 +98,8 @@ public class Game {
 
 	//kicks the ball to a random player from an arrayList of players to start a round
 	public void kickOff(Player p, ArrayList<Player> players){
-		p.setBall(true);
-
+		p.setBall(ball);
+		
 		int num = GameEngine.rgen.nextInt(11);
 
 		if(players.get(num) != p){
@@ -346,7 +347,7 @@ public class Game {
 			float distance = (float)Math.sqrt(Math.pow((x-x2), 2) + Math.pow((y-y2), 2));
 			if(distance < 0.7){
 				int n = new Random().nextInt(10);
-				if( n < 7){
+				if(n < 7){
 					getPlayerWithBall().scoreGoal();
 				}
 			}
