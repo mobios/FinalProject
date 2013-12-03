@@ -14,8 +14,8 @@ public class Game {
 	public Game() {
 		super();
 		gameField = new Field();
-		team1 = new Team("BestTeamEver", new float[] {1f, 0f, 0f, 1.0f}, Team.FieldHalf.Left);
-		team2 = new Team("BesterTeamEver", new float[] {.02f, 0.2f, 1.0f, 1.0f}, Team.FieldHalf.Right);
+		team1 = new Team("BestTeamEver", new float[] {0.6f, 0.7f, 0.6f, 1.0f}, Team.FieldHalf.Left);
+		team2 = new Team("BesterTeamEver", new float[] {1.0f, 0.6f, 1.0f, 1.0f}, Team.FieldHalf.Right);
 	}
 	
 	public void throwIn(ArrayList<Player> players, Player p){
@@ -193,6 +193,20 @@ public class Game {
 		}
 		return null;
 		
+	}
+	
+	public Team getTeamWithBall(){
+		for(Player player: team1.getPlayers()){
+			if(player.hasBall())
+				return team1;
+		}
+		
+		for(Player player: team2.getPlayers()){
+			if(player.hasBall())
+				return team2;
+		}
+		
+		return null;
 	}
 	
 	

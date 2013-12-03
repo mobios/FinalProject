@@ -2,7 +2,6 @@ package core;
 
 import graphics.frontend.BackgroundImage;
 import graphics.frontend.Button; 
-import graphics.frontend.Placeable;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -148,8 +147,8 @@ public class GameEngine {
 		//formation buttons
 		new Button(new Rectangle(.85f, .75f, .25f, .13f), "resources/bluebutton442.png", "resources/redbutton442.png", "resources/bluebutton442.png", (new util.PressAction(){public void fire(){team.getInFormation(Team.FormationType.FourFourTwo);};}));
 		new Button(new Rectangle(.85f, .55f, .25f, .13f), "resources/bluebutton433.png", "resources/redbutton433.png", "resources/bluebutton433.png", (new util.PressAction(){public void fire(){team.getInFormation(Team.FormationType.FourThreeThree);};}));
-		new Button(new Rectangle(.85f, .35f, .25f, .13f), "resources/bluebutton343.png", "resources/redbutton343.png", "resources/bluebutton343.png", (new util.PressAction(){public void fire(){team.getInFormation(Team.FormationType.ThreeFiveTwo);};}));
-		new Button(new Rectangle(.85f, .15f, .25f, .13f), "resources/bluebutton352.png", "resources/redbutton352.png", "resources/bluebutton352.png", (new util.PressAction(){public void fire(){team.getInFormation(Team.FormationType.ThreeFourThree);};}));
+		new Button(new Rectangle(.85f, .35f, .25f, .13f), "resources/bluebutton343.png", "resources/redbutton343.png", "resources/bluebutton343.png", (new util.PressAction(){public void fire(){team.getInFormation(Team.FormationType.ThreeFourThree);};}));
+		new Button(new Rectangle(.85f, .15f, .25f, .13f), "resources/bluebutton352.png", "resources/redbutton352.png", "resources/bluebutton352.png", (new util.PressAction(){public void fire(){team.getInFormation(Team.FormationType.ThreeFiveTwo);};}));
 	}
 	
 	
@@ -157,9 +156,19 @@ public class GameEngine {
 		passButton.setSticky(true);
 		boolean test = true;
 		Player ballHolder = game.getPlayerWithBall();
+		Team teamWithBall = game.getTeamWithBall();
 		
 		
 		while(test){
+			//float x = getMouseClickX();
+			//float y = getMouseClickY();
+			for(Player player : teamWithBall.getPlayers()){
+				//if(player.getDisplay().getRect().contains(x, y)){
+					
+				//}
+			}
+
+			
 			test = false;
 		}
 		
