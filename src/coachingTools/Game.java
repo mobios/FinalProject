@@ -6,6 +6,7 @@ import graphics.frontend.BallModel;
 import java.util.ArrayList;
 import java.util.Random;
 
+import core.GameEngine;
 import util.Point;
 
 public class Game {
@@ -28,8 +29,7 @@ public class Game {
 	//throws the ball to a random player on the thrower's team for a ThrowIn
 	public void throwIn(ArrayList<Player> players, Player p){
 		p.setBall(true);
-		Random generator = new Random();
-		int num = generator.nextInt(11);
+		int num = GameEngine.rgen.nextInt(11);
 		
 		if(players.get(num) != p){
 			p.pass(players.get(num));
@@ -48,8 +48,7 @@ public class Game {
 
 		if (((Player)p).isGoalie()){
 			p.setBall(true);
-			Random generator = new Random();
-			int num = generator.nextInt(11);
+			int num = GameEngine.rgen.nextInt(11);
 
 			if(players.get(num) != p){
 				p.pass(players.get(num));
@@ -68,10 +67,9 @@ public class Game {
 	public void cornerKick(Player p, ArrayList<Player> offensiveTeam, ArrayList<Player> defensiveTeam){
 		p.setBall(true);
 		
-		Random generator = new Random();
 		int totalPlayers = offensiveTeam.size() + defensiveTeam.size();
 		
-		int num = generator.nextInt(totalPlayers);
+		int num = GameEngine.rgen.nextInt(totalPlayers);
 		
 		if(offensiveTeam.get(num) != p){
 			if(num < offensiveTeam.size()) {
@@ -80,7 +78,7 @@ public class Game {
 				//about 1 in 40 corner kicks result in a goal
 				//part of this was already taken into account when we picked a random player
 				//from either team to receive the ball
-				int shot = generator.nextInt(20);
+				int shot = GameEngine.rgen.nextInt(20);
 				if(shot == 0)
 					((Player) offensiveTeam.get(num)).scoreGoal();
 			} else {
@@ -99,9 +97,7 @@ public class Game {
 	public void kickOff(Player p, ArrayList<Player> players){
 		p.setBall(true);
 		
-		Random generator = new Random();
-		
-		int num = generator.nextInt(11);
+		int num = GameEngine.rgen.nextInt(11);
 		
 		if(players.get(num) != p){
 			p.pass(players.get(num));
