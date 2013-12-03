@@ -1,21 +1,28 @@
 package coachingTools;
 
 import graphics.frontend.BackgroundImage;
+import graphics.frontend.BallModel;
 
 import java.util.ArrayList;
 import java.util.Random;
+
+import util.Point;
 
 public class Game {
 	private int period, speed = 100;
 	private Team team1;
 	private Team team2;
+	private BallModel ball;
 	private BackgroundImage gameField;
+	
+	public boolean duringPass;
 
 	public Game() {
 		super();
 		gameField = new Field();
 		team1 = new Team("BestTeamEver", new float[] {1f, 0f, 0f, 1.0f}, Team.FieldHalf.Left);
 		team2 = new Team("BesterTeamEver", new float[] {.02f, 0.2f, 1.0f, 1.0f}, Team.FieldHalf.Right);
+		ball = new BallModel(new Point(0,0), new float[]{0f,0f,0f,1f});
 	}
 	
 	public void throwIn(ArrayList<Player> players, Player p){
