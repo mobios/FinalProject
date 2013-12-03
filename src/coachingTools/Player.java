@@ -36,6 +36,7 @@ public class Player {
 
 	public void scoreGoal() {
 		scoredPoints++;
+		setBall(false);
 	}
 
 	public void setGoalie(){
