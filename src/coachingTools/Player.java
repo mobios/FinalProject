@@ -1,7 +1,9 @@
 package coachingTools;
 
-public abstract class Player extends Image {
-	private float x, y;
+import graphics.frontend.PlayerModel;
+
+public abstract class Player {
+	private PlayerModel p;
 	private int number, stamina, skill;
 	protected int scoredPoints;
 	private boolean hasBall;
@@ -14,11 +16,9 @@ public abstract class Player extends Image {
 	}
 
 	public void move(float x, float y, int stamina){
-		this.x = x;
-		this.y = y;
 		
+		p.move(x, y);
 		this.stamina -= stamina;
-		
 		
 	}
 	
@@ -27,7 +27,6 @@ public abstract class Player extends Image {
 			hasBall = false;
 			player.setBall(true);
 		}
-		
 		
 	}
 	
@@ -74,21 +73,5 @@ public abstract class Player extends Image {
 	
 	public void throwInBall() {
 		
-	}
-	
-	public float getX() {
-		return x;
-	}
-	
-	public float getY() {
-		return y;
-	}
-	
-	public void setX(float x) {
-		this.x = x;
-	}
-	
-	public void setY(float y) {
-		this.y = y;
 	}
 }
