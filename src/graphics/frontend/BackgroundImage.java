@@ -69,6 +69,8 @@ public class BackgroundImage extends Static{
 		}
 	}
 	
+	
+	
 	public Texture getTexture(){
 		return image;
 	}
