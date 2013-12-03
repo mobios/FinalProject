@@ -281,7 +281,7 @@ public class Game {
 		for(int i = 1; i < players1.size(); i++){
 			int n = new Random().nextInt(11);
 			n -= 5;
-			players1.get(i).move((float)(0.01+n*0.005), (float)(n*0.005), 1);
+			players1.get(i).move((float)(0.005+n*0.005), (float)(n*0.005), 1);
 			
 			if(players1.get(i).getDisplay().getRect().getX() <= minX)
 				players1.get(i).move(0.2f, 0f, 1);
@@ -291,6 +291,24 @@ public class Game {
 				players1.get(i).move(0f, 0.2f, 1);
 			if(players1.get(i).getDisplay().getRect().getY() >= maxY)
 				players1.get(i).move(0f, -0.2f, 1);
+			
+			//do stuff depending on distance to ball and closest player using getopposingplayerclosestball
+
+		}
+		
+		for(int i = 1; i < players2.size(); i++){
+			int n = new Random().nextInt(11);
+			n -= 5;
+			players2.get(i).move((float)(-0.005+n*0.005), (float)(n*0.005), 1);
+			
+			if(players2.get(i).getDisplay().getRect().getX() <= minX)
+				players2.get(i).move(0.2f, 0f, 1);
+			if(players2.get(i).getDisplay().getRect().getX() >= maxX)
+				players2.get(i).move(-0.2f, 0f, 1);
+			if(players2.get(i).getDisplay().getRect().getY() <= minY)
+				players2.get(i).move(0f, 0.2f, 1);
+			if(players2.get(i).getDisplay().getRect().getY() >= maxY)
+				players2.get(i).move(0f, -0.2f, 1);
 			
 			//do stuff depending on distance to ball and closest player using getopposingplayerclosestball
 
