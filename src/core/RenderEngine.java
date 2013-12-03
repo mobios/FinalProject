@@ -14,6 +14,7 @@ import java.io.IOException;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
 
+import coachingTools.SoccerGame;
 import util.Rectangle;
 
 public class RenderEngine {
@@ -52,6 +53,7 @@ public class RenderEngine {
 		
 		new BackgroundImage(new Rectangle(-.15f, .0f, 1.7f, 2.0f), "resources/field.png");
 		new Button(new Rectangle(.3f, .58f, .4f, .4f), "resources/schmile.png", "resources/schmile_down.png", "resources/schmile_over.png", (new util.PressAction(){public void fire(){System.exit(0);};}));
+		new SoccerGame();
 		guiStaticHandle.populate();
 	}
 	
