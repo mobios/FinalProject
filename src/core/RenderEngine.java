@@ -50,11 +50,11 @@ public class RenderEngine {
 	
 	public static void test(){
 		new PlayerModel(new Rectangle(-.8f, -.78f, .22f, .22f),new float[]{.8f,1f,1f,1f});
-		new PlayerModel(new Rectangle(0f, 0f, .52f, .52f),new float[]{.25f,0,0,1f});
+		new PlayerModel(new Rectangle(-.61f, -.915f, .03f, .03f),new float[]{.25f,0,0,1f});
 		new PlayerModel(new Rectangle(1f, 1f, .5f, .5f),new float[]{0,0,.5f,1f});
 		
 		new BackgroundImage(new Rectangle(-.15f, .0f, 1.7f, 2.0f), "resources/field.png");
-		new Button(new Rectangle(.3f, .58f, .4f, .4f), "resources/schmile.png", "resources/schmile_down.png", "resources/schmile_over.png", (new util.PressAction(){public void fire(){System.exit(0);};}));
+		new Button(new Rectangle(-.58f, 0.0f, .05f, .4f), "resources/schmile.png", "resources/schmile_down.png", "resources/schmile_over.png", (new util.PressAction(){public void fire(){System.exit(0);};}));
 		guiStaticHandle.populate();
 	}
 	

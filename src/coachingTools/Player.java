@@ -3,7 +3,7 @@ package coachingTools;
 import graphics.frontend.PlayerModel;
 
 public abstract class Player {
-	private PlayerModel p;
+	private PlayerModel mesh;
 	private int number, stamina, skill;
 	protected int scoredPoints;
 	private boolean hasBall;
@@ -17,7 +17,7 @@ public abstract class Player {
 
 	public void move(float x, float y, int stamina){
 		
-		p.move(x, y);
+		mesh.move(x, y);
 		this.stamina -= stamina;
 		
 	}
@@ -70,5 +70,15 @@ public abstract class Player {
 	public void setBall(boolean hasBall) {
 		this.hasBall = hasBall;
 	}
+
+	public PlayerModel getMesh() {
+		return mesh;
+	}
+
+	public void setMesh(PlayerModel mesh) {
+		this.mesh = mesh;
+	}
+	
+	
 	
 }

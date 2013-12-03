@@ -1,6 +1,6 @@
 package coachingTools;
 
-import java.util.ArrayList;
+import java.util.ArrayList; 
 import java.util.Random;
 
 public class SoccerGame extends Game {
