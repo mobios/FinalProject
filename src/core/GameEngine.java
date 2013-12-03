@@ -75,6 +75,10 @@ public class GameEngine {
 	
 	public static void handleMouse(){
 		MouseEvent event;
+		
+		int mx = Mouse.getEventX();
+		int my = Mouse.getEventY();
+		
 		while(Mouse.next()){
 			if(Mouse.getEventButton() == 0){
 				if(Mouse.isButtonDown(0))
@@ -86,7 +90,7 @@ public class GameEngine {
 				event = MouseEvent.MOVE;
 			}
 			for(Button button : buttons)
-				if(button.handleMouse(event, Mouse.getEventX(), Mouse.getEventY()))
+				if(button.handleMouse(event, mx, my))
 					break;
 			
 //			if(Mouse.getEventButton() == 0){
