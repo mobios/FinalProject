@@ -4,7 +4,6 @@ import graphics.backend.TextureManager;
 import graphics.frontend.BackgroundImage;
 import graphics.frontend.Button;
 import graphics.frontend.GuiElement;
-import graphics.frontend.Placeable;
 import graphics.frontend.PlayerModel;
 import graphics.quadrangle.Quad;
 
@@ -67,7 +66,6 @@ public class RenderEngine {
 
 		createButtons(game);
 
-		Placeable.setup();
 		guiStaticHandle.populate();
 	}
 
