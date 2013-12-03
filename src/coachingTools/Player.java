@@ -24,7 +24,7 @@ public abstract class Player {
 		this.number = number;
 		this.stamina = stamina;
 		scoredPoints = 0;
-		//display = new PlayerModel(p, tint);
+		display = new PlayerModel(p, tint);
 	}
 
 	public void move(float x, float y, int stamina){

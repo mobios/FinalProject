@@ -7,9 +7,10 @@ public abstract class Team {
 	public String name;
 	public float[] teamColor;
 	
-	public Team(String name) {
+	public Team(String name, float[] tint) {
 		super();
 		this.name = name;
+		this.teamColor = tint;
 		players = new ArrayList<Player>();
 	}
 	
