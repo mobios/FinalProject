@@ -1,5 +1,7 @@
 package coachingTools;
 
+import core.GameEngine;
+import graphics.frontend.BallModel;
 import graphics.frontend.PlayerModel;
 import util.Point;
 import util.Rectangle;
@@ -18,6 +20,12 @@ public class Player {
 	private boolean goalie = false;
 	private float[] teamColor;
 	private float[] ballHolderColor;
+	
+	public static final float step = 0.02f;
+	public static final float drift = (float) (1f/16.f*Math.PI);
+	
+	private float vecRadians;
+	private BallModel intercept;
 
 	public Player(int number, int stamina, Point p, float[] tint) {
 		super();
@@ -37,7 +45,36 @@ public class Player {
 	public void setGoalie(){
 		goalie = true;
 	}
+	
+	public void clampRad(){
+		if(vecRadians > Math.PI)
+			vecRadians -= Math.PI;
+		else if(vecRadians < 0)
+			vecRadians += Math.PI;
+	}
 
+	public void drift(){
+		vecRadians += GameEngine.rgen.nextGaussian()*drift;
+	}
+	
+	public void step(){
+		float deltx, delty;
+		deltx = (float) Math.cos(vecRadians)*step;
+		delty = (float) Math.sin(vecRadians)*step;
+		
+		if(delty+getYTop() > Field.top){
+			vecRadians -= 1/6*Math.PI;
+			step();
+		}
+		
+		if(delty+getYBottom() < Field.bottom){
+			vecRadians += 1/6*Math.PI;
+			step();
+		}
+		
+		move(deltx, delty, 0);
+	}
+	
 	//used to set a players initial position
 	public void setPosition(float x, float y) {
 
@@ -169,5 +206,20 @@ public class Player {
 	public void setDisplay(PlayerModel display) {
 		this.display = display;
 	}
-
+	
+	public float getYTop(){
+		return display.getRect().getY()+display.getRect().getHeight()/2;
+	}
+	
+	public float getYBottom(){
+		return display.getRect().getY()-display.getRect().getHeight()/2;
+	}
+	
+	public float getXLeft(){
+		return display.getRect().getX()-display.getRect().getWidth()/2;
+	}
+	
+	public float getXRight(){
+		return display.getRect().getX()+display.getRect().getWidth()/2;
+	}
 }
