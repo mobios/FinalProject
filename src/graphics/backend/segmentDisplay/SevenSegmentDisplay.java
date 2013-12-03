@@ -23,6 +23,7 @@ public class SevenSegmentDisplay{
 		segments = new ArrayList<Segment>();
 		seg = new boolean[7];
 		Arrays.fill(seg, true);
+		seg[6] = false;
 		this.center = center;
 		
 		segments.add(0, new SegmentHorizontal(new Point(center.x, center.y + Y_OFFSET)));
@@ -38,72 +39,44 @@ public class SevenSegmentDisplay{
         switch (n)
         {
             case 0:
-            	seg[0] = true;
-        		seg[1] = true;
-        		seg[2] = true;
-        		seg[3] = true;
-        		seg[4] = true;
-        		seg[5] = true;
+            	Arrays.fill(seg, true);
         		seg[6] = false;
                 break;
             case 1:
+            	Arrays.fill(seg, true);
             	seg[0] = false;
-        		seg[1] = true;
-        		seg[2] = true;
         		seg[3] = false;
         		seg[4] = false;
         		seg[5] = false;
         		seg[6] = false;
                 break;
             case 2:
-            	seg[0] = true;
-        		seg[1] = true;
+            	Arrays.fill(seg, true);
         		seg[2] = false;
-        		seg[3] = true;
-        		seg[4] = true;
         		seg[5] = false;
-        		seg[6] = true;
                 break;
             case 3:
-            	seg[0] = true;
-        		seg[1] = true;
-        		seg[2] = true;
-        		seg[3] = true;
+            	Arrays.fill(seg, true);
         		seg[4] = false;
         		seg[5] = false;
-        		seg[6] = true;
                 break;
             case 4:
+            	Arrays.fill(seg, true);
             	seg[0] = false;
-        		seg[1] = true;
-        		seg[2] = true;
         		seg[3] = false;
         		seg[4] = false;
-        		seg[5] = true;
-        		seg[6] = true;
                 break;
             case 5:
-            	seg[0] = true;
+            	Arrays.fill(seg, true);
         		seg[1] = false;
-        		seg[2] = true;
-        		seg[3] = true;
         		seg[4] = false;
-        		seg[5] = true;
-        		seg[6] = true;
                 break;
             case 6:
-            	seg[0] = true;
+            	Arrays.fill(seg, true);
         		seg[1] = false;
-        		seg[2] = true;
-        		seg[3] = true;
-        		seg[4] = true;
-        		seg[5] = true;
-        		seg[6] = true;
                 break;
             case 7:
-            	seg[0] = true;
-        		seg[1] = true;
-        		seg[2] = true;
+            	Arrays.fill(seg, true);
         		seg[3] = false;
         		seg[4] = false;
         		seg[5] = false;
@@ -113,13 +86,8 @@ public class SevenSegmentDisplay{
             	Arrays.fill(seg, true);
                 break;
             case 9:
-            	seg[0] = true;
-        		seg[1] = true;
-        		seg[2] = true;
-        		seg[3] = true;
+            	Arrays.fill(seg, true);
         		seg[4] = false;
-        		seg[5] = true;
-        		seg[6] = true;
                 break;
             default:
             	Arrays.fill(seg, true);
