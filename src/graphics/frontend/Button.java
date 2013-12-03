@@ -5,7 +5,7 @@ import util.PressAction;
 import util.Rectangle;
 import core.GameEngine;
 
-public class Button extends BackgroundImage{
+public class Button extends GuiElement{
 	Texture up, down, over;
 	PressAction trigger;
 	
