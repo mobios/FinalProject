@@ -95,12 +95,6 @@ public class Player {
 			region = SoccerArea.NONE;
 		}
 	}
-
-	public void loadImage(String img){
-		
-		
-		
-	}
 	
 	// ------ getters and setters ------ \\
 	
