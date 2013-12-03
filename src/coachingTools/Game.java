@@ -314,6 +314,11 @@ public class Game {
 
 		}
 		
+		Player closestPlayer = getOpposingPlayerClosestBall();
+		float deltaX = player.getDisplay().getRect().getX() - closestPlayer.getDisplay().getRect().getX();
+		float deltaY = player.getDisplay().getRect().getY() - closestPlayer.getDisplay().getRect().getY();
+		closestPlayer.move((float)(deltaX*0.05), (float)(deltaY*0.05), 1);
+		
 		
 	}
 	
