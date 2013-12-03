@@ -87,7 +87,7 @@ public class GameEngine {
 		team = game.getTeam1();
 		game.getTeam1().getInFormation(Team.FormationType.FourFourTwo);
 		game.getTeam2().getInFormation(Team.FormationType.genRnd());
-		game.getTeam2().getPlayers().get(8).setBall(true);
+		game.getTeam2().getPlayers().get(8).setBall(game.ball);
 		ScoreDisplay sd = new ScoreDisplay(new Point(0.85f, -0.5f));
 		
 		createButtons(game);
@@ -124,6 +124,15 @@ public class GameEngine {
 		int mx = Mouse.getEventX();
 		int my = Mouse.getEventY();
 
+		if(game.duringPass){
+			for(Player p : game.getAllPlayers()){
+				if(p.getDisplay().getRect().contains(Clamp.clampX(mx), Clamp.clampY(my))){
+					game.ball.targetPlayer(p);
+					game.duringPass = false;
+				}
+			}
+		}
+		
 		while(Mouse.next()){
 			if(Mouse.getEventButton() == 0){
 				if(Mouse.isButtonDown(0))
