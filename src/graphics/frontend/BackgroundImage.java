@@ -26,7 +26,6 @@ public class BackgroundImage extends Static{
 	
 	private BackgroundImage(Rectangle rect, float[] tint) {
 		super(rect, tint);
-		// TODO Auto-generated constructor stub
 	}
 
 	public BackgroundImage(){

@@ -25,7 +25,8 @@ public class Team {
 		players = new ArrayList<Player>();
 		for (int i = 0; i < NUMBER_OF_PLAYERS; i++){
 
-			players.add(new Player(i, 100, new Point(0, 0), tint));		
+			players.add(new Player(i, 100, new Point(0, 0), tint));
+			// set player 0 to the goalie
 			if (i == 0){
 				((Player)players.get(0)).setGoalie();
 			}
@@ -33,8 +34,14 @@ public class Team {
 		
 		this.fieldHalf = half;
 	}
-	
 
+	// this constructor is used to make an empty static team that is only used to the store a team that is already in use
+	public Team() {	
+		
+		
+	}
+	
+	// to set players in the correct position depending on a enum FormationType
 	public void getInFormation(FormationType f){
 		formation = f;
 		//j is used to place the players on the correct side of the field, and rightOffset offsets the players on the right side in the x direction
@@ -46,7 +53,6 @@ public class Team {
 		}
 		((Player)players.get(0)).setPosition(j*(float) -0.9 - rightOffset, 0);
 		
-
 		for(int i = 1; i < players.size(); i++){
 			if(isInFormation(FormationType.FourFourTwo)){
 				if(i <= 4)
@@ -96,6 +102,16 @@ public class Team {
 		}
 
 	}
+		public boolean isInFormation(FormationType f){
+		if (f == formation){
+			return true;
+		}
+		
+		return false;
+	}
+		
+		
+	// ------ getters and setters ------ \\
 
 	public ArrayList<Player> getPlayers() {
 		return players;
@@ -117,11 +133,5 @@ public class Team {
 		return teamScore;
 	}
 
-	public boolean isInFormation(FormationType f){
-		if (f == formation){
-			return true;
-		}
-		
-		return false;
-	}
+
 }

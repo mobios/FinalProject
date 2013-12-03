@@ -25,12 +25,10 @@ public class Game {
 		ball = new BallModel(new Point(0,0), new float[]{0f,0f,0f,1f});
 	}
 	
+	//throws the ball to a random player on the thrower's team for a ThrowIn
 	public void throwIn(ArrayList<Player> players, Player p){
-		
 		p.setBall(true);
-		
 		Random generator = new Random();
-		
 		int num = generator.nextInt(11);
 		
 		if(players.get(num) != p){
@@ -41,28 +39,16 @@ public class Game {
 			} else {
 				num--;
 			}
-			
 			p.pass(players.get(num));
 		}
-		
-		
 	}
 
-	public Team getTeam1() {
-		return team1;
-	}
-	
-	public Team getTeam2() {
-		return team2;
-	}
-
-	public void goalKick(Player p, ArrayList<Player> players){
+	//kicks the ball to a random player from an arrayList of players (a goal kick is made by the goalie)
+	public void goalKick( ArrayList<Player> players, Player p){
 
 		if (((Player)p).isGoalie()){
 			p.setBall(true);
-
 			Random generator = new Random();
-
 			int num = generator.nextInt(11);
 
 			if(players.get(num) != p){
@@ -73,13 +59,12 @@ public class Game {
 				} else {
 					num--;
 				}
-
 				p.pass(players.get(num));
 			}
 		}
-
 	}
-
+	
+	// Kicks the ball form the corner to a player on the kickers team with a chance for a goal of interception.
 	public void cornerKick(Player p, ArrayList<Player> offensiveTeam, ArrayList<Player> defensiveTeam){
 		p.setBall(true);
 		
@@ -110,6 +95,7 @@ public class Game {
 		}
 	}
 	
+	//kicks the ball to a random player from an arrayList of players to start a round
 	public void kickOff(Player p, ArrayList<Player> players){
 		p.setBall(true);
 		
@@ -131,17 +117,6 @@ public class Game {
 		
 	}
 	
-	public void Formation(ArrayList<Player> players){
-		
-		
-		
-	}
-	
-	public void setDebugSeed(){
-		
-		
-		
-	}
 	
 	// ------ getters and setters ------ \\
 	
@@ -165,6 +140,13 @@ public class Game {
 		this.team1 = team1;
 	}
 
+	public Team getTeam1() {
+		return team1;
+	}
+	
+	public Team getTeam2() {
+		return team2;
+	}
 
 	public void setTeam2(Team team2) {
 		this.team2 = team2;
