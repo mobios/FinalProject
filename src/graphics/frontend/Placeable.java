@@ -15,8 +15,8 @@ public class Placeable {
 	public static boolean placeable = false;
 	
 	public static void setup(){
-		elm = new GuiElement(new Rectangle(x,y,w,h), "resources/region.png");
 		control = new Button(new Rectangle(.85f, -.05f, .25f, .13f), "resources/rplayer/up.png", "resources/rplayer/down.png", "resources/rplayer/hover.png", "resources/rplayer/disabled.png", (new util.PressAction(){public void fire(){toggle();};}));
+		elm = new GuiElement(new Rectangle(x,y,w,h), "resources/region.png");
 	}
 	
 	public static void toggle(){
