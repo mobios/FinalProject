@@ -88,7 +88,7 @@ public class RenderEngine {
 	
 	
 	private static void pass(){
-		passButton.setSticky();
+		passButton.setSticky(true);
 		boolean test = true;
 		Player ballHolder = game.getPlayerWithBall();
 		

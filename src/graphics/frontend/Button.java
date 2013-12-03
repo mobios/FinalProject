@@ -36,8 +36,8 @@ public class Button extends GuiElement{
 
 	}
 
-	public void setSticky(){
-		sticky = true;
+	public void setSticky(boolean arg){
+		sticky = arg;
 	}
 	
 	public boolean mouseDown(float x, float y){
