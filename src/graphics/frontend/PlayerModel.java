@@ -14,14 +14,14 @@ public class PlayerModel extends Dynamic{
 	public static String spriteURL = "resources/player.png";
 	private static int nextluc = 0;
 	
-	private static final float width = .07f;
-	private static final float height = .07f;
+	protected static final float width = .07f;
+	protected static final float height = .07f;
 	
 	public PlayerModel(Point pt, float[] tint){
 		this(new Rectangle(pt.x, pt.y, width, height), tint);
 	}
 	
-	private PlayerModel(Rectangle rect, float[] tint) {
+	protected PlayerModel(Rectangle rect, float[] tint) {
 		super(rect, tint);
 	}
 
@@ -32,13 +32,13 @@ public class PlayerModel extends Dynamic{
 	@Override
 	public void bindTexture() {
 		GL13.glActiveTexture(Texture.textureUnit);
-		GL11.glBindTexture(GL11.GL_TEXTURE_2D, sprite.textureID);
+		GL11.glBindTexture(GL11.GL_TEXTURE_2D, getTextureID());
 	}
 
 	@Override
 	public void staticSetup() {
 		super.setupVAO();
-		sprite = new Texture(spriteURL);
+		sprite = new Texture(getURL());
 	}
 
 	@Override
@@ -51,5 +51,13 @@ public class PlayerModel extends Dynamic{
 	@Override
 	public int getNumObjects(){
 		return ((PlayerModel.nextluc == 0) ? getMax() : PlayerModel.nextluc);
+	}
+	
+	public int getTextureID(){
+		return sprite.textureID;
+	}
+	
+	public String getURL(){
+		return spriteURL;
 	}
 }

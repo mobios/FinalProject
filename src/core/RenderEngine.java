@@ -2,6 +2,7 @@ package core;
 
 import graphics.backend.TextureManager;
 import graphics.frontend.BackgroundImage;
+import graphics.frontend.BallModel;
 import graphics.frontend.Button;
 import graphics.frontend.GuiElement;
 import graphics.frontend.PlayerModel;
@@ -17,6 +18,7 @@ import org.lwjgl.opengl.GL20;
 import coachingTools.Game;
 import coachingTools.Player;
 import coachingTools.Team;
+import util.Point;
 import util.Rectangle;
 
 public class RenderEngine {
@@ -29,7 +31,6 @@ public class RenderEngine {
 	public static int fragmentShaderID;
 	public static int vertexShaderID;
 
-	
 	public static void render(){
 		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
 		squadStaticHandle.render();
@@ -53,7 +54,7 @@ public class RenderEngine {
 	}
 	
 	public static void test(){
-
+		BallModel ball = new BallModel(new Point(0,0), new float[]{0f,0f,0f,1f});
 		guiStaticHandle.populate();
 	}
 

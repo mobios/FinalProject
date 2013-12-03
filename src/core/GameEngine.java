@@ -2,7 +2,6 @@ package core;
 
 import graphics.frontend.BackgroundImage;
 import graphics.frontend.Button; 
-import graphics.frontend.Placeable;
 
 import java.io.File;
 import java.util.ArrayList;
