@@ -28,7 +28,9 @@ public class GameEngine {
 		RenderEngine.test();
 		run();
 	}
-		
+	
+	//creates a window with a pixelFormat and the correct contextAtrributes, sets the display mode and title
+	//and handles errors.
 	public static void OpenGL3(){
 		PixelFormat pixelFormat = new PixelFormat();
 		ContextAttribs contextAtrributes = new ContextAttribs(3,2)
@@ -48,6 +50,7 @@ public class GameEngine {
 		GL11.glClearColor(0f, 0f, 0f, 0f);
 	}
 	
+	// sets up the game by calling the setup fnx (in the renderEngin), openGL3 fnx, and creating an arryalist of buttons 
 	public static void setup(){
 		OpenGL3();
 		//GL11.glHint(GL11.GL_PERSPECTIVE_CORRECTION_HINT, GL11.GL_FASTEST);
