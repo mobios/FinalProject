@@ -1,6 +1,7 @@
 package graphics.frontend;
 
 import graphics.backend.Texture;
+import util.MouseEvent;
 import util.PressAction;
 import util.Rectangle;
 import core.GameEngine;
@@ -23,29 +24,51 @@ public class Button extends GuiElement{
 		GameEngine.buttons.add(this);
 	}
 	
-	public void mouseDown(float x, float y){
+	public boolean mouseDown(float x, float y){
 		if(inBounds(x,y)){
 			setTexture(down);
+			return true;
 		}
+		return false;
 	}
 	
-	public void mouseUp(float x, float y){
+	public boolean mouseUp(float x, float y){
 		if(getTexture() == down){
-			if(inBounds(x,y)){
+			if(inBounds(x,y))
 				trigger.fire();
-			}
+			
 			setTexture(up);
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean mouseMove(float x, float y){
+		if(!inBounds(x,y)){
+			setTexture(up);
+			return true;
 		}
 		
-	}
-	
-	public void mouseMove(float x, float y){
 		if(inBounds(x,y) && getTexture() == up){
 			setTexture(over);
+			return true;
 		}
-		else if(!inBounds(x,y) && getTexture() == over){
-			setTexture(up);
+		
+		return false;
+	}
+	
+	public boolean handleMouse(MouseEvent event, float x, float y){
+		switch(event){
+		case UP:
+			return mouseUp(x,y);
+			
+		case DOWN:
+			return mouseDown(x,y);
+			
+		case MOVE:
+			return mouseMove(x, y);
 		}
+		return false;
 	}
 	
 	private float clampX(float x){

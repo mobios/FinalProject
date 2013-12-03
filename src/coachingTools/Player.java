@@ -83,7 +83,4 @@ public abstract class Player {
 		this.hasBall = hasBall;
 	}
 	
-	public void throwInBall() {
-		
-	}
 }
