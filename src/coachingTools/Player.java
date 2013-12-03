@@ -1,23 +1,35 @@
 package coachingTools;
 
+import util.Point;
 import graphics.frontend.PlayerModel;
 
 public abstract class Player {
-	private PlayerModel p;
+	private PlayerModel display;
 	private int number, stamina, skill;
 	protected int scoredPoints;
 	private boolean hasBall;
+	private int width, height;
 	
-	public Player(int number, int stamina) {
+	public Player(int number, int stamina){
 		super();
+		
 		this.number = number;
 		this.stamina = stamina;
 		scoredPoints = 0;
 	}
+	
+	public Player(int number, int stamina, Point p, float[] tint){
+		super();
+		
+		this.number = number;
+		this.stamina = stamina;
+		scoredPoints = 0;
+		display = new PlayerModel(p, tint);
+	}
 
 	public void move(float x, float y, int stamina){
 		
-		p.move(x, y);
+		display.move(x, y);
 		this.stamina -= stamina;
 		
 	}

@@ -7,7 +7,7 @@ public class SoccerTeam extends Team {
 		RUSH, DEFEND;
 	}
 
-	public SoccerTeam(String name) {
+	public SoccerTeam(String name, float[] tint) {
 		super(name);
 		for (int i = 0; i < NUMBER_OF_PLAYERS; i++){
 

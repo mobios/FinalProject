@@ -1,5 +1,7 @@
 package coachingTools;
 
+import util.Point;
+
 public class SoccerPlayer extends Player {
 	
 	public static enum SoccerArea {GOAL, PENALTY_AREA, PENALTY_ARC, GOAL_AREA, CENTER_CIRCLE, GOAL_KICK};
@@ -8,8 +10,8 @@ public class SoccerPlayer extends Player {
 	private SoccerArea region;
 	private boolean goalie = false;
 	
-	public SoccerPlayer(int number, int stamina) {
-		super(number, stamina);
+	public SoccerPlayer(int number, int stamina, Point p, float[] tint) {
+		super(number, stamina, p, tint);
 	}
 	
 	public void scoreGoal() {
