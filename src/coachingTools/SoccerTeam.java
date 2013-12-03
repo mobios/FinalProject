@@ -1,5 +1,7 @@
 package coachingTools;
 
+import util.Point;
+
 public class SoccerTeam extends Team {
 	public final static int NUMBER_OF_PLAYERS = 11;
 	private FormationType formation;
@@ -8,10 +10,10 @@ public class SoccerTeam extends Team {
 	}
 
 	public SoccerTeam(String name, float[] tint) {
-		super(name);
+		super(name, tint);
 		for (int i = 0; i < NUMBER_OF_PLAYERS; i++){
 
-			players.add(new SoccerPlayer(i, 100));		
+			players.add(new SoccerPlayer(i, 100, new Point(((float)i)/15.0f,((float)i)/15.0f), tint));		
 			if (i == 0){
 				((SoccerPlayer)players.get(0)).setGoalie();
 			}
