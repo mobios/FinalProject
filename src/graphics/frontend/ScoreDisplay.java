@@ -12,6 +12,11 @@ public class ScoreDisplay{
 		team1Display = new SevenSegmentDisplay(new Point(center.x - spacing/2f, center.y));
 		team2Display = new SevenSegmentDisplay(new Point(center.x + spacing/2f, center.y));
 	}
+	
+	public void updateScore(int[] score){
+		team1Display.writeValue(score[0]);
+		team2Display.writeValue(score[1]);
+	}
 
 	public void updateTeam1Score(int n){
 		team1Display.writeValue(n);

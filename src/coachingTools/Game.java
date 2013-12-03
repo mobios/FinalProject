@@ -2,6 +2,7 @@ package coachingTools;
 
 import graphics.frontend.BackgroundImage;
 import graphics.frontend.BallModel;
+import graphics.frontend.ScoreDisplay;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -17,6 +18,7 @@ public class Game {
 	private Team team2;
 	public BallModel ball;
 	private BackgroundImage gameField;
+	public static ScoreDisplay scoreDisplay;
 	int[] score;
 
 	public boolean duringPass;
@@ -28,6 +30,7 @@ public class Game {
 		team2 = new Team("BesterTeamEver", new float[] {.02f, 0.2f, 1.0f, 1.0f}, Team.FieldHalf.Right);
 		ball = new BallModel(new Point(0,0), new float[]{0f,0f,0f,1f});
 		score = new int[] {0,0};
+		scoreDisplay = new ScoreDisplay(new Point(0.85f, -0.5f));
 	}
 
 	//throws the ball to a random player on the thrower's team for a ThrowIn
@@ -349,6 +352,7 @@ public class Game {
 				int n = new Random().nextInt(10);
 				if(n < 7){
 					getPlayerWithBall().scoreGoal();
+					team1Scored();
 				}
 			}
 		}
@@ -361,9 +365,20 @@ public class Game {
 				int n = new Random().nextInt(10);
 				if( n < 7){
 					getPlayerWithBall().scoreGoal();
+					team2Scored();
 				}
 			}
 		}
+	}
+	
+	public void team1Scored(){
+		score[0]++;
+		scoreDisplay.updateScore(score);
+	}
+	
+	public void team2Scored(){
+		score[1]++;
+		scoreDisplay.updateScore(score);
 	}
 }
 
