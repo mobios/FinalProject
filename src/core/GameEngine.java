@@ -140,7 +140,7 @@ public class GameEngine {
 		}
 	}
 	
-	
+	//Creates buttons for control of the game
 	private static void createButtons(final Game game) {
 		//team selection buttons
 		new Button(new Rectangle(.775f, .91f, .1f, .1f), "resources/bluebuttonteam1.png", "resources/redbuttonteam1.png", "resources/bluebuttonteam1.png", (new util.PressAction(){public void fire(){team = game.getTeam1();};}));
@@ -156,7 +156,7 @@ public class GameEngine {
 		new Button(new Rectangle(.85f, .15f, .25f, .13f), "resources/bluebutton352.png", "resources/redbutton352.png", "resources/bluebutton352.png", (new util.PressAction(){public void fire(){team.getInFormation(Team.FormationType.ThreeFourThree);};}));
 	}
 	
-	
+	// used to give the pass button functionality
 	private static void pass(){
 		passButton.setSticky(true);
 		boolean test = true;
