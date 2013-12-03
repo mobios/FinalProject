@@ -58,7 +58,6 @@ public class RenderEngine {
 	
 	
 	public static void test(){
-		BallModel ball = new BallModel(new Point(0,0), new float[]{0f,0f,0f,1f});
 		guiStaticHandle.populate();
 	}
 	
