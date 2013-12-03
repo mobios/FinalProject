@@ -36,8 +36,8 @@ public class Button extends GuiElement{
 
 	}
 
-	public void setSticky(){
-		sticky = true;
+	public void setSticky(boolean arg){
+		sticky = arg;
 	}
 	
 	public boolean mouseDown(float x, float y){
@@ -50,10 +50,10 @@ public class Button extends GuiElement{
 	
 	public boolean mouseUp(float x, float y){
 		if(getTexture() == down){
-			if(inBounds(x,y))
+			if(inBounds(x,y) && active)
 				trigger.fire();
 			
-			setTexture((sticky) ? ((getTexture() == down) ? up : down) : up);
+			if(active)setTexture((sticky) ? ((getTexture() == down) ? up : down) : up);
 			return true;
 		}
 		return false;
@@ -62,7 +62,7 @@ public class Button extends GuiElement{
 	public boolean mouseMove(float x, float y){
 		if(!inBounds(x,y)){
 			if(!sticky)setTexture(up);
-			return true;
+			return false;
 		}
 		
 		if(inBounds(x,y) && getTexture() == up){
@@ -74,9 +74,9 @@ public class Button extends GuiElement{
 	}
 	
 	public boolean handleMouse(MouseEvent event, float x, float y){
-		if(active == false)
-			return active;
-		
+		if(!active){
+			return false;
+		}
 		switch(event){
 		case UP:
 			return mouseUp(x,y);
